@@ -1,0 +1,19 @@
+{
+  "native_emotion_control_available": false,
+  "native_emotion_control_note": "Runtime ไม่มี parameter สำหรับ emotion/prosody/energy/pause/emphasis โดยตรง; ใช้ speed และ punctuation/phrasing เท่านั้น",
+  "preset_for_preview": "expr_02",
+  "candidates": [
+    {"candidate_id":"001_expr_01","source_line_id":"001","voice_instruction":"male, middle-aged, low pitch","input_text":"แสงสุดท้ายของวันค่อย ๆ จางหายไปหลังแนวเขา","speed":1.06,"punctuation_strategy":"ต้นฉบับ","rationale":"เพิ่ม speed จาก mock scene เดิมเพียงตัวแปรเดียว"},
+    {"candidate_id":"001_expr_02","source_line_id":"001","voice_instruction":"male, middle-aged, low pitch","input_text":"แสงสุดท้ายของวัน... ค่อย ๆ จางหายไป หลังแนวเขา","speed":1.10,"punctuation_strategy":"ellipsis และ comma เพื่อแบ่งวลี","rationale":"ทดสอบ dramatic phrasing พร้อม speed กลางของชุด"},
+    {"candidate_id":"001_expr_03","source_line_id":"001","voice_instruction":"male, middle-aged, low pitch","input_text":"แสงสุดท้ายของวันค่อย ๆ จางหายไป... หลังแนวเขา","speed":1.14,"punctuation_strategy":"ellipsis ก่อนวลีท้าย","rationale":"ทดสอบ speed สูงขึ้นและจุดพักก่อนภาพปิดท้าย"},
+    {"candidate_id":"002_expr_01","source_line_id":"002","voice_instruction":"male, young adult, moderate pitch","input_text":"เราควรออกเดินทางก่อนฟ้าจะมืดกว่านี้","speed":1.06,"punctuation_strategy":"ต้นฉบับ","rationale":"เพิ่ม speed จาก mock scene เดิมเพียงตัวแปรเดียว"},
+    {"candidate_id":"002_expr_02","source_line_id":"002","voice_instruction":"male, young adult, moderate pitch","input_text":"เราควรออกเดินทาง... ก่อนฟ้าจะมืดกว่านี้","speed":1.10,"punctuation_strategy":"ellipsis เพื่อเน้นคำเตือน","rationale":"ทดสอบ urgency ผ่าน phrase boundary"},
+    {"candidate_id":"002_expr_03","source_line_id":"002","voice_instruction":"male, young adult, moderate pitch","input_text":"เราควรออกเดินทางก่อน ฟ้าจะมืดกว่านี้!","speed":1.14,"punctuation_strategy":"comma และ exclamation","rationale":"ทดสอบจังหวะเร่งและคำเตือนที่ชัดขึ้น"},
+    {"candidate_id":"004_expr_01","source_line_id":"004","voice_instruction":"female, teenager, high pitch","input_text":"เดี๋ยวก่อนสิ รอฉันด้วยนะ","speed":1.06,"punctuation_strategy":"ต้นฉบับ","rationale":"เพิ่ม speed จาก baseline ของ cute_teen_bright แบบควบคุม"},
+    {"candidate_id":"004_expr_02","source_line_id":"004","voice_instruction":"female, teenager, high pitch","input_text":"เดี๋ยวก่อนสิ! รอฉันด้วยนะ","speed":1.10,"punctuation_strategy":"exclamation หลังคำเรียก","rationale":"ทดสอบชีวิตชีวาด้วย punctuation โดยไม่เปลี่ยนความหมาย"},
+    {"candidate_id":"004_expr_03","source_line_id":"004","voice_instruction":"female, teenager, high pitch","input_text":"เดี๋ยวก่อนสิ... รอฉันด้วยนะ!","speed":1.14,"punctuation_strategy":"ellipsis และ exclamation","rationale":"ทดสอบการเรียกเพื่อนด้วย phrase boundary ที่ชัดขึ้น"},
+    {"candidate_id":"007_expr_01","source_line_id":"007","voice_instruction":"male, young adult, moderate pitch","input_text":"ฉันจะเดินนำไปเอง ขอให้ทุกคนระวังทางด้วย","speed":1.06,"punctuation_strategy":"ต้นฉบับ","rationale":"เพิ่ม speed จาก mock scene เดิมเพียงตัวแปรเดียว"},
+    {"candidate_id":"007_expr_02","source_line_id":"007","voice_instruction":"male, young adult, moderate pitch","input_text":"ฉันจะเดินนำไปเอง... ขอให้ทุกคนระวังทางด้วย","speed":1.10,"punctuation_strategy":"ellipsis เพื่อแบ่งคำสั่งสองส่วน","rationale":"ทดสอบ confident phrasing ด้วย speed กลางของชุด"},
+    {"candidate_id":"007_expr_03","source_line_id":"007","voice_instruction":"male, young adult, moderate pitch","input_text":"ฉันจะเดินนำไปเอง! ขอให้ทุกคนระวังทางด้วย","speed":1.14,"punctuation_strategy":"exclamation หลังประโยคแรก","rationale":"ทดสอบความ active โดยไม่เปลี่ยนเนื้อความ"}
+  ]
+}

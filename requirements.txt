@@ -1,0 +1,12 @@
+# Direct runtime dependencies for the local OmniVoice Thai POC.
+# Python: >=3.10. The current Windows environment uses Python 3.13.
+omnivoice==0.2.1
+numpy>=2,<3
+soundfile>=0.13,<0.15
+
+# OmniVoice requires torch and torchaudio. Select the appropriate CPU or CUDA
+# wheel for the target platform; do not copy this project's Windows .venv.
+# For Linux CPU-only Codex Cloud, use the official PyTorch CPU wheel index when
+# provisioning the environment if the platform default installs CUDA packages.
+torch>=2.4,<3
+torchaudio>=2.4,<3

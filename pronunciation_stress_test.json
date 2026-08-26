@@ -1,0 +1,40 @@
+{
+  "mission": "Mission 2 — Thai Pronunciation Stress Test",
+  "baseline": {
+    "model": "hotdogs/omnivoice-thai",
+    "revision": "main",
+    "voice_instruction": "male, middle-aged, low pitch",
+    "speed": 0.94,
+    "steps": 32,
+    "sample_rate": 24000,
+    "preprocessing_enabled": true
+  },
+  "test_cases": [
+    {"id":"loan_01","category":"loanwords","original_text":"ผมกำลังหั่นแอปเปิลอยู่ในครัว","output":"output/pronunciation_stress/loan_01.wav"},
+    {"id":"loan_02","category":"loanwords","original_text":"คอมพิวเตอร์เครื่องนี้เปิดช้าเกินไป","output":"output/pronunciation_stress/loan_02.wav"},
+    {"id":"loan_03","category":"loanwords","original_text":"อินเทอร์เน็ตหลุดตอนฝนตกหนัก","output":"output/pronunciation_stress/loan_03.wav"},
+    {"id":"loan_04","category":"loanwords","original_text":"แอปพลิเคชันนี้ส่งอีเมลยืนยันแล้ว","output":"output/pronunciation_stress/loan_04.wav"},
+    {"id":"loan_05","category":"loanwords","original_text":"นาฬิกาบนไมโครเวฟบอกเวลาตีสอง","output":"output/pronunciation_stress/loan_05.wav"},
+    {"id":"loan_06","category":"loanwords","original_text":"เธอสั่งช็อกโกแลตกับกาแฟจากคาเฟ่เล็ก ๆ","output":"output/pronunciation_stress/loan_06.wav"},
+    {"id":"name_01","category":"fantasy_names","original_text":"Roland ยืนรออยู่หน้าปราสาท","output":"output/pronunciation_stress/name_01.wav"},
+    {"id":"name_02","category":"fantasy_names","original_text":"โรแลนด์ยืนรออยู่หน้าปราสาท","output":"output/pronunciation_stress/name_02.wav"},
+    {"id":"name_03","category":"fantasy_names","original_text":"Amelia เก็บจดหมายไว้ในหีบไม้","output":"output/pronunciation_stress/name_03.wav"},
+    {"id":"name_04","category":"fantasy_names","original_text":"อมีเลียเก็บจดหมายไว้ในหีบไม้","output":"output/pronunciation_stress/name_04.wav"},
+    {"id":"name_05","category":"fantasy_names","original_text":"Victor และ Celeste เดินทางไปกับ Frederic","output":"output/pronunciation_stress/name_05.wav"},
+    {"id":"name_06","category":"fantasy_names","original_text":"วิกเตอร์และเซเลสต์เดินทางไปกับเฟรเดอริก","output":"output/pronunciation_stress/name_06.wav"},
+    {"id":"number_01","category":"numbers_time","original_text":"เขาหยิบไพ่หมายเลข 17 ขึ้นมา","output":"output/pronunciation_stress/number_01.wav"},
+    {"id":"number_02","category":"numbers_time","original_text":"เขาหยิบไพ่หมายเลขสิบเจ็ดขึ้นมา","output":"output/pronunciation_stress/number_02.wav"},
+    {"id":"number_03","category":"numbers_time","original_text":"รางวัลมีมูลค่า 2,500 เหรียญ","output":"output/pronunciation_stress/number_03.wav"},
+    {"id":"number_04","category":"numbers_time","original_text":"ยาเม็ดนี้มีขนาด 12.5 มิลลิกรัม","output":"output/pronunciation_stress/number_04.wav"},
+    {"id":"number_05","category":"numbers_time","original_text":"เวลา 02:17 น. เขายังไม่นอน","output":"output/pronunciation_stress/number_05.wav"},
+    {"id":"number_06","category":"numbers_time","original_text":"ในปี 2026 เมืองนี้เปลี่ยนไปมาก","output":"output/pronunciation_stress/number_06.wav"},
+    {"id":"mixed_01","category":"mixed_thai_english","original_text":"HP เหลือ 20 เปอร์เซ็นต์","output":"output/pronunciation_stress/mixed_01.wav"},
+    {"id":"mixed_02","category":"mixed_thai_english","original_text":"Mission Complete ปรากฏบนหน้าจอ","output":"output/pronunciation_stress/mixed_02.wav"},
+    {"id":"mixed_03","category":"mixed_thai_english","original_text":"Level 10 เริ่มต้นหลังประตูบานนี้","output":"output/pronunciation_stress/mixed_03.wav"},
+    {"id":"mixed_04","category":"mixed_thai_english","original_text":"กรุณาไปที่ Save Point ก่อนออกจากเกม","output":"output/pronunciation_stress/mixed_04.wav"},
+    {"id":"thai_01","category":"difficult_thai","original_text":"ปลาวาฬว่ายวนเวียนอยู่กลางคลื่นลม","output":"output/pronunciation_stress/thai_01.wav"},
+    {"id":"thai_02","category":"difficult_thai","original_text":"ราตรีนี้เรืองรองด้วยแสงระยิบระยับ","output":"output/pronunciation_stress/thai_02.wav"},
+    {"id":"thai_03","category":"difficult_thai","original_text":"ผู้พิทักษ์กล่าวอย่างเคร่งขรึมว่า อย่าผลีผลาม","output":"output/pronunciation_stress/thai_03.wav"},
+    {"id":"thai_04","category":"difficult_thai","original_text":"แม้ฝนพรำ ลมแรง และฟ้าร้อง เขาก็ไม่หวั่นไหว","output":"output/pronunciation_stress/thai_04.wav"}
+  ]
+}

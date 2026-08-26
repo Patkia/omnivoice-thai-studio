@@ -1,0 +1,46 @@
+{
+  "mission": "Mission 1 — Thai Pronunciation & Narrator Tuning",
+  "baseline": {
+    "model": "hotdogs/omnivoice-thai",
+    "revision": "main",
+    "voice_instruction": "male, middle-aged, low pitch",
+    "speed": 0.94,
+    "steps": 32,
+    "sample_rate": 24000,
+    "preprocessing_enabled": false
+  },
+  "test_cases": [
+    {
+      "id": "apple_01",
+      "original_word": "แอปเปิล",
+      "candidate_spelling": "แอปเปิล",
+      "text_template": "ตอนที่โทรศัพท์ดัง ผมกำลังหั่น{WORD}อยู่ในครัว",
+      "input_text": "ตอนที่โทรศัพท์ดัง ผมกำลังหั่นแอปเปิลอยู่ในครัว",
+      "output": "output/pronunciation/apple_01.wav"
+    },
+    {
+      "id": "apple_02",
+      "original_word": "แอปเปิล",
+      "candidate_spelling": "แอปเปิ้ล",
+      "text_template": "ตอนที่โทรศัพท์ดัง ผมกำลังหั่น{WORD}อยู่ในครัว",
+      "input_text": "ตอนที่โทรศัพท์ดัง ผมกำลังหั่นแอปเปิ้ลอยู่ในครัว",
+      "output": "output/pronunciation/apple_02.wav"
+    },
+    {
+      "id": "apple_03",
+      "original_word": "แอปเปิล",
+      "candidate_spelling": "แอป เปิล",
+      "text_template": "ตอนที่โทรศัพท์ดัง ผมกำลังหั่น{WORD}อยู่ในครัว",
+      "input_text": "ตอนที่โทรศัพท์ดัง ผมกำลังหั่นแอป เปิลอยู่ในครัว",
+      "output": "output/pronunciation/apple_03.wav"
+    },
+    {
+      "id": "apple_04",
+      "original_word": "แอปเปิล",
+      "candidate_spelling": "แอ๊ปเปิ้ล",
+      "text_template": "ตอนที่โทรศัพท์ดัง ผมกำลังหั่น{WORD}อยู่ในครัว",
+      "input_text": "ตอนที่โทรศัพท์ดัง ผมกำลังหั่นแอ๊ปเปิ้ลอยู่ในครัว",
+      "output": "output/pronunciation/apple_04.wav"
+    }
+  ]
+}

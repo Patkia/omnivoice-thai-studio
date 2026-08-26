@@ -1,0 +1,20 @@
+{
+  "bright_young_female": {
+    "variants": [
+      {"candidate_id":"bright_01","voice_instruction":"female, young adult, moderate pitch","speed":1.06,"runtime_supported_tags":["female","young adult","moderate pitch"],"rationale":"ใช้ profile อนุมัติเป็นฐานและเพิ่ม speed เพียงเล็กน้อยเพื่อทดสอบความสดใส"},
+      {"candidate_id":"bright_02","voice_instruction":"female, young adult, high pitch","speed":1.0,"runtime_supported_tags":["female","young adult","high pitch"],"rationale":"ทดสอบ pitch ที่สูงขึ้นในช่วงวัยเดียวกัน โดยไม่ใช้ style tag ที่ runtime ไม่รองรับ"}
+    ]
+  },
+  "warm_young_female": {
+    "variants": [
+      {"candidate_id":"warm_01","voice_instruction":"female, young adult, low pitch","speed":0.96,"runtime_supported_tags":["female","young adult","low pitch"],"rationale":"ทดสอบโทนต่ำและจังหวะนุ่มลง โดยคงวัย young adult"},
+      {"candidate_id":"warm_02","voice_instruction":"female, middle-aged, moderate pitch","speed":0.96,"runtime_supported_tags":["female","middle-aged","moderate pitch"],"rationale":"ทดสอบความต่างด้านวัยกับ pitch กลางและจังหวะสงบ"}
+    ]
+  },
+  "cute_teen_female": {
+    "variants": [
+      {"candidate_id":"cute_teen_01","voice_instruction":"female, teenager, moderate pitch","speed":1.03,"runtime_supported_tags":["female","teenager","moderate pitch"],"rationale":"ทดสอบวัย teenager โดยคง pitch กลางเพื่อหลีกเลี่ยง baby voice"},
+      {"candidate_id":"cute_teen_02","voice_instruction":"female, teenager, high pitch","speed":1.0,"runtime_supported_tags":["female","teenager","high pitch"],"rationale":"ทดสอบความสดใสจาก pitch สูงขึ้น โดยใช้ tag ที่ runtime รองรับเท่านั้น"}
+    ]
+  }
+}

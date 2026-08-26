@@ -1,0 +1,26 @@
+{
+  "mission": "Mission 3 — Thai-Only Text Normalization",
+  "baseline": {"model":"hotdogs/omnivoice-thai","revision":"main","voice":"male, middle-aged, low pitch","speed":0.94,"steps":32,"sample_rate":24000},
+  "test_cases": [
+    {"id":"loan_03_normalized","source_text":"อินเทอร์เน็ตหลุดตอนฝนตกหนัก","category":"known_failure_loanword","output":"output/thai_normalization/loan_03_normalized.wav"},
+    {"id":"loan_05_normalized","source_text":"นาฬิกาบนไมโครเวฟบอกเวลาตีสอง","category":"known_failure_loanword","output":"output/thai_normalization/loan_05_normalized.wav"},
+    {"id":"name_01_thai_candidate","source_text":"Roland ยืนรออยู่หน้าปราสาท","category":"name_candidate","output":"output/thai_normalization/name_01_thai_candidate.wav"},
+    {"id":"name_03_thai_candidate","source_text":"Amelia เก็บจดหมายไว้ในหีบไม้","category":"name_candidate","output":"output/thai_normalization/name_03_thai_candidate.wav"},
+    {"id":"name_05_thai_candidate","source_text":"Victor และ Celeste เดินทางไปกับ Frederic","category":"name_candidate","output":"output/thai_normalization/name_05_thai_candidate.wav"},
+    {"id":"number_01_normalized","source_text":"เขาหยิบไพ่หมายเลข 17 ขึ้นมา","category":"known_failure_number","output":"output/thai_normalization/number_01_normalized.wav"},
+    {"id":"number_03_normalized","source_text":"รางวัลมีมูลค่า 2,500 เหรียญ","category":"known_failure_number","output":"output/thai_normalization/number_03_normalized.wav"},
+    {"id":"number_04_normalized","source_text":"ยาเม็ดนี้มีขนาด 12.5 มิลลิกรัม","category":"known_failure_number","output":"output/thai_normalization/number_04_normalized.wav"},
+    {"id":"number_05_natural","source_text":"เวลา 02:17 น. เขายังไม่นอน","category":"time_candidate","time_style":"natural","output":"output/thai_normalization/number_05_natural.wav"},
+    {"id":"number_05_explicit_clock","source_text":"เวลา 02:17 น. เขายังไม่นอน","category":"time_candidate","time_style":"explicit_clock","output":"output/thai_normalization/number_05_explicit_clock.wav"},
+    {"id":"number_06_normalized","source_text":"ในปี 2026 เมืองนี้เปลี่ยนไปมาก","category":"known_failure_number","output":"output/thai_normalization/number_06_normalized.wav"},
+    {"id":"mixed_01_thai_candidate","source_text":"HP เหลือ 20 เปอร์เซ็นต์","category":"mixed_term_candidate","output":"output/thai_normalization/mixed_01_thai_candidate.wav"},
+    {"id":"mixed_02_thai_candidate","source_text":"Mission Complete ปรากฏบนหน้าจอ","category":"mixed_term_candidate","output":"output/thai_normalization/mixed_02_thai_candidate.wav"},
+    {"id":"mixed_03_thai_candidate","source_text":"Level 10 เริ่มต้นหลังประตูบานนี้","category":"mixed_term_candidate","output":"output/thai_normalization/mixed_03_thai_candidate.wav"},
+    {"id":"mixed_04_thai_candidate","source_text":"กรุณาไปที่ Save Point ก่อนออกจากเกม","category":"mixed_term_candidate","output":"output/thai_normalization/mixed_04_thai_candidate.wav"},
+    {"id":"number_02_control","source_text":"เขาหยิบไพ่หมายเลขสิบเจ็ดขึ้นมา","category":"control","output":"output/thai_normalization/number_02_control.wav"},
+    {"id":"thai_03_control","source_text":"ผู้พิทักษ์กล่าวอย่างเคร่งขรึมว่า อย่าผลีผลาม","category":"control","output":"output/thai_normalization/thai_03_control.wav"},
+    {"id":"loan_02_speed_094","source_text":"คอมพิวเตอร์เครื่องนี้เปิดช้าเกินไป","category":"pacing","speed":0.94,"output":"output/thai_normalization/loan_02_speed_094.wav"},
+    {"id":"loan_02_speed_100","source_text":"คอมพิวเตอร์เครื่องนี้เปิดช้าเกินไป","category":"pacing","speed":1.0,"output":"output/thai_normalization/loan_02_speed_100.wav"},
+    {"id":"loan_02_speed_106","source_text":"คอมพิวเตอร์เครื่องนี้เปิดช้าเกินไป","category":"pacing","speed":1.06,"output":"output/thai_normalization/loan_02_speed_106.wav"}
+  ]
+}

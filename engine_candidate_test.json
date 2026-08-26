@@ -1,0 +1,11 @@
+{
+  "voice_texts": {
+    "narration": "ผู้พิทักษ์กล่าวอย่างเคร่งขรึมว่า อย่าผลีผลาม",
+    "dialogue": "ฉันจะรออยู่ตรงนี้ ไม่ต้องรีบร้อนนะ"
+  },
+  "artifact_tests": [
+    {"id":"artifact_01_plain","source_text":"อินเทอร์เน็ตหลุดตอนฝนตกหนัก","output":"output/engine_candidate/artifact_test/artifact_01_plain.wav"},
+    {"id":"artifact_02_pause","source_text":"อินเทอร์เน็ตหลุด ตอนฝนตกหนัก","output":"output/engine_candidate/artifact_test/artifact_02_pause.wav"},
+    {"id":"artifact_03_period","source_text":"อินเทอร์เน็ตหลุดตอนฝนตกหนัก.","output":"output/engine_candidate/artifact_test/artifact_03_period.wav"}
+  ]
+}

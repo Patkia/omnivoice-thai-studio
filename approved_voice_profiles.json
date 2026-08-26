@@ -1,0 +1,16 @@
+{
+  "approved": {
+    "bright_female_primary": {"source_candidate":"bright_02","voice_instruction":"female, young adult, high pitch","speed":1.0},
+    "young_female_baseline": {"source_candidate":"young_female_dialogue_1_0","voice_instruction":"female, young adult, moderate pitch","speed":1.0},
+    "cute_teen_soft": {"source_candidate":"cute_teen_01","voice_instruction":"female, teenager, moderate pitch","speed":1.03},
+    "cute_teen_bright": {"source_candidate":"cute_teen_02","voice_instruction":"female, teenager, high pitch","speed":1.0}
+  },
+  "usable": {
+    "narrator": {"source_candidate":"narrator profile", "voice_instruction":"male, middle-aged, low pitch", "speed_candidates":[0.94,1.06], "status":"pending final human speed selection"},
+    "young_male": {"source_candidate":"young_male", "voice_instruction":"male, young adult, moderate pitch", "speed":1.0},
+    "deep_male": {"source_candidate":"deep_male", "voice_instruction":"male, middle-aged, very low pitch", "speed":1.0},
+    "warm_female_option_one": {"source_candidate":"warm_01", "voice_instruction":"female, young adult, low pitch", "speed":0.96},
+    "warm_female_option_two": {"source_candidate":"warm_02", "voice_instruction":"female, middle-aged, moderate pitch", "speed":0.96}
+  },
+  "experimental_secondary": {}
+}

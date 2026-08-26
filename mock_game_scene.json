@@ -1,0 +1,16 @@
+{
+  "scene_id": "generic_twilight_path",
+  "narrator_speed_note": "ใช้ 0.94 ใน mock scene เพื่อทดสอบเท่านั้น ไม่ใช่การเลือก narrator speed winner",
+  "lines": [
+    {"line_id":"001","role":"narrator","profile_key":"narrator","speed":0.94,"text":"แสงสุดท้ายของวันค่อย ๆ จางหายไปหลังแนวเขา"},
+    {"line_id":"002","role":"young_male","profile_key":"young_male","text":"เราควรออกเดินทางก่อนฟ้าจะมืดกว่านี้"},
+    {"line_id":"003","role":"bright_female","profile_key":"bright_female_primary","text":"ถ้าอย่างนั้นก็รีบไปกันเถอะ ฉันพร้อมแล้ว"},
+    {"line_id":"004","role":"cute_teen_female","profile_key":"cute_teen_soft","text":"เดี๋ยวก่อนสิ รอฉันด้วยนะ"},
+    {"line_id":"005","role":"warm_female","profile_key":"warm_female_option_one","text":"ไม่ต้องรีบร้อน ทุกคนยังอยู่กันครบ"},
+    {"line_id":"006","role":"narrator","profile_key":"narrator","speed":0.94,"text":"ลมเย็นพัดผ่านทางเดินแคบ ๆ อย่างแผ่วเบา"},
+    {"line_id":"007","role":"young_male","profile_key":"young_male","text":"ฉันจะเดินนำไปเอง ขอให้ทุกคนระวังทางด้วย"},
+    {"line_id":"008","role":"bright_female","profile_key":"bright_female_primary","text":"ไม่ต้องห่วงนะ เราจะไปถึงพร้อมกัน"},
+    {"line_id":"009","role":"cute_teen_female","profile_key":"cute_teen_bright","text":"ฉันเห็นแสงอยู่ข้างหน้าแล้ว ไปกันเถอะ"},
+    {"line_id":"010","role":"warm_female","profile_key":"warm_female_option_two","text":"ดีมาก ค่อย ๆ เดินไปด้วยกันนะ"}
+  ]
+}

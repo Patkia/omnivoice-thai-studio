@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "description_th": "พจนานุกรมสำหรับแทนข้อความก่อนส่งเข้า OmniVoice; entries ต้องผ่าน human listening test ก่อนเพิ่ม",
+  "replacements": {
+    "แอปเปิล": "แอ๊ปเปิ้ล"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "engine_id": "thai-game-dubbing-engine-v1-candidate",
+  "model": "hotdogs/omnivoice-thai",
+  "revision": "252d5f2815a5d7300c7676422bee69141c7756de",
+  "sample_rate": 24000,
+  "default_steps": 32,
+  "normalization": {"thai_speech_normalizer_enabled": true, "pronunciation_dictionary_path": "pronunciation_dictionary.json", "thai_only_gate_enabled": true},
+  "cache_enabled": true,
+  "baseline_narrator_profile": "narrator",
+  "narrator_speed_candidates": [0.94, 1.06],
+  "status": "candidate — human listening test required before freeze"
+}

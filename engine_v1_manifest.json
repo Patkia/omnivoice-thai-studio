@@ -1,0 +1,23 @@
+{
+  "engine_version": "v1",
+  "status": "freeze_candidate",
+  "technical_pipeline_status": "TECHNICAL_PIPELINE_READY",
+  "model": "hotdogs/omnivoice-thai",
+  "revision": "252d5f2815a5d7300c7676422bee69141c7756de",
+  "sample_rate": 24000,
+  "steps": 32,
+  "normalizer": "thai_speech_normalizer.py enabled",
+  "pronunciation_dictionary": "pronunciation_dictionary.json",
+  "thai_only_gate": true,
+  "cache_policy": "enabled; cache key includes normalized text, model, revision, voice, speed, steps, sample rate",
+  "approved_voice_profile_registry": "approved_voice_profiles.json",
+  "known_limitations": [
+    "Do not send raw Latin text directly to OmniVoice Thai.",
+    "Arabic digits should be normalized to Thai spoken form.",
+    "Some loanwords can still cause a foreign accent.",
+    "Some pronunciations may require a game-specific dictionary after human approval.",
+    "CPU inference is slow.",
+    "Voice personality control is limited to runtime-supported tags.",
+    "Narrator speed remains pending final human selection."
+  ]
+}

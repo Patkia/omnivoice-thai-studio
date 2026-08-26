@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "description_th": "Candidate Thai spoken forms for Mission 3 only. None are approved pronunciation-dictionary entries.",
+  "names": {
+    "Roland": ["โรแลนด์", "โรว์แลนด์"],
+    "Amelia": ["อมีเลีย", "อะมีเลีย"],
+    "Victor": ["วิกเตอร์", "วิคเตอร์"],
+    "Celeste": ["เซเลสต์", "เซเลสท์"],
+    "Frederic": ["เฟรเดอริก", "เฟรเดริค"]
+  },
+  "game_terms": {
+    "HP": ["เอชพี"],
+    "Mission Complete": ["มิชชันคอมพลีต"],
+    "Level": ["เลเวล"],
+    "Save Point": ["เซฟพอยต์"]
+  },
+  "time_0217": {
+    "natural": "ตีสองสิบเจ็ดนาที",
+    "explicit_clock": "ศูนย์สองนาฬิกาสิบเจ็ดนาที"
+  }
+}

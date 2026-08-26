@@ -1,0 +1,7 @@
+{
+  "narrator": {"voice_instruction": "male, middle-aged, low pitch", "default_speed": 0.94},
+  "young_male": {"voice_instruction": "male, young adult, moderate pitch", "default_speed": 1.0},
+  "deep_male": {"voice_instruction": "male, middle-aged, very low pitch", "default_speed": 1.0},
+  "young_female": {"voice_instruction": "female, young adult, moderate pitch", "default_speed": 1.0},
+  "mature_female": {"voice_instruction": "female, middle-aged, moderate pitch", "default_speed": 1.0}
+}
