@@ -1,16 +1,33 @@
 {
+  "aliases": {
+    "narrator": {"profile_key": "narrator", "description_th": "ผู้บรรยายชายโทนนิ่งและลึกเล็กน้อย; ยังปรับ speed ได้"},
+    "young_male": {"profile_key": "young_male", "description_th": "ผู้ชายวัยหนุ่ม เสียงสมดุล"},
+    "deep_male": {"profile_key": "deep_male", "description_th": "ผู้ชายโทนต่ำลึก"},
+    "bright_female": {"profile_key": "bright_female_primary", "description_th": "ผู้หญิงโทนสว่าง (ผ่านการฟังเป็น bright_02)"},
+    "young_female": {"profile_key": "young_female_baseline", "description_th": "ผู้หญิงวัยหนุ่มสาว โทนสมดุล"},
+    "cute_teen_soft": {"profile_key": "cute_teen_soft", "description_th": "วัยรุ่นหญิงนุ่มนวล"},
+    "cute_teen_bright": {"profile_key": "cute_teen_bright", "description_th": "วัยรุ่นหญิงสดใส"},
+    "mipha_style": {"profile_key": "mipha_style", "description_th": "หญิงสาวโทนนุ่ม เป็นธรรมชาติ พูดไม่เร็วเกินไป"},
+    "cute_young_female": {"profile_key": "cute_young_female", "description_th": "หญิงสาวโทนน่ารัก สดใส มีชีวิตชีวา"},
+    "ancient_deep_male": {"profile_key": "ancient_deep_male", "description_th": "ชายเสียงทุ้มลึก พูดช้า สุขุม"},
+    "warm_female_1": {"profile_key": "warm_female_option_one", "description_th": "ผู้หญิงโทนอุ่น ตัวเลือกที่หนึ่ง"},
+    "warm_female_2": {"profile_key": "warm_female_option_two", "description_th": "ผู้หญิงโทนอุ่น ตัวเลือกที่สอง"}
+  },
   "approved": {
-    "bright_female_primary": {"source_candidate":"bright_02","voice_instruction":"female, young adult, high pitch","speed":1.0},
-    "young_female_baseline": {"source_candidate":"young_female_dialogue_1_0","voice_instruction":"female, young adult, moderate pitch","speed":1.0},
-    "cute_teen_soft": {"source_candidate":"cute_teen_01","voice_instruction":"female, teenager, moderate pitch","speed":1.03},
-    "cute_teen_bright": {"source_candidate":"cute_teen_02","voice_instruction":"female, teenager, high pitch","speed":1.0}
+    "bright_female_primary": {"source_candidate":"bright_02","voice_instruction":"female, young adult, high pitch","speed":1.0,"seed":15016},
+    "young_female_baseline": {"source_candidate":"young_female_dialogue_1_0","voice_instruction":"female, young adult, moderate pitch","speed":1.0,"seed":15017},
+    "cute_teen_soft": {"source_candidate":"cute_teen_01","voice_instruction":"female, teenager, moderate pitch","speed":1.03,"seed":15018},
+    "cute_teen_bright": {"source_candidate":"cute_teen_02","voice_instruction":"female, teenager, high pitch","speed":1.0,"seed":15019},
+    "mipha_style": {"source_candidate":"mipha_candidate_C","voice_instruction":"female, young adult, high pitch","speed":0.92,"seed":19102,"human_status":"approved","notes":"natural young female"},
+    "cute_young_female": {"source_candidate":"mipha_candidate_B","voice_instruction":"female, young adult, high pitch","speed":1.0,"seed":19102,"human_status":"approved","notes":"cute / bright young female"},
+    "ancient_deep_male": {"source_candidate":"great_deku_tree_final_raw","voice_instruction":"male, middle-aged, very low pitch","speed":0.68,"seed":20105,"human_status":"approved_for_use","notes":"slow / very low male voice"}
   },
   "usable": {
-    "narrator": {"source_candidate":"narrator profile", "voice_instruction":"male, middle-aged, low pitch", "speed_candidates":[0.94,1.06], "status":"pending final human speed selection"},
-    "young_male": {"source_candidate":"young_male", "voice_instruction":"male, young adult, moderate pitch", "speed":1.0},
-    "deep_male": {"source_candidate":"deep_male", "voice_instruction":"male, middle-aged, very low pitch", "speed":1.0},
-    "warm_female_option_one": {"source_candidate":"warm_01", "voice_instruction":"female, young adult, low pitch", "speed":0.96},
-    "warm_female_option_two": {"source_candidate":"warm_02", "voice_instruction":"female, middle-aged, moderate pitch", "speed":0.96}
+    "narrator": {"source_candidate":"narrator profile", "voice_instruction":"male, middle-aged, low pitch", "speed":0.94, "seed":15015, "speed_candidates":[0.94,1.06], "status":"pending final human speed selection"},
+    "young_male": {"source_candidate":"young_male", "voice_instruction":"male, young adult, moderate pitch", "speed":1.0, "seed":15020},
+    "deep_male": {"source_candidate":"deep_male", "voice_instruction":"male, middle-aged, very low pitch", "speed":1.0, "seed":15021},
+    "warm_female_option_one": {"source_candidate":"warm_01", "voice_instruction":"female, young adult, low pitch", "speed":0.96, "seed":15022},
+    "warm_female_option_two": {"source_candidate":"warm_02", "voice_instruction":"female, middle-aged, moderate pitch", "speed":0.96, "seed":15023}
   },
   "experimental_secondary": {}
 }

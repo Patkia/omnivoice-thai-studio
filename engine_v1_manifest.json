@@ -1,7 +1,13 @@
 {
   "engine_version": "v1",
-  "status": "freeze_candidate",
+  "status": "frozen_v1",
+  "engine_status": "frozen_v1",
   "technical_pipeline_status": "TECHNICAL_PIPELINE_READY",
+  "cli_entrypoint": "tts.py",
+  "intended_use": [
+    "Thai narration",
+    "Thai game dubbing pipeline"
+  ],
   "model": "hotdogs/omnivoice-thai",
   "revision": "252d5f2815a5d7300c7676422bee69141c7756de",
   "sample_rate": 24000,
@@ -11,6 +17,16 @@
   "thai_only_gate": true,
   "cache_policy": "enabled; cache key includes normalized text, model, revision, voice, speed, steps, sample rate",
   "approved_voice_profile_registry": "approved_voice_profiles.json",
+  "approved_voice_registry": "approved_voice_profiles.json",
+  "normalization_pipeline": [
+    "Thai speech normalizer",
+    "pronunciation dictionary",
+    "Thai-only gate",
+    "voice profile",
+    "OmniVoice",
+    "peak -1 dBFS normalization",
+    "WAV PCM_16"
+  ],
   "known_limitations": [
     "Do not send raw Latin text directly to OmniVoice Thai.",
     "Arabic digits should be normalized to Thai spoken form.",

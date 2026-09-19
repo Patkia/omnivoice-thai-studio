@@ -1,5 +1,7 @@
 # Python environments, bytecode, and tool caches
 .venv/
+.venv-new/
+.venv-recovered/
 venv/
 env/
 __pycache__/
@@ -11,8 +13,23 @@ __pycache__/
 .coverage
 htmlcov/
 
-# Generated POC artifacts and local agent state
-output/
+# Generated/runtime output
+output/*
+
+# Keep production outputs needed on second PC
+!output/studio/
+output/studio/*
+!output/studio/triangle-strategy/
+
+!output/chapter1_main_microtest/
+
+# Historical/generated experiment workspace and local recovery artifacts
+work/
+recovery/
+tmp/
+tmp*/
+.serena/
+Thai Voice/
 .agents/
 
 # Secrets and local configuration
@@ -48,3 +65,7 @@ hf_cache/
 Thumbs.db
 .idea/
 .vscode/
+
+# Local test/runtime state
+*.part.wav
+*.part

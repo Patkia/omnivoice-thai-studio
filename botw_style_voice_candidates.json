@@ -1,0 +1,79 @@
+{
+  "schema": "botw-style-reference-poc-v1",
+  "scope": "Descriptive character-style exploration only; no reference-audio input, speaker embedding, or voice cloning.",
+  "mission_21": {
+    "scope": "Focused speed and generic tag polish only; no reference-audio model input, embedding, or cloning.",
+    "great_deku_tree_polished_raw": {
+      "instruct": "male, middle-aged, very low pitch",
+      "speed": 0.78,
+      "seed": 20105,
+      "rationale": "Keeps candidate E identity controls fixed and isolates a slower OmniVoice delivery."
+    },
+    "mipha_style_C": {
+      "instruct": "female, young adult, high pitch",
+      "speed": 0.92,
+      "seed": 19102,
+      "rationale": "Keeps candidate B's identity controls and seed fixed; changes speed only.",
+      "human_approved": true,
+      "approval_scope": "HUMAN APPROVED BOTW-STYLE PROFILE only; not an approved Engine v1 voice profile."
+    },
+    "mipha_style_D": {
+      "instruct": "female, young adult, moderate pitch",
+      "speed": 0.93,
+      "seed": 21104,
+      "rationale": "Tests whether moderate pitch is a more natural generic alternative at the same slower pacing."
+    }
+  },
+  "candidates": {
+    "mipha_style_A": {
+      "target": "Mipha-inspired gentle fantasy heroine style",
+      "instruct": "female, young adult, moderate pitch",
+      "speed": 0.96,
+      "seed": 19101,
+      "rationale": "A restrained, gentle and warm direction for a calm conversational character voice."
+    },
+    "mipha_style_B": {
+      "target": "Mipha-inspired tender fantasy heroine style",
+      "instruct": "female, young adult, high pitch",
+      "speed": 1.0,
+      "seed": 19102,
+      "rationale": "A slightly lighter and more direct alternative, still avoiding energetic or announcer delivery.",
+      "superseded_by": "mission_21.mipha_style_C"
+    },
+    "great_deku_tree_style_A": {
+      "target": "Ancient wise-tree fantasy elder style",
+      "instruct": "male, elderly, low pitch",
+      "speed": 0.9,
+      "seed": 19103,
+      "rationale": "A low, measured and warm elder direction without aggression."
+    },
+    "great_deku_tree_style_B": {
+      "target": "Ancient authoritative fantasy elder style",
+      "instruct": "male, middle-aged, very low pitch",
+      "speed": 0.94,
+      "seed": 19104,
+      "rationale": "A weightier alternative with deliberate pacing, kept descriptive rather than identity-based."
+    },
+    "great_deku_tree_style_C": {
+      "target": "Ancient fantasy elder, deeper-register comparison",
+      "instruct": "male, elderly, very low pitch",
+      "speed": 0.9,
+      "seed": 20103,
+      "rationale": "Tests whether the prior elder direction lacked sufficient low-register weight while retaining the same measured pace."
+    },
+    "great_deku_tree_style_D": {
+      "target": "Ancient fantasy elder, slower deliberate comparison",
+      "instruct": "male, elderly, low pitch",
+      "speed": 0.82,
+      "seed": 20104,
+      "rationale": "Retains the elder/low-pitch direction but isolates a noticeably slower, more deliberate delivery."
+    },
+    "great_deku_tree_style_E": {
+      "target": "Ancient fantasy authority, very-low-register comparison",
+      "instruct": "male, middle-aged, very low pitch",
+      "speed": 0.86,
+      "seed": 20105,
+      "rationale": "Separates register and pace from the elderly tag to test a heavier but less overtly aged generic fantasy authority."
+    }
+  }
+}

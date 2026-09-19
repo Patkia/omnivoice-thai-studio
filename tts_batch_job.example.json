@@ -1,0 +1,13 @@
+{
+  "mission_id": "example-13-lines",
+  "output_dir": "output/batch/example-13-lines",
+  "defaults": {
+    "voice": "mipha_style",
+    "steps": 32,
+    "force": false
+  },
+  "lines": [
+    {"id": "001", "text": "ข้อความตัวอย่างบรรทัดที่หนึ่ง"},
+    {"id": "002", "text": "ข้อความตัวอย่างบรรทัดที่สอง"}
+  ]
+}

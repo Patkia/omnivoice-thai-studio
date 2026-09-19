@@ -3,6 +3,7 @@
 omnivoice==0.2.1
 numpy>=2,<3
 soundfile>=0.13,<0.15
+PySide6>=6.11,<6.12
 
 # OmniVoice requires torch and torchaudio. Select the appropriate CPU or CUDA
 # wheel for the target platform; do not copy this project's Windows .venv.

@@ -1,0 +1,30 @@
+{
+  "teen": [
+    {"id":"male_01","label":"วัยรุ่น ใส สูง","instruction":"male, teenager, high pitch","speed":1.05,"character_hint":"เด็กหนุ่มร่าเริง / เด็กฝึกหัด"},
+    {"id":"male_02","label":"วัยรุ่น ใส กลาง","instruction":"male, teenager, moderate pitch","speed":1.02,"character_hint":"เด็กหนุ่มจริงใจ / เพื่อนพระเอก"},
+    {"id":"male_03","label":"วัยรุ่น นุ่ม ช้า","instruction":"male, teenager, moderate pitch","speed":0.94,"character_hint":"เด็กหนุ่มสุภาพ / ขี้อาย"},
+    {"id":"male_04","label":"วัยรุ่น เสียงต่ำ","instruction":"male, teenager, low pitch","speed":0.98,"character_hint":"เด็กหนุ่มสุขุม / จริงจัง"}
+  ],
+  "young_adult": [
+    {"id":"male_05","label":"หนุ่ม สูง สด","instruction":"male, young adult, high pitch","speed":1.05,"character_hint":"เจ้าชายหนุ่ม / ตัวละครพลังเยอะ"},
+    {"id":"male_06","label":"หนุ่ม สูง สุภาพ","instruction":"male, young adult, high pitch","speed":0.97,"character_hint":"คุณชาย / นักการทูตหนุ่ม"},
+    {"id":"male_07","label":"หนุ่ม กลาง ธรรมชาติ","instruction":"male, young adult, moderate pitch","speed":1.00,"character_hint":"พระเอกหนุ่ม / อเนกประสงค์"},
+    {"id":"male_08","label":"หนุ่ม กลาง เร็ว","instruction":"male, young adult, moderate pitch","speed":1.08,"character_hint":"หนุ่มกระตือรือร้น / นักผจญภัย"},
+    {"id":"male_09","label":"หนุ่ม กลาง สุขุม","instruction":"male, young adult, moderate pitch","speed":0.92,"character_hint":"ผู้นำหนุ่ม / สุขุมจริงจัง"},
+    {"id":"male_10","label":"หนุ่ม ต่ำ","instruction":"male, young adult, low pitch","speed":1.00,"character_hint":"นักรบหนุ่ม / เท่สุขุม"},
+    {"id":"male_11","label":"หนุ่ม ต่ำ ช้า","instruction":"male, young adult, low pitch","speed":0.90,"character_hint":"องครักษ์ / ตัวละครหนักแน่น"},
+    {"id":"male_12","label":"หนุ่ม ต่ำมาก","instruction":"male, young adult, very low pitch","speed":0.96,"character_hint":"นักรบเสียงเข้ม / คู่แข่งพระเอก"}
+  ],
+  "middle_aged": [
+    {"id":"male_13","label":"ผู้ใหญ่ สูง","instruction":"male, middle-aged, high pitch","speed":1.02,"character_hint":"ขุนนางเจ้าเล่ห์ / พ่อค้า"},
+    {"id":"male_14","label":"ผู้ใหญ่ กลาง","instruction":"male, middle-aged, moderate pitch","speed":1.00,"character_hint":"แม่ทัพ / ขุนนาง / พ่อ"},
+    {"id":"male_15","label":"ผู้ใหญ่ กลาง ช้า","instruction":"male, middle-aged, moderate pitch","speed":0.90,"character_hint":"นักปราชญ์ / ที่ปรึกษา"},
+    {"id":"male_16","label":"ผู้ใหญ่ ต่ำ","instruction":"male, middle-aged, low pitch","speed":0.96,"character_hint":"แม่ทัพเข้ม / นักรบอาวุโส"},
+    {"id":"male_17","label":"ผู้ใหญ่ ต่ำมาก","instruction":"male, middle-aged, very low pitch","speed":0.90,"character_hint":"ผู้นำทรงอำนาจ / ตัวร้ายเสียงหนัก"}
+  ],
+  "elderly": [
+    {"id":"male_18","label":"สูงวัย กลาง","instruction":"male, elderly, moderate pitch","speed":0.92,"character_hint":"ผู้อาวุโสใจดี / นักปราชญ์"},
+    {"id":"male_19","label":"สูงวัย ต่ำ","instruction":"male, elderly, low pitch","speed":0.88,"character_hint":"นักรบเก่า / ผู้นำอาวุโส"},
+    {"id":"male_20","label":"สูงวัย ต่ำมาก","instruction":"male, elderly, very low pitch","speed":0.84,"character_hint":"ราชาเฒ่า / ผู้เฒ่าทรงอำนาจ"}
+  ]
+}
