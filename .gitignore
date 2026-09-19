@@ -15,10 +15,9 @@ htmlcov/
 
 # Generated/runtime output
 output/*
-
-# Keep production outputs needed on second PC
 !output/studio/
 output/studio/*
+!output/studio/batch/
 !output/studio/triangle-strategy/
 
 !output/chapter1_main_microtest/
