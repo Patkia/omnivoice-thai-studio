@@ -148,6 +148,10 @@ class StudioEngineAdapter:
     def model_status(self) -> str:
         return self.session.state
 
+    def ensure_engine_loaded(self, status: Callable[[str], None] | None = None) -> dict:
+        """Warm the persistent Engine v1 session without generating audio."""
+        return self.session.ensure_loaded(status=status)
+
     def prepare_reference_conditioning(
         self, reference_audio: str, reference_sha256: str,
         reference_text: str, reference_text_sha256: str,

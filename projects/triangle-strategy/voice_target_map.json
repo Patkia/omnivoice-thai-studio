@@ -20,6 +20,7 @@
     },
     "roland": {
       "profile_alias": "young_male",
+      "generation_mode": "reference_first",
       "instruction_override": "male, teenager, moderate pitch",
       "speed": 0.94,
       "steps": 32,
@@ -34,6 +35,7 @@
     },
     "benedict": {
       "profile_alias": "young_male",
+      "generation_mode": "reference_first",
       "instruction_override": "male, middle-aged, high pitch",
       "speed": 0.9,
       "steps": 32,
@@ -48,6 +50,7 @@
     },
     "frederica": {
       "profile_alias": "bright_female",
+      "generation_mode": "reference_first",
       "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.06,
       "steps": 32,
@@ -62,6 +65,7 @@
     },
     "narrator_B": {
       "profile_alias": "bright_female",
+      "generation_mode": "reference_first",
       "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.0,
       "steps": 32,
@@ -76,6 +80,7 @@
     },
     "female_support_A": {
       "profile_alias": "bright_female",
+      "generation_mode": "reference_first",
       "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.0,
       "steps": 32,
@@ -90,6 +95,7 @@
     },
     "heroine_A": {
       "profile_alias": "bright_female",
+      "generation_mode": "reference_first",
       "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.0,
       "steps": 32,
@@ -104,6 +110,7 @@
     },
     "female_alt_A": {
       "profile_alias": "bright_female",
+      "generation_mode": "reference_first",
       "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.0,
       "steps": 32,
@@ -118,6 +125,7 @@
     },
     "female_alt_B": {
       "profile_alias": "bright_female",
+      "generation_mode": "reference_first",
       "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.0,
       "steps": 32,
@@ -132,6 +140,7 @@
     },
     "female_alt_C": {
       "profile_alias": "bright_female",
+      "generation_mode": "reference_first",
       "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.0,
       "steps": 32,
@@ -146,6 +155,7 @@
     },
     "narrator_C": {
       "profile_alias": "bright_female",
+      "generation_mode": "reference_first",
       "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.0,
       "steps": 32,

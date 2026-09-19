@@ -117,20 +117,20 @@ class ApprovedVoiceReferenceRuntimeTests(unittest.TestCase):
             hashlib.sha256(NARRATOR_C_TEXT.encode("utf-8")).hexdigest(),
         )
 
-    def test_narrator_b_semantic_config_is_unchanged(self):
+    def test_narrator_b_reference_first_config_preserves_controls(self):
         narrator_b = json.loads(MAP_PATH.read_text(encoding="utf-8"))["targets"]["narrator_B"]
         self.assertEqual(narrator_b["profile_alias"], "bright_female")
         self.assertEqual(narrator_b["instruction_override"], "female, young adult, moderate pitch")
         self.assertEqual(narrator_b["speed"], 1.0)
         self.assertEqual(narrator_b["steps"], 32)
         self.assertEqual(narrator_b["seed"], 15016)
-        self.assertNotIn("generation_mode", narrator_b)
+        self.assertEqual(narrator_b["generation_mode"], "reference_first")
         self.assertEqual(narrator_b["reference_conditioning"]["reference_audio"],
                          "assets/triangle-strategy/approved_voice_references/narrator_B.wav")
         self.assertEqual(narrator_b["reference_conditioning"]["reference_sha256"],
                          "902230792ec5b4f0bf64510281f41e0618c3c3fb9b95de98a349d66a11924dd3")
 
-    def test_restored_triangle_strategy_targets_are_voice_design_and_exact(self):
+    def test_restored_triangle_strategy_targets_are_reference_first_and_exact(self):
         expected = {
             "roland": {
                 "profile": "young_male",
@@ -174,8 +174,9 @@ class ApprovedVoiceReferenceRuntimeTests(unittest.TestCase):
             })
             config = resolve_generation_config(row, "narrator")
             self.assertEqual(config.profile_alias, values["profile"])
-            self.assertEqual(config.generation_mode, "voice_design")
-            self.assertEqual(config.instruction_override, values["instruction"])
+            self.assertEqual(config.generation_mode, "reference_first")
+            self.assertIsNone(config.instruction)
+            self.assertIsNone(config.instruction_override)
             self.assertEqual(config.speed, values["speed"])
             self.assertEqual(config.steps, values["steps"])
             self.assertEqual(config.seed, values["seed"])
@@ -197,7 +198,7 @@ class ApprovedVoiceReferenceRuntimeTests(unittest.TestCase):
                 row = CsvBatchRow(int(values["line_no"]) + 1, values)
                 config = resolve_generation_config(row, "narrator")
                 self.assertEqual(config.voice_project, "triangle-strategy")
-                self.assertEqual(config.generation_mode, "voice_design")
+                self.assertEqual(config.generation_mode, "reference_first")
                 self.assertTrue(config.reference_conditioning)
         self.assertEqual(counts, {"roland": 22, "benedict": 40, "frederica": 49})
 

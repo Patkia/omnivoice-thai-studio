@@ -1,4 +1,5 @@
 import unittest
+import tempfile
 from datetime import datetime
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -7,6 +8,7 @@ from studio_engine_adapter import (StudioEngineAdapter, default_output_path, gen
                                    add_paragraph_pause_cues, load_voice_aliases,
                                    preview_single_input_text, preview_text, resolve_generation_seed,
                                    validate_reference_audio)
+import studio_engine_adapter
 
 
 class StudioAdapterTests(unittest.TestCase):
@@ -86,6 +88,35 @@ class StudioAdapterTests(unittest.TestCase):
                 for call in adapter.session.prepare_voice_clone_prompt.call_args_list]
         self.assertEqual(keys, [f"project-a:{'a' * 64}:{'b' * 64}",
                                 f"project-b:{'a' * 64}:{'b' * 64}"])
+
+    def test_reference_first_sends_voice_clone_prompt_and_no_instruction(self):
+        adapter = StudioEngineAdapter.__new__(StudioEngineAdapter)
+        adapter.engine = {"model": "frozen-model", "revision": "frozen-revision", "sample_rate": 24000}
+        adapter.session = MagicMock()
+        adapter.session.model_load_count = 1
+        adapter.session.reference_prompt_prep_count = 1
+        prompt = object()
+        adapter.session.prepare_voice_clone_prompt.return_value = (prompt, {"reference_prompt_prep_count": 1})
+        adapter.session.generate.return_value = ([0.1, -0.1] * 120, {"model_load_count": 1, "device": "cpu", "inference_seconds": 0.01})
+        with tempfile.TemporaryDirectory() as temp, \
+             patch("studio_engine_adapter.validate_reference_audio", return_value={"path": Path("reference.wav"), "sha256": "a" * 64}), \
+             patch("studio_engine_adapter.validate_reference_text", return_value="b" * 64), \
+             patch("studio_engine_adapter.tts.load_report", return_value={"runs": []}), \
+             patch("studio_engine_adapter.tts.validate_gate"), \
+             patch.object(studio_engine_adapter.tts, "REPORT_PATH", Path(temp) / "report.json"):
+            result = adapter.generate(
+                "ข้อความไทย", "bright_female", 1.0, 32, Path(temp) / "out.wav", True,
+                seed=26003, instruct_override="must-not-be-used",
+                single_input=True, reference_conditioning=True,
+                reference_audio="reference.wav", reference_sha256="a" * 64,
+                reference_text="ข้อความอ้างอิง", reference_text_sha256="b" * 64,
+                generation_mode="reference_first", voice_project="triangle-strategy",
+            )
+        self.assertFalse(result["cache_hit"])
+        call = adapter.session.generate.call_args
+        self.assertIsNone(call.args[1])
+        self.assertIs(call.kwargs["voice_clone_prompt"], prompt)
+        self.assertEqual(call.kwargs["generation_mode"], "reference_first")
 
     def test_all_profiles_have_fixed_seed_and_explicit_seed_remains_an_override(self):
         aliases = load_voice_aliases()

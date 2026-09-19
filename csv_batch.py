@@ -15,10 +15,14 @@ from datetime import datetime
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any, Iterable
 
-import tts
-from long_text_batch import is_long
-from studio_engine_adapter import (preview_single_input_text, preview_text,
-                                   validate_reference_audio, validate_reference_text)
+
+def _tts_runtime_helpers():
+    """Load heavy TTS helpers only when CSV validation actually needs them."""
+    import tts
+    from long_text_batch import is_long
+    from studio_engine_adapter import (preview_single_input_text, preview_text,
+                                       validate_reference_audio, validate_reference_text)
+    return tts, is_long, preview_single_input_text, preview_text, validate_reference_audio, validate_reference_text
 
 
 REQUIRED_COLUMNS = ("file_name", "thai_text")
@@ -37,6 +41,23 @@ PROJECT_ID_RE = re.compile(r"^[a-z0-9][a-z0-9._-]*$")
 VOICE_DESIGN = "voice_design"
 REFERENCE_FIRST = "reference_first"
 GENERATION_MODES = frozenset((VOICE_DESIGN, REFERENCE_FIRST))
+
+
+def _load_registry_light() -> dict[str, Any]:
+    return json.loads((ROOT / "approved_voice_profiles.json").read_text(encoding="utf-8"))
+
+
+def _resolve_voice_light(alias: str, registry: dict[str, Any]) -> dict[str, Any]:
+    aliases = registry.get("aliases", {})
+    alias_data = aliases.get(alias)
+    if not isinstance(alias_data, dict):
+        raise VoiceTargetResolutionError(f"unknown voice alias: {alias}")
+    key = alias_data.get("profile_key")
+    for section in ("approved", "usable", "experimental_secondary"):
+        profile = registry.get(section, {}).get(key)
+        if isinstance(profile, dict):
+            return {"alias": alias, **alias_data, **profile}
+    raise VoiceTargetResolutionError(f"voice profile not found: {key}")
 
 
 @dataclass(frozen=True)
@@ -176,18 +197,19 @@ def resolve_generation_config(
     *,
     map_path: Path | None = None,
     projects_root: Path = PROJECTS_ROOT,
+    validate_references: bool = True,
 ) -> ResolvedGenerationConfig:
     """Resolve a CSV ``voice_target`` or retain the V1 one-profile UI fallback.
 
     This only resolves configuration; it never appends metadata to spoken text.
     """
-    registry = tts.load_json(tts.REGISTRY_PATH)
+    registry = _load_registry_light()
     project = row.metadata("voice_project")
     if project:
         project = validate_voice_project_id(project)
     target = row.metadata("voice_target")
     if not target:
-        voice = tts.resolve_voice(voice_alias, registry)
+        voice = _resolve_voice_light(voice_alias, registry)
         return ResolvedGenerationConfig(
             voice_project=project, voice_target="", profile_alias=voice_alias,
             generation_mode=VOICE_DESIGN,
@@ -229,7 +251,7 @@ def resolve_generation_config(
         raise VoiceTargetResolutionError(f"voice_target '{target}' มี speed/steps ไม่ถูกต้อง") from exc
     if mapped_speed <= 0 or mapped_steps < 1:
         raise VoiceTargetResolutionError(f"voice_target '{target}' มี speed/steps นอกช่วงที่ใช้ได้")
-    voice = tts.resolve_voice(profile_alias, registry)
+    voice = _resolve_voice_light(profile_alias, registry)
     try:
         mapped_seed = int(target_data["seed"])
     except (KeyError, TypeError, ValueError) as exc:
@@ -247,11 +269,13 @@ def resolve_generation_config(
             raise VoiceTargetResolutionError(
                 f"voice_target '{target}' มี reference conditioning config ไม่ครบ"
             )
-        try:
-            validate_reference_audio(reference_audio, reference_sha256)
-            validate_reference_text(reference_text, reference_text_sha256)
-        except (OSError, ValueError) as exc:
-            raise VoiceTargetResolutionError(f"voice_target '{target}' reference ไม่ผ่าน: {exc}") from exc
+        if validate_references:
+            _, _, _, _, _validate_audio, _validate_text = _tts_runtime_helpers()
+            try:
+                _validate_audio(reference_audio, reference_sha256)
+                _validate_text(reference_text, reference_text_sha256)
+            except (OSError, ValueError) as exc:
+                raise VoiceTargetResolutionError(f"voice_target '{target}' reference ไม่ผ่าน: {exc}") from exc
     if generation_mode == REFERENCE_FIRST and not reference_enabled:
         raise VoiceTargetResolutionError(
             f"voice_target '{target}' ใช้ reference_first แต่ไม่มี reference conditioning ที่พร้อมใช้งาน"
@@ -355,12 +379,22 @@ def validate_rows(
     map_path: Path | None = None,
     projects_root: Path = PROJECTS_ROOT,
     skip_existing: bool = True,
+    reset_selection: bool = False,
+    defer_text_gate: bool = False,
 ) -> list[CsvBatchRow]:
-    """Validate safely and annotate rows; no model loading or TTS generation."""
+    """Validate safely and annotate rows; no model loading or TTS generation.
+
+    ``reset_selection`` is used only for a fresh CSV import. It prevents an
+    existing output (or a previous UI/session state) from making a row appear
+    selected automatically while preserving explicit user selections during
+    later validation and generation.
+    """
     rows = list(rows)
     seen: dict[str, CsvBatchRow] = {}
     for row in rows:
         row.status, row.error, row.error_stage, row.resolved_config = PENDING, None, None, None
+        if reset_selection:
+            row.selected = True
         error = _validate_file_name(row.file_name)
         error_stage = "VALIDATION"
         if error is None and not row.thai_text:
@@ -374,19 +408,25 @@ def validate_rows(
                 row.resolved_config = resolve_generation_config(
                     row, voice_alias, speed, steps, map_path=map_path,
                     projects_root=projects_root,
+                    validate_references=not defer_text_gate,
                 )
                 resolved_alias = row.resolved_config.profile_alias
-                prepared = (preview_text(row.spoken_text, resolved_alias) if is_long(row.spoken_text)
-                            else preview_single_input_text(row.spoken_text, resolved_alias))
-                tts.validate_gate(prepared["prepared"])
+                if not defer_text_gate:
+                    tts, is_long, preview_single_input_text, preview_text, _validate_audio, _validate_text = _tts_runtime_helpers()
+                    prepared = (preview_text(row.spoken_text, resolved_alias) if is_long(row.spoken_text)
+                                else preview_single_input_text(row.spoken_text, resolved_alias))
+                    tts.validate_gate(prepared["prepared"])
             except VoiceTargetResolutionError as exc:
                 error, error_stage = str(exc), "VOICE_TARGET_RESOLUTION"
             except Exception as exc:
                 error = str(exc)
         if error:
             row.status, row.error, row.error_stage, row.selected = ERROR, error, error_stage, False
-        elif skip_existing and (output_dir / row.file_name).exists():
-            row.status, row.error, row.selected = SKIPPED, "มี output อยู่แล้ว", False
+        elif (output_dir / row.file_name).exists():
+            if reset_selection or skip_existing:
+                row.selected = False
+            if skip_existing:
+                row.status, row.error = SKIPPED, "มี output อยู่แล้ว"
     return rows
 
 

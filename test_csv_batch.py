@@ -55,6 +55,40 @@ class CsvBatchTests(unittest.TestCase):
             job = build_job(rows, output, "narrator", 0.94, 32, overwrite_selected=True)
         self.assertTrue(job["lines"][0]["force"])
 
+    def test_fresh_import_reset_deselects_existing_output_even_in_overwrite_mode(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            output = root / "out"
+            output.mkdir()
+            (output / "001.wav").write_bytes(b"existing")
+            rows = [CsvBatchRow(2, {
+                "file_name": "001.wav",
+                "thai_text": "\u0e02\u0e49\u0e2d\u0e04\u0e27\u0e32\u0e21\u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22",
+                "voice_project": "triangle-strategy",
+                "voice_target": "serenoa",
+            })]
+            validate_rows(rows, output, "narrator", skip_existing=False, reset_selection=True)
+            self.assertFalse(rows[0].selected)
+            self.assertEqual(rows[0].status, PENDING)
+
+            # An explicit user selection survives later validation when
+            # overwrite mode is enabled.
+            rows[0].selected = True
+            validate_rows(rows, output, "narrator", skip_existing=False)
+            self.assertTrue(rows[0].selected)
+
+    def test_real_triangle_strategy_import_row_with_existing_output_is_unselected(self):
+        source = Path(__file__).resolve().parent / "imports" / "chapter1_omnivoice_studio.csv"
+        rows = [row for row in read_csv(source)
+                if row.values.get("self_id") == "MS01_X01_A1_1005_M_SEL_0030"]
+        self.assertEqual(len(rows), 1)
+        with tempfile.TemporaryDirectory() as temp:
+            output = Path(temp) / "out"
+            output.mkdir()
+            (output / rows[0].file_name).write_bytes(b"existing")
+            validate_rows(rows, output, "narrator", skip_existing=False, reset_selection=True)
+        self.assertFalse(rows[0].selected)
+
     def test_only_selected_rows_and_only_thai_text_enter_job(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
@@ -76,15 +110,58 @@ class CsvBatchTests(unittest.TestCase):
                               "voice_project": self.PROJECT, "voice_target": "narrator_B"})
         config = resolve_generation_config(row, "ancient_deep_male", 0.68, 12)
         self.assertEqual(config.profile_alias, "bright_female")
-        self.assertEqual(config.instruction, "female, young adult, moderate pitch")
-        self.assertEqual(config.instruction_override, "female, young adult, moderate pitch")
+        self.assertIsNone(config.instruction)
+        self.assertIsNone(config.instruction_override)
         self.assertEqual(config.speed, 1.0)
         self.assertEqual(config.steps, 32)
         self.assertEqual(config.seed, 15016)
         self.assertTrue(config.reference_conditioning)
         self.assertEqual(config.reference_audio, "assets/triangle-strategy/approved_voice_references/narrator_B.wav")
         self.assertEqual(config.reference_sha256, "902230792ec5b4f0bf64510281f41e0618c3c3fb9b95de98a349d66a11924dd3")
-        self.assertEqual(config.generation_mode, "voice_design")
+        self.assertEqual(config.generation_mode, "reference_first")
+
+    def test_approved_triangle_targets_resolve_reference_first_with_canonical_controls(self):
+        expected = {
+            "roland": ("young_male", 0.94, 32, 26003, "assets/triangle-strategy/approved_voice_references/roland.wav"),
+            "benedict": ("young_male", 0.9, 32, 26013, "assets/triangle-strategy/approved_voice_references/benedict.wav"),
+            "frederica": ("bright_female", 1.06, 32, 15016, "assets/triangle-strategy/approved_voice_references/frederica.wav"),
+        }
+        for target, (alias, speed, steps, seed, reference) in expected.items():
+            config = resolve_generation_config(
+                CsvBatchRow(2, {"file_name": f"{target}.wav", "thai_text": "ข้อความไทย",
+                                "voice_project": self.PROJECT, "voice_target": target}),
+                "narrator",
+            )
+            self.assertEqual(config.generation_mode, "reference_first")
+            self.assertEqual(config.profile_alias, alias)
+            self.assertEqual((config.speed, config.steps, config.seed), (speed, steps, seed))
+            self.assertEqual(config.reference_audio, reference)
+            self.assertTrue(config.reference_conditioning)
+            self.assertIsNone(config.instruction)
+            self.assertIsNone(config.instruction_override)
+
+    def test_all_complete_approved_references_are_reference_first(self):
+        mapping = json.loads(voice_project_map_path(self.PROJECT).read_text(encoding="utf-8"))
+        for target, data in mapping["targets"].items():
+            config = resolve_generation_config(
+                CsvBatchRow(2, {"file_name": f"{target}.wav", "thai_text": "ข้อความไทย",
+                                "voice_project": self.PROJECT, "voice_target": target}),
+                "narrator",
+            )
+            self.assertEqual(config.generation_mode, "reference_first", target)
+            self.assertTrue(config.reference_conditioning, target)
+            self.assertIsNone(config.instruction, target)
+
+    def test_reference_first_cache_identity_differs_from_voice_design(self):
+        row = CsvBatchRow(2, {"file_name": "001.wav", "thai_text": "ข้อความไทย",
+                              "voice_project": self.PROJECT, "voice_target": "roland"})
+        config = resolve_generation_config(row, "narrator")
+        reference_payload = {"text": row.thai_text, "voice_instruction": None,
+                             "generation_mode": config.generation_mode, "reference_sha256": config.reference_sha256,
+                             "reference_conditioning": True, "voice_project": self.PROJECT}
+        old_payload = dict(reference_payload, generation_mode="voice_design", voice_instruction="male, teenager, moderate pitch")
+        from studio_engine_adapter import generation_cache_keys
+        self.assertNotEqual(generation_cache_keys(reference_payload, config.seed), generation_cache_keys(old_payload, config.seed))
 
     def test_serenoa_reference_first_config_and_job_are_canonical(self):
         row = CsvBatchRow(2, {
@@ -229,7 +306,7 @@ class CsvBatchTests(unittest.TestCase):
         line = job["lines"][0]
         self.assertEqual(line["text"], "ข้อความไทย")
         self.assertEqual(line["voice"], "bright_female")
-        self.assertEqual(line["instruction_override"], "female, young adult, moderate pitch")
+        self.assertIsNone(line["instruction_override"])
         self.assertEqual((line["speed"], line["steps"], line["seed"]), (1.0, 32, 15016))
         self.assertTrue(line["reference_conditioning"])
         self.assertEqual(line["reference_sha256"], "902230792ec5b4f0bf64510281f41e0618c3c3fb9b95de98a349d66a11924dd3")

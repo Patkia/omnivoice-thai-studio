@@ -7,28 +7,128 @@ import sys
 import threading
 import subprocess
 import os
+import importlib
+import json
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any, Callable, TYPE_CHECKING
 
 from PySide6.QtCore import QSettings, QThread, QTimer, QUrl, Qt, Signal
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtMultimedia import QAudioOutput, QMediaPlayer
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox, QDoubleSpinBox, QFileDialog, QFormLayout, QFrame, QGridLayout, QGroupBox, QHeaderView, QHBoxLayout, QLabel, QMainWindow, QMessageBox, QPushButton, QPlainTextEdit, QProgressBar, QScrollArea, QSpinBox, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 
-import tts_batch_runner as batch_runner
-from csv_batch import (DONE, ERROR, GENERATING, PENDING, SKIPPED, CsvBatchError,
-                       CsvBatchRow, batch_voice_project, build_job,
-                       default_project_output_dir, new_mission_id, read_csv,
-                       row_diagnostic, validate_rows, write_job,
-                       write_launch_diagnostic, VoiceTargetResolutionError)
-from studio_engine_adapter import StudioEngineAdapter, default_output_path, load_voice_aliases, preview_single_input_text, preview_text
 from long_text_batch import is_long
 from studio_generation import generate_studio_request
-from tts import TtsInputError
 from quick_voice_preview import PreviewTextError, preview_output_path, select_preview_text
 
 
+class _LazyModule:
+    """Proxy a heavy runtime module until a user action needs it."""
+    def __init__(self, name: str):
+        self.name = name
+        self.module = None
+
+    def _load(self):
+        if self.module is None:
+            self.module = importlib.import_module(self.name)
+        return self.module
+
+    def __getattr__(self, name: str):
+        return getattr(self._load(), name)
+
+
+batch_runner = _LazyModule("tts_batch_runner")
+csv_batch = _LazyModule("csv_batch")
+
+# Compatibility aliases keep existing Studio tests and integrations patchable;
+# resolving these symbols only imports the lightweight CSV module.
+read_csv = csv_batch.read_csv
+batch_voice_project = csv_batch.batch_voice_project
+default_project_output_dir = csv_batch.default_project_output_dir
+validate_rows = csv_batch.validate_rows
+row_diagnostic = csv_batch.row_diagnostic
+write_launch_diagnostic = csv_batch.write_launch_diagnostic
+new_mission_id = csv_batch.new_mission_id
+build_job = csv_batch.build_job
+write_job = csv_batch.write_job
+CsvBatchError = csv_batch.CsvBatchError
+VoiceTargetResolutionError = csv_batch.VoiceTargetResolutionError
+
+DONE = "DONE"
+ERROR = "ERROR"
+GENERATING = "GENERATING"
+PENDING = "PENDING"
+SKIPPED = "SKIPPED"
+
+
+class TtsInputError(ValueError):
+    """Lightweight input error used before the heavy runtime is loaded."""
+
+
+def _load_voice_aliases_light() -> dict:
+    return json.loads((ROOT / "approved_voice_profiles.json").read_text(encoding="utf-8")).get("aliases", {})
+
+
+def _voice_profile_light(alias: str) -> dict:
+    data = json.loads((ROOT / "approved_voice_profiles.json").read_text(encoding="utf-8"))
+    aliases = data.get("aliases", {})
+    alias_data = aliases.get(alias)
+    if not alias_data:
+        raise TtsInputError(f"unknown voice alias: {alias}")
+    key = alias_data.get("profile_key")
+    for section in ("approved", "usable", "experimental_secondary"):
+        profile = data.get(section, {}).get(key)
+        if profile:
+            return {"alias": alias, **alias_data, **profile}
+    raise TtsInputError(f"voice profile not found: {key}")
+
+
+def default_output_path(now: datetime | None = None) -> Path:
+    now = now or datetime.now()
+    return ROOT / "output" / "studio" / f"tts_{now:%Y%m%d_%H%M%S}.wav"
+
+
+def load_voice_aliases() -> dict:
+    return _load_voice_aliases_light()
+
+
+def preview_text(*args, **kwargs):
+    from studio_engine_adapter import preview_text as _preview_text
+    return _preview_text(*args, **kwargs)
+
+
+def preview_single_input_text(*args, **kwargs):
+    from studio_engine_adapter import preview_single_input_text as _preview_single
+    return _preview_single(*args, **kwargs)
+
+
+if TYPE_CHECKING:
+    from studio_engine_adapter import StudioEngineAdapter
+
+
 ROOT = Path(__file__).resolve().parent
+
+ENGINE_NOT_LOADED = "NOT_LOADED"
+ENGINE_LOADING = "LOADING"
+ENGINE_READY = "READY"
+ENGINE_FAILED = "FAILED"
+
+
+class EngineInitWorker(QThread):
+    """Import and warm the frozen runtime away from the Qt main thread."""
+    ready = Signal(object)
+    failed = Signal(str)
+    progress = Signal(str)
+
+    def run(self) -> None:
+        try:
+            from studio_engine_adapter import StudioEngineAdapter
+            adapter = StudioEngineAdapter()
+            adapter.ensure_engine_loaded(status=self.progress.emit)
+            self.ready.emit(adapter)
+        except Exception as exc:
+            self.failed.emit(str(exc))
 
 
 class GenerateWorker(QThread):
@@ -36,7 +136,7 @@ class GenerateWorker(QThread):
     failed = Signal(str)
     progress = Signal(int, int, str)
 
-    def __init__(self, adapter: StudioEngineAdapter, text: str, alias: str, speed: float, steps: int, output: Path, force: bool):
+    def __init__(self, adapter: Any, text: str, alias: str, speed: float, steps: int, output: Path, force: bool):
         super().__init__()
         self.adapter, self.text, self.alias, self.speed, self.steps, self.output, self.force = adapter, text, alias, speed, steps, output, force
         self.cancel_event = threading.Event()
@@ -57,7 +157,7 @@ class QuickPreviewWorker(QThread):
     finished_result = Signal(dict)
     failed = Signal(str)
 
-    def __init__(self, adapter: StudioEngineAdapter, text: str, alias: str, speed: float,
+    def __init__(self, adapter: Any, text: str, alias: str, speed: float,
                  steps: int, output: Path):
         super().__init__()
         self.adapter, self.text, self.alias = adapter, text, alias
@@ -77,12 +177,16 @@ class StudioWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("Thai TTS Studio")
         self.settings = QSettings("OmniVoiceThai", "ThaiTTSStudio")
-        self.adapter = StudioEngineAdapter()
+        self.adapter: Any | None = None
+        self.engine_state = ENGINE_NOT_LOADED
+        self.engine_error: str | None = None
+        self.engine_worker: EngineInitWorker | None = None
+        self._pending_engine_action: Callable[[Any], None] | None = None
         self.player, self.audio = QMediaPlayer(), QAudioOutput()
         self.player.setAudioOutput(self.audio)
         self.worker: GenerateWorker | None = None
         self.preview_worker: QuickPreviewWorker | None = None
-        self.batch_rows: list[CsvBatchRow] = []
+        self.batch_rows: list[Any] = []
         self.batch_csv_path: Path | None = None
         self.batch_mission_id: str | None = None
         self.batch_job_path: Path | None = None
@@ -96,6 +200,7 @@ class StudioWindow(QMainWindow):
         self.batch_timer.timeout.connect(self.poll_batch_status)
         self._build()
         self._restore_settings()
+        self.model_label.setText("Engine: Not loaded")
 
     def _build(self) -> None:
         root, layout = QWidget(), QVBoxLayout()
@@ -265,7 +370,7 @@ class StudioWindow(QMainWindow):
             project = batch_voice_project(self.batch_rows)
             if project and not self._batch_output_user_selected:
                 self.batch_output_label.setText(str(default_project_output_dir(project)))
-            self.validate_batch_rows()
+            self.validate_batch_rows(reset_selection=True)
             self.batch_csv_label.setText(path)
             self.batch_status.setText(f"นำเข้า CSV {len(self.batch_rows)} row แล้ว")
         except CsvBatchError as exc:
@@ -274,13 +379,15 @@ class StudioWindow(QMainWindow):
             self.batch_status.setText(str(exc))
             QMessageBox.warning(self, "CSV ไม่ผ่าน validation", str(exc))
 
-    def validate_batch_rows(self) -> None:
+    def validate_batch_rows(self, *, reset_selection: bool = False) -> None:
         if not self.batch_rows:
             return
         try:
             validate_rows(
                 self.batch_rows, self._batch_output_dir(), self.voice.currentText(),
                 speed=self.speed.value(), steps=self.steps.value(),
+                reset_selection=reset_selection,
+                defer_text_gate=reset_selection,
                 skip_existing=not self.overwrite_batch.isChecked(),
             )
             self.refresh_batch_table()
@@ -663,7 +770,7 @@ class StudioWindow(QMainWindow):
 
     def _voice_changed(self, alias: str) -> None:
         item = self.aliases[alias]; self.description.setText(item["description_th"])
-        voice = preview_text("ข้อความทดสอบ", alias)["voice"]; self.speed.setValue(float(voice["speed"]))
+        voice = _voice_profile_light(alias); self.speed.setValue(float(voice["speed"]))
 
     def _update_count(self) -> None: self.count_label.setText(f"{len(self.editor.toPlainText())} ตัวอักษร")
     def _text(self) -> str:
@@ -681,6 +788,70 @@ class StudioWindow(QMainWindow):
             if not gate.thai_only_gate_passed: self.status.setText("พบตัวอักษรอังกฤษหรือเลขที่ยังไม่ได้ normalize"); self.generate_button.setEnabled(False); return False
             self.generate_button.setEnabled(True); self.status.setText("ข้อความผ่าน Thai-only gate"); return True
         except Exception as exc: self.preview.setPlainText(str(exc)); self.status.setText("ตรวจข้อความไม่ผ่าน"); self.generate_button.setEnabled(False); return False
+    def _request_engine(self, action: Callable[[Any], None]) -> None:
+        """Run one engine action after background initialization, if needed."""
+        if self.engine_state == ENGINE_READY and self.adapter is not None:
+            action(self.adapter)
+            return
+        if self.engine_state == ENGINE_LOADING:
+            self._pending_engine_action = action
+            self.status.setText("Engine: Loading...")
+            return
+        self.engine_state = ENGINE_LOADING
+        self.engine_error = None
+        self._pending_engine_action = action
+        self.model_label.setText("Engine: Loading...")
+        self.status.setText("Engine: Loading...")
+        self.generate_button.setEnabled(False)
+        self.preview_button.setEnabled(False)
+        self.engine_worker = EngineInitWorker(self)
+        self.engine_worker.progress.connect(self.status.setText)
+        self.engine_worker.ready.connect(self._engine_ready)
+        self.engine_worker.failed.connect(self._engine_failed)
+        self.engine_worker.start()
+
+    def _engine_ready(self, adapter: Any) -> None:
+        self.adapter = adapter
+        self.engine_state = ENGINE_READY
+        self.engine_error = None
+        self.model_label.setText("Engine: Ready")
+        self.generate_button.setEnabled(True)
+        self.preview_button.setEnabled(True)
+        self.engine_worker = None
+        action = self._pending_engine_action
+        self._pending_engine_action = None
+        if action is not None:
+            action(adapter)
+
+    def _engine_failed(self, message: str) -> None:
+        self.engine_state = ENGINE_FAILED
+        self.engine_error = message
+        self.engine_worker = None
+        self._pending_engine_action = None
+        self.adapter = None
+        self.model_label.setText("Engine: Failed")
+        self.generate_button.setEnabled(True)
+        self.preview_button.setEnabled(True)
+        self.status.setText(f"Engine initialization failed: {message}")
+
+    def _start_generation(self, adapter: Any, text: str, output: Path, force: bool) -> None:
+        self.status.setText("กำลังตรวจ Cache...")
+        self.generate_button.setEnabled(False)
+        self.preview_button.setEnabled(False)
+        self.worker = GenerateWorker(adapter, text, self.voice.currentText(), self.speed.value(), self.steps.value(), output, force)
+        self.worker.finished_result.connect(self.generated)
+        self.worker.failed.connect(self.failed)
+        self.worker.progress.connect(self.batch_progress)
+        self.worker.start()
+
+    def _start_preview(self, adapter: Any, text: str, output: Path) -> None:
+        self.preview_button.setEnabled(False)
+        self.generate_button.setEnabled(False)
+        self.preview_worker = QuickPreviewWorker(adapter, text, self.voice.currentText(), self.speed.value(), self.steps.value(), output)
+        self.preview_worker.finished_result.connect(self.preview_generated)
+        self.preview_worker.failed.connect(self.preview_failed)
+        self.preview_worker.start()
+
     def choose_output(self) -> None:
         path, _ = QFileDialog.getSaveFileName(self, "เลือกไฟล์ WAV", self.output.text(), "WAV (*.wav)")
         if path: self.output.setText(path)
@@ -700,18 +871,21 @@ class StudioWindow(QMainWindow):
             return
         if self.preview_worker and self.preview_worker.isRunning():
             return
-        if not self.check_text(): return
+        try:
+            text = self._text()
+        except TtsInputError as exc:
+            self.status.setText(str(exc))
+            return
         output = Path(self.output.text())
+        force = self.force.isChecked()
         self.generate_button.setEnabled(False); self.preview_button.setEnabled(False); self.progress.setRange(0, 0); self.status.setText("กำลังตรวจ Cache...")
-        self.worker = GenerateWorker(self.adapter, self._text(), self.voice.currentText(), self.speed.value(), self.steps.value(), output, self.force.isChecked())
-        self.worker.finished_result.connect(self.generated); self.worker.failed.connect(self.failed); self.worker.start()
-        self.worker.progress.connect(self.batch_progress)
+        self._request_engine(lambda adapter: self._start_generation(adapter, text, output, force))
     def batch_progress(self,current,total,status):
         self.progress.setRange(0,total); self.progress.setValue(current); self.status.setText(("ใช้ Cache" if status=="CACHED" else "กำลังสร้าง")+f" {current} / {total}")
     def generated(self, result: dict) -> None:
         if result.get("cancelled"):
             self.progress.setRange(0, 1); self.progress.setValue(0); self.generate_button.setEnabled(True); self.preview_button.setEnabled(True); self.play_button.setEnabled(False); self.status.setText("ยกเลิกแล้ว — เก็บ chunk ที่สร้างสำเร็จไว้แล้ว"); self.worker = None; return
-        self.progress.setRange(0, 1); self.progress.setValue(1); self.generate_button.setEnabled(True); self.preview_button.setEnabled(True); self.output.setText(str(result["output"])); self.model_label.setText("โมเดล: พร้อมใช้งาน" if self.adapter.model_status == "MODEL_READY" else "โมเดล: ยังไม่ได้โหลด"); self.status.setText("ใช้ไฟล์จาก Cache" if result["cache_hit"] else f"สร้างเสียงสำเร็จ — {result.get('total_generation_seconds', 0):.1f} วินาที"); self.play_button.setEnabled(True); self.stop_button.setEnabled(True); self.worker = None
+        self.progress.setRange(0, 1); self.progress.setValue(1); self.generate_button.setEnabled(True); self.preview_button.setEnabled(True); self.output.setText(str(result["output"])); self.model_label.setText("Engine: Ready" if self.engine_state == ENGINE_READY else "Engine: Not loaded"); self.status.setText("ใช้ไฟล์จาก Cache" if result["cache_hit"] else f"สร้างเสียงสำเร็จ — {result.get('total_generation_seconds', 0):.1f} วินาที"); self.play_button.setEnabled(True); self.stop_button.setEnabled(True); self.worker = None
     def failed(self, message: str) -> None:
         self.progress.setRange(0, 1); self.progress.setValue(0); self.generate_button.setEnabled(True); self.preview_button.setEnabled(True); self.worker = None; self.status.setText("ไม่สามารถสร้างไฟล์ WAV ได้"); QMessageBox.warning(self, "สร้างเสียงไม่สำเร็จ", message)
     def quick_preview(self) -> None:
@@ -725,12 +899,12 @@ class StudioWindow(QMainWindow):
         except (PreviewTextError, TtsInputError) as exc:
             self.status.setText(str(exc)); return
         output = preview_output_path(text, self.voice.currentText(), self.speed.value(), self.steps.value())
-        self.preview_worker = QuickPreviewWorker(self.adapter, text, self.voice.currentText(), self.speed.value(), self.steps.value(), output)
+        self._request_engine(lambda adapter: self._start_preview(adapter, text, output))
         self.preview_button.setEnabled(False); self.generate_button.setEnabled(False); self.status.setText("กำลังสร้างเสียงตัวอย่าง...")
-        self.preview_worker.finished_result.connect(self.preview_generated); self.preview_worker.failed.connect(self.preview_failed); self.preview_worker.start()
+        # The worker is created by _start_preview after the engine is ready.
     def preview_generated(self, result: dict) -> None:
         self.preview_worker = None; self.preview_button.setEnabled(True); self.generate_button.setEnabled(True)
-        self.model_label.setText("โมเดล: พร้อมใช้งาน" if self.adapter.model_status == "MODEL_READY" else "โมเดล: ยังไม่ได้โหลด")
+        self.model_label.setText("Engine: Ready" if self.engine_state == ENGINE_READY else "Engine: Not loaded")
         self.player.setSource(QUrl.fromLocalFile(str(Path(result["output"]).resolve()))); self.player.play(); self.stop_button.setEnabled(True)
         self.status.setText("เสียงตัวอย่างจาก Cache — เล่นแล้ว" if result["cache_hit"] else "เสียงตัวอย่างพร้อม — เล่นแล้ว")
     def preview_failed(self, message: str) -> None:

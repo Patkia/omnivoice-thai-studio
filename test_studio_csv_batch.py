@@ -92,6 +92,38 @@ class StudioCsvBatchTests(unittest.TestCase):
         self.assertEqual([row.csv_row_number for row in window.batch_rows], list(range(2, 15)))
         window.close()
 
+    def test_fresh_import_does_not_inherit_prior_selection_or_checkpoint(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            csv_path = root / "fresh.csv"
+            csv_path.write_text("placeholder", encoding="utf-8-sig")
+            output = root / "out"
+            output.mkdir()
+            target = CsvBatchRow(2, {
+                "file_name": "MS01_X01_A1_1005_M_SEL_0030.wav",
+                "self_id": "MS01_X01_A1_1005_M_SEL_0030",
+                "thai_text": "\u0e02\u0e49\u0e2d\u0e04\u0e27\u0e32\u0e21\u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22",
+                "voice_project": "triangle-strategy",
+                "voice_target": "serenoa",
+            })
+            (output / target.file_name).write_bytes(b"existing")
+            window = StudioWindow()
+            window.batch_rows = [CsvBatchRow(2, {"file_name": "old.wav", "thai_text": "\u0e02\u0e49\u0e2d\u0e04\u0e27\u0e32\u0e21"})]
+            window.batch_rows[0].selected = True
+            window.batch_mission_id = "unrelated-prior-batch"
+            window.batch_job_path = root / "old-job.json"
+            window.batch_output_label.setText(str(output))
+            window._batch_output_user_selected = True
+            with patch("studio.QFileDialog.getOpenFileName", return_value=(str(csv_path), "CSV (*.csv)")), \
+                 patch("studio.read_csv", return_value=[target]):
+                window.import_csv()
+            self.assertIsNone(window.batch_mission_id)
+            self.assertIsNone(window.batch_job_path)
+            self.assertEqual(len(window.batch_rows), 1)
+            self.assertFalse(window.batch_rows[0].selected)
+            self.assertEqual(window.batch_table.item(0, 0).checkState().name, "Unchecked")
+            window.close()
+
     def test_csv_layout_uses_scroll_and_keeps_readable_table_geometry(self):
         window = self.make_window()
         window.batch_rows[0].values["thai_text"] = "ข้อความภาษาไทยสำหรับตรวจการตัดบรรทัด " * 8
@@ -140,7 +172,7 @@ class StudioCsvBatchTests(unittest.TestCase):
         self.assertIn("Voice Project: triangle-strategy", summary)
         self.assertIn("Voice Target: narrator_B", summary)
         self.assertIn("Profile Alias: bright_female", summary)
-        self.assertIn("moderate pitch", summary)
+        self.assertIn("Instruction: NONE (reference identity only)", summary)
         self.assertIn("Speed: 1.00", summary)
         self.assertIn("Seed: 15016", summary)
         self.assertIn("Reference Conditioning: ON", summary)

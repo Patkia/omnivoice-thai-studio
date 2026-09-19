@@ -22,6 +22,17 @@ class PersistentTtsSession:
     @property
     def state(self) -> str: return "MODEL_READY" if self.model is not None else "MODEL_NOT_LOADED"
 
+    def ensure_loaded(self, status: Callable[[str], None] | None = None) -> dict:
+        """Load the frozen model once; intended for background initialization."""
+        with self._lock:
+            load_seconds, reused = self._ensure_model(status)
+            return {
+                "model_load_seconds": round(load_seconds, 3),
+                "model_load_count": self.model_load_count,
+                "model_reused": reused,
+                "device": self.device,
+            }
+
     def _ensure_model(self, status: Callable[[str], None] | None = None) -> tuple[float, bool]:
         load_seconds = 0.0
         reused = self.model is not None
