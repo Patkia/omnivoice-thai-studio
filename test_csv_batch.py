@@ -105,9 +105,9 @@ class CsvBatchTests(unittest.TestCase):
         self.assertNotIn("pronunciation_note", line)
         self.assertNotIn("character_name", line)
 
-    def test_narrator_b_resolves_from_map_with_profile_seed(self):
+    def test_narrator_resolves_from_map_with_profile_seed(self):
         row = CsvBatchRow(2, {"file_name": "001.wav", "thai_text": "ข้อความไทย",
-                              "voice_project": self.PROJECT, "voice_target": "narrator_B"})
+                              "voice_project": self.PROJECT, "voice_target": "narrator"})
         config = resolve_generation_config(row, "ancient_deep_male", 0.68, 12)
         self.assertEqual(config.profile_alias, "bright_female")
         self.assertIsNone(config.instruction)
@@ -116,7 +116,7 @@ class CsvBatchTests(unittest.TestCase):
         self.assertEqual(config.steps, 32)
         self.assertEqual(config.seed, 15016)
         self.assertTrue(config.reference_conditioning)
-        self.assertEqual(config.reference_audio, "assets/triangle-strategy/approved_voice_references/narrator_B.wav")
+        self.assertEqual(config.reference_audio, "assets/triangle-strategy/approved_voice_references/narrator.wav")
         self.assertEqual(config.reference_sha256, "902230792ec5b4f0bf64510281f41e0618c3c3fb9b95de98a349d66a11924dd3")
         self.assertEqual(config.generation_mode, "reference_first")
 
@@ -139,6 +139,37 @@ class CsvBatchTests(unittest.TestCase):
             self.assertTrue(config.reference_conditioning)
             self.assertIsNone(config.instruction)
             self.assertIsNone(config.instruction_override)
+
+    def test_triangle_row_speed_overrides_apply_only_to_requested_rows(self):
+        source = Path(__file__).resolve().parent / "imports" / "chapter1_omnivoice_studio.csv"
+        rows = read_csv(source)
+        expected = {
+            "MS01_X01_A0_0020_F_HEW_0030": (0.96, 1.056),
+            "MS01_X01_A0_0030_M_FRN_0010": (1.02, 1.071),
+            "MS01_X01_A1_0010_F_YRA_0020": (1.0, 1.05),
+            "MS01_X01_A1_1020_M_ELA_0010": (0.96, 1.008),
+            "MS01_X01_A1_1030_M_SMN_0030": (0.9, 0.99),
+            "MS01_X01_BATTLE_01_BEFORE_M_TRA_0020": (1.0, 1.05),
+        }
+        by_id = {row.metadata("self_id"): row for row in rows}
+        self.assertTrue(expected.keys() <= by_id.keys())
+        mapping = json.loads(voice_project_map_path(self.PROJECT).read_text(encoding="utf-8"))
+        for self_id, (old_speed, new_speed) in expected.items():
+            row = by_id[self_id]
+            target = row.metadata("voice_target")
+            before = mapping["targets"][target]
+            config = resolve_generation_config(row, "narrator")
+            self.assertEqual(float(before["speed"]), old_speed, self_id)
+            self.assertAlmostEqual(config.speed, new_speed, places=6, msg=self_id)
+            self.assertEqual(config.voice_target, target)
+            self.assertEqual(config.reference_audio, before["reference_conditioning"]["reference_audio"])
+            self.assertEqual(config.seed, before["seed"])
+            self.assertEqual(config.steps, before["steps"])
+
+        untouched = by_id["MS01_X01_A1_0010_F_FRE_0030"]
+        untouched_config = resolve_generation_config(untouched, "narrator")
+        self.assertEqual(untouched_config.speed,
+                         mapping["targets"][untouched.metadata("voice_target")]["speed"])
 
     def test_all_complete_approved_references_are_reference_first(self):
         mapping = json.loads(voice_project_map_path(self.PROJECT).read_text(encoding="utf-8"))
@@ -175,7 +206,7 @@ class CsvBatchTests(unittest.TestCase):
         self.assertIsNone(config.instruction_override)
         self.assertEqual((config.speed, config.steps, config.seed), (1.0, 32, 15032))
         self.assertEqual(config.reference_audio,
-                         "assets/triangle-strategy/approved_voice_references/runtime_24k/serenoa_male14.wav")
+                         "assets/triangle-strategy/approved_voice_references/serenoa.wav")
         self.assertNotEqual(config.reference_audio, row.metadata("reference_audio"))
 
     def test_reference_first_without_reference_fails_closed(self):
@@ -195,20 +226,20 @@ class CsvBatchTests(unittest.TestCase):
 
     def test_multiple_voice_targets_resolve_independently(self):
         mapping = json.loads(voice_project_map_path(self.PROJECT).read_text(encoding="utf-8"))
-        mapping["targets"]["narrator_B_alt"] = dict(mapping["targets"]["narrator_B"])
+        mapping["targets"]["narrator_alt"] = dict(mapping["targets"]["narrator"])
         with tempfile.TemporaryDirectory() as temp:
             map_path = Path(temp) / "voice_target_map.json"
             map_path.write_text(json.dumps(mapping, ensure_ascii=False), encoding="utf-8")
             first = resolve_generation_config(
-                CsvBatchRow(2, {"file_name": "a.wav", "thai_text": "ข้อความไทย", "voice_target": "narrator_B"}),
+                CsvBatchRow(2, {"file_name": "a.wav", "thai_text": "ข้อความไทย", "voice_target": "narrator"}),
                 "narrator", map_path=map_path,
             )
             second = resolve_generation_config(
-                CsvBatchRow(3, {"file_name": "b.wav", "thai_text": "ข้อความไทย", "voice_target": "narrator_B_alt"}),
+                CsvBatchRow(3, {"file_name": "b.wav", "thai_text": "ข้อความไทย", "voice_target": "narrator_alt"}),
                 "narrator", map_path=map_path,
             )
-        self.assertEqual(first.voice_target, "narrator_B")
-        self.assertEqual(second.voice_target, "narrator_B_alt")
+        self.assertEqual(first.voice_target, "narrator")
+        self.assertEqual(second.voice_target, "narrator_alt")
         self.assertEqual(first.profile_alias, "bright_female")
         self.assertEqual(second.profile_alias, "bright_female")
 
@@ -245,8 +276,8 @@ class CsvBatchTests(unittest.TestCase):
         self.assertEqual((first.voice_project, first.profile_alias), ("project-a", "narrator"))
         self.assertEqual((second.voice_project, second.profile_alias), ("project-b", "bright_female"))
 
-    def test_narrator_b_reference_missing_or_hash_mismatch_fails_resolution(self):
-        row = CsvBatchRow(2, {"file_name": "001.wav", "thai_text": "ข้อความไทย", "voice_target": "narrator_B"})
+    def test_narrator_reference_missing_or_hash_mismatch_fails_resolution(self):
+        row = CsvBatchRow(2, {"file_name": "001.wav", "thai_text": "ข้อความไทย", "voice_target": "narrator"})
         reference_text = "ข้อความอ้างอิง"
         base_target = {
             "profile_alias": "bright_female",
@@ -264,11 +295,11 @@ class CsvBatchTests(unittest.TestCase):
         }
         with tempfile.TemporaryDirectory() as temp:
             path = Path(temp) / "map.json"
-            path.write_text(json.dumps({"schema_version": 1, "targets": {"narrator_B": base_target}}, ensure_ascii=False), encoding="utf-8")
+            path.write_text(json.dumps({"schema_version": 1, "targets": {"narrator": base_target}}, ensure_ascii=False), encoding="utf-8")
             with self.assertRaisesRegex(Exception, "ไม่พบ approved reference_audio"):
                 resolve_generation_config(row, "narrator", map_path=path)
-            base_target["reference_conditioning"]["reference_audio"] = "assets/triangle-strategy/approved_voice_references/narrator_B.wav"
-            path.write_text(json.dumps({"schema_version": 1, "targets": {"narrator_B": base_target}}, ensure_ascii=False), encoding="utf-8")
+            base_target["reference_conditioning"]["reference_audio"] = "assets/triangle-strategy/approved_voice_references/narrator.wav"
+            path.write_text(json.dumps({"schema_version": 1, "targets": {"narrator": base_target}}, ensure_ascii=False), encoding="utf-8")
             with self.assertRaisesRegex(Exception, "SHA256"):
                 resolve_generation_config(row, "narrator", map_path=path)
 
@@ -293,13 +324,13 @@ class CsvBatchTests(unittest.TestCase):
         self.assertEqual(config.speed, 0.68)
         self.assertEqual(config.steps, 32)
 
-    def test_narrator_b_job_persists_resolved_config_without_metadata_in_text(self):
+    def test_narrator_job_persists_resolved_config_without_metadata_in_text(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             rows = read_csv(self.write_csv(
                 root,
                 "file_name,thai_text,voice_project,voice_target,pronunciation_note,prosody_note,character_name\n"
-                "001.wav,ข้อความไทย,triangle-strategy,narrator_B,โน้ตออกเสียง,โน้ตจังหวะ,ผู้บรรยาย\n",
+                "001.wav,ข้อความไทย,triangle-strategy,narrator,โน้ตออกเสียง,โน้ตจังหวะ,ผู้บรรยาย\n",
             ))
             validate_rows(rows, root / "out", "ancient_deep_male", speed=0.68, steps=12)
             job = build_job(rows, root / "out", "ancient_deep_male", 0.68, 12)
@@ -325,7 +356,7 @@ class CsvBatchTests(unittest.TestCase):
     def test_human_approved_norselia_override_keeps_canonical_text(self):
         row = CsvBatchRow(2, {
             "file_name": "001.wav", "thai_text": "นอร์เซเลีย",
-            "tts_text": "นอร์-เซ-เลีย", "voice_target": "narrator_B",
+            "tts_text": "นอร์-เซ-เลีย", "voice_target": "narrator",
         })
         self.assertEqual(row.thai_text, "นอร์เซเลีย")
         self.assertEqual(row.spoken_text, "นอร์-เซ-เลีย")
@@ -336,7 +367,7 @@ class CsvBatchTests(unittest.TestCase):
             rows = read_csv(self.write_csv(
                 root,
                 "file_name,thai_text,tts_text,pronunciation_note,prosody_note,voice_project,voice_target\n"
-                "001.wav,นอร์เซเลีย,นอร์ เซ เลีย,metadata-only,metadata-only,triangle-strategy,narrator_B\n",
+                "001.wav,นอร์เซเลีย,นอร์ เซ เลีย,metadata-only,metadata-only,triangle-strategy,narrator\n",
             ))
             validate_rows(rows, root / "out", "narrator")
             job = build_job(rows, root / "out", "narrator", 0.94, 32)
@@ -367,7 +398,7 @@ class CsvBatchTests(unittest.TestCase):
             config = resolve_generation_config(row, "bright_female")
             self.assertEqual(config.generation_mode, "reference_first")
             self.assertEqual(config.reference_audio,
-                             "assets/triangle-strategy/approved_voice_references/runtime_24k/serenoa_male14.wav")
+                             "assets/triangle-strategy/approved_voice_references/serenoa.wav")
 
     def test_existing_triangle_strategy_csv_is_fully_project_migrated(self):
         rows = read_csv(Path("imports/chapter1_omnivoice_studio.csv"))

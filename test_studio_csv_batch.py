@@ -163,28 +163,28 @@ class StudioCsvBatchTests(unittest.TestCase):
             self.assertEqual(diagnostic["job_build"]["result"], "completed")
             window.close()
 
-    def test_narrator_b_config_is_visible_before_launch(self):
+    def test_narrator_config_is_visible_before_launch(self):
         window = self.make_window()
         window.batch_rows[0].values["voice_project"] = "triangle-strategy"
-        window.batch_rows[0].values["voice_target"] = "narrator_B"
+        window.batch_rows[0].values["voice_target"] = "narrator"
         window.validate_batch_rows()
         summary = window.batch_resolution_summary.text()
         self.assertIn("Voice Project: triangle-strategy", summary)
-        self.assertIn("Voice Target: narrator_B", summary)
+        self.assertIn("Voice Target: narrator", summary)
         self.assertIn("Profile Alias: bright_female", summary)
         self.assertIn("Instruction: NONE (reference identity only)", summary)
         self.assertIn("Speed: 1.00", summary)
         self.assertIn("Seed: 15016", summary)
         self.assertIn("Reference Conditioning: ON", summary)
-        self.assertIn("assets/triangle-strategy/approved_voice_references/narrator_B.wav", summary)
+        self.assertIn("assets/triangle-strategy/approved_voice_references/narrator.wav", summary)
         window.close()
 
     def test_voice_target_and_resolved_profile_are_visible_per_row(self):
         window = self.make_window()
         window.batch_rows[0].values["voice_project"] = "triangle-strategy"
-        window.batch_rows[0].values["voice_target"] = "narrator_B"
+        window.batch_rows[0].values["voice_target"] = "narrator"
         window.validate_batch_rows()
-        self.assertEqual(window.batch_table.item(0, 5).text(), "narrator_B")
+        self.assertEqual(window.batch_table.item(0, 5).text(), "narrator")
         self.assertEqual(window.batch_table.item(0, 6).text(), "bright_female")
         window.close()
 

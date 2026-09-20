@@ -10,7 +10,7 @@ if not defined PY set "PY=python"
 echo ============================================================
 echo Serenoa Chapter 1 - canonical male14 reference
 
-echo Reference: assets\triangle-strategy\approved_voice_references\runtime_24k\serenoa_male14.wav
+echo Reference: assets\triangle-strategy\approved_voice_references\serenoa.wav
 echo CSV:       imports\chapter1_serenoa_regen.csv
 echo Output:    output\chapter1_serenoa_male14
 

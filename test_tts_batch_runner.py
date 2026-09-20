@@ -63,10 +63,10 @@ class BatchRunnerTests(unittest.TestCase):
 
     def narrator_reference_fields(self):
         mapping = json.loads(Path("projects/triangle-strategy/voice_target_map.json").read_text(encoding="utf-8"))
-        reference = mapping["targets"]["narrator_B"]["reference_conditioning"]
+        reference = mapping["targets"]["narrator"]["reference_conditioning"]
         return {
             "voice_project": "triangle-strategy",
-            "voice_target": "narrator_B",
+            "voice_target": "narrator",
             "reference_conditioning": True,
             "reference_audio": reference["reference_audio"],
             "reference_sha256": reference["reference_sha256"],

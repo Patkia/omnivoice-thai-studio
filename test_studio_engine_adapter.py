@@ -14,7 +14,7 @@ import studio_engine_adapter
 class StudioAdapterTests(unittest.TestCase):
     def test_approved_narrator_reference_hash_and_format(self):
         metadata = validate_reference_audio(
-            "assets/triangle-strategy/approved_voice_references/narrator_B.wav",
+            "assets/triangle-strategy/approved_voice_references/narrator.wav",
             "902230792ec5b4f0bf64510281f41e0618c3c3fb9b95de98a349d66a11924dd3",
         )
         self.assertEqual(metadata["sample_rate"], 24000)
@@ -28,7 +28,7 @@ class StudioAdapterTests(unittest.TestCase):
             )
         with self.assertRaisesRegex(ValueError, "SHA256"):
             validate_reference_audio(
-                "assets/triangle-strategy/approved_voice_references/narrator_B.wav", "0" * 64,
+                "assets/triangle-strategy/approved_voice_references/narrator.wav", "0" * 64,
             )
 
     def test_registry_and_preview(self):

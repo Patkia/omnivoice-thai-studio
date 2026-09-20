@@ -67,7 +67,7 @@ def validate_reference_audio(value: str | Path, expected_sha256: str) -> dict:
 
 def validate_reference_text(reference_text: str, expected_sha256: str) -> str:
     if not reference_text:
-        raise ValueError("reference_text ว่าง; narrator_B ห้าม fallback ไป ASR")
+        raise ValueError("reference_text ว่าง; reference-first target ห้าม fallback ไป ASR")
     actual = hashlib.sha256(reference_text.encode("utf-8")).hexdigest()
     if not expected_sha256 or actual.casefold() != expected_sha256.casefold():
         raise ValueError("reference_text SHA256 ไม่ตรง")

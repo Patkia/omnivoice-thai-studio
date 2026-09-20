@@ -80,14 +80,14 @@ class StudioSingleFirstTests(unittest.TestCase):
             seed=15016,
             instruction_override="female, young adult, moderate pitch",
             reference_conditioning=True,
-            reference_audio="assets/triangle-strategy/approved_voice_references/narrator_B.wav",
+            reference_audio="assets/triangle-strategy/approved_voice_references/narrator.wav",
             reference_sha256="a" * 64,
             reference_text="ข้อความอ้างอิง",
             reference_text_sha256="b" * 64,
         )
         call = adapter.calls[0]
         self.assertTrue(call["reference_conditioning"])
-        self.assertEqual(call["reference_audio"], "assets/triangle-strategy/approved_voice_references/narrator_B.wav")
+        self.assertEqual(call["reference_audio"], "assets/triangle-strategy/approved_voice_references/narrator.wav")
         self.assertEqual(call["seed"], 15016)
         self.assertEqual(call["instruct_override"], "female, young adult, moderate pitch")
 
@@ -101,7 +101,7 @@ class StudioSingleFirstTests(unittest.TestCase):
             seed=15016,
             instruction_override="female, young adult, moderate pitch",
             reference_conditioning=True,
-            reference_audio="assets/triangle-strategy/approved_voice_references/narrator_B.wav",
+            reference_audio="assets/triangle-strategy/approved_voice_references/narrator.wav",
             reference_sha256="a" * 64,
             reference_text="ข้อความอ้างอิง",
             reference_text_sha256="b" * 64,

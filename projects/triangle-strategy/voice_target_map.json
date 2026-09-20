@@ -3,6 +3,7 @@
   "targets": {
     "serenoa": {
       "profile_alias": "narrator",
+      "original_voice": "male_10_young_very_bright.wav",
       "generation_mode": "reference_first",
       "language": "Thai",
       "denoise": true,
@@ -12,7 +13,7 @@
       "seed": 15032,
       "reference_conditioning": {
         "enabled": true,
-        "reference_audio": "assets/triangle-strategy/approved_voice_references/runtime_24k/serenoa_male14.wav",
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/serenoa.wav",
         "reference_sha256": "0b54c5e1bd6746e9845080c02c4282664a944683c760285204cbf637e4ccfa6a",
         "reference_text": "ข้าไม่รู้ว่าหนทางข้างหน้าจะเป็นเช่นไร แต่ตราบใดที่เรายังยืนอยู่ด้วยกัน ข้าจะไม่มีวันยอมแพ้",
         "reference_text_sha256": "97f97a09e4f5ba4aa720d55a2c51e04485df0bed9d41a9603c788a41734e7a3a"
@@ -20,6 +21,7 @@
     },
     "roland": {
       "profile_alias": "young_male",
+      "original_voice": "male_02.wav",
       "generation_mode": "reference_first",
       "instruction_override": "male, teenager, moderate pitch",
       "speed": 0.94,
@@ -35,6 +37,7 @@
     },
     "benedict": {
       "profile_alias": "young_male",
+      "original_voice": "male_13_slow_0.88_wsola.wav",
       "generation_mode": "reference_first",
       "instruction_override": "male, middle-aged, high pitch",
       "speed": 0.9,
@@ -50,6 +53,7 @@
     },
     "frederica": {
       "profile_alias": "bright_female",
+      "original_voice": "cute_teen_01_dialogue_02_bright.wav",
       "generation_mode": "reference_first",
       "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.06,
@@ -63,83 +67,129 @@
         "reference_text_sha256": "ba6adf9e7b320941d21091e6e66889fa40db978164b88fea1ea82096ae9c6552"
       }
     },
-    "narrator_B": {
-      "profile_alias": "bright_female",
+    "hughette": {
+      "profile_alias": "warm_female_1",
+      "original_voice": "warm_01_dialogue_01_friendly.wav",
       "generation_mode": "reference_first",
-      "instruction_override": "female, young adult, moderate pitch",
-      "speed": 1.0,
+      "speed": 0.96,
       "steps": 32,
-      "seed": 15016,
+      "seed": 15022,
       "reference_conditioning": {
         "enabled": true,
-        "reference_audio": "assets/triangle-strategy/approved_voice_references/narrator_B.wav",
-        "reference_sha256": "902230792ec5b4f0bf64510281f41e0618c3c3fb9b95de98a349d66a11924dd3",
-        "reference_text": "เวลาที่ล่วงเลยไปถึงสามสิบปี ได้บันดาลให้ก่อเกิดสายสัมพันธ์อันดีระหว่าง\nราชรัฐแกรนด์ดัชชีแห่งเอสฟรอสต์ และตระกูลวูล์ฟฟอร์ตแห่งเกลนบรู๊ค\nซึ่งมีอำนาจในอาณาจักรเป็นรองเพียงแค่เหล่าเชื้อพระวงศ์ของอาณาจักรเท่านั้น",
-        "reference_text_sha256": "cf9fbb7a6f5e1520244b37418b2549863bc57c2d13adbf2595b567d3b2e6b779"
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/hughette.wav",
+        "reference_sha256": "6cbc64d9ec236d93b2c91de4b8adf5b0bff8f5eaa644845326a6aff788af800b",
+        "reference_text": "ฉันจะรออยู่ตรงนี้ ไม่ต้องรีบร้อนนะ",
+        "reference_text_sha256": "9f3f11af59a72fdfd97233b0b534927b0d98d1a56e6b0dc6e68f9cdf7c1b8bb2"
       }
     },
-    "female_support_A": {
+    "geela": {
       "profile_alias": "bright_female",
+      "original_voice": "05_NNN_0035.wav",
       "generation_mode": "reference_first",
-      "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.0,
       "steps": 32,
       "seed": 15016,
       "reference_conditioning": {
         "enabled": true,
-        "reference_audio": "assets/triangle-strategy/approved_voice_references/runtime_24k/female_support_A.wav",
-        "reference_sha256": "ecc0d8545e344c3d162658042f20d9692fd631e9a26f1a449ef79393cf6909c6",
-        "reference_text": "อาณาจักรแรกเลยคืออาณาจักรเกลนบรู๊ค ซึ่งเป็นเมืองทางผ่านของแม่น้ำนอร์เซเลียอันยิ่งใหญ่ ทำให้นำมาซึ่งการค้าขายที่เฟื่องฟู",
-        "reference_text_sha256": "497b9a294f2600fe67ffe72816f89f5c93dd51474913e3c9c2344368c3ec0af0"
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/geela.wav",
+        "reference_sha256": "e42d8f756dd48ee6a069823c5f7a41de6ed33fef22c5bb41ea5b140c7f6a738c",
+        "reference_text": "โดยแต่ละอาณาจักรจะควบคุมทรัพยากรที่สำคัญของตนไว้เอง\nทำให้เกิดความขัดแย้งระหว่างอาณาจักรมาโดยตลอด",
+        "reference_text_sha256": "897b338300db8dab0971318e3a2e4d51c627ec0e4a65dec5eae406125ba955a3"
       }
     },
-    "heroine_A": {
+    "anna": {
       "profile_alias": "bright_female",
+      "original_voice": "09_NNN_0070.wav",
       "generation_mode": "reference_first",
-      "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.0,
       "steps": 32,
       "seed": 15016,
       "reference_conditioning": {
         "enabled": true,
-        "reference_audio": "assets/triangle-strategy/approved_voice_references/runtime_24k/heroine_A.wav",
-        "reference_sha256": "91fbe764f48bead3d7b22928ffadb09c4b595c9d9d7b06dd2704b0a69ccbc395",
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/anna.wav",
+        "reference_sha256": "991729c6ce4bc14bd70ebb06a3710b0ba44df8389aa368d7dc558eba6228b5f0",
+        "reference_text": "เมื่อตระกูลวูล์ฟฟอร์ต ซึ่งมีอำนาจสูงสุดเหนือตระกูลอื่นใดในเกลนบรู๊ค รับรู้ถึงการโจมตี พวกเขาจึงเร่งรุดเข้าช่วยเหล่าเชื้อพระวงศ์ นำทัพโดยเซเรโนอา ผู้สืบทอดตำแหน่งลอร์ดมาจากพ่อของเขา",
+        "reference_text_sha256": "a7020a552e6bd7acf91b13de463ed23e6cfe5603b899431850e5f657c6197ddd"
+      }
+    },
+    "erador": {
+      "profile_alias": "young_male",
+      "original_voice": "male_12.wav",
+      "generation_mode": "reference_first",
+      "speed": 0.96,
+      "steps": 32,
+      "seed": 26012,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/erador.wav",
+        "reference_sha256": "1efef52f5445dc7c43dba55fa8ffd5bf20e862bce34f22894c814c3b22a5dab9",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "travis": {
+      "profile_alias": "young_male",
+      "original_voice": "male_14.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 26014,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/travis.wav",
+        "reference_sha256": "5f62ec1e78c43cb0e9f43b72ac0dc4b6e436a293607a01efdf1ac1d587dd2450",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "trish": {
+      "profile_alias": "bright_female",
+      "original_voice": "03_NNN_0025.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 15016,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/trish.wav",
+        "reference_sha256": "47a6dc3c618843d6ba48b36d95424bb6a006845f63a72b03601914c27cd30e8f",
         "reference_text": "ต่อมาคืออาณาจักรแกรนด์ดัชชีแห่งเอสฟรอสต์ ดินแดนแห่งน้ำแข็งและหิมะที่ซึ่งเบื้องล่างเต็มไปด้วยแร่เหล็กมากมายที่ถูกปกคลุมอยู่",
         "reference_text_sha256": "0a0b74481f26f1de8429332af393fc897b7b8bd80719bd1cab5163a393723d44"
       }
     },
-    "female_alt_A": {
-      "profile_alias": "bright_female",
+    "symon": {
+      "profile_alias": "young_male",
+      "original_voice": "male_17.wav",
       "generation_mode": "reference_first",
-      "instruction_override": "female, young adult, moderate pitch",
-      "speed": 1.0,
+      "speed": 0.9,
       "steps": 32,
-      "seed": 15016,
+      "seed": 26017,
       "reference_conditioning": {
         "enabled": true,
-        "reference_audio": "assets/triangle-strategy/approved_voice_references/runtime_24k/female_alt_A.wav",
-        "reference_sha256": "3a0aa116fda38854e67e6932b73d8f6624e62f9093dc334cc65812ec2a9803b2",
-        "reference_text": "ความขัดแย้งที่เกิดขึ้นนำไปสู่ชนวนสงคราม และในไม่ช้า\nก็เกิดเป็นสงครามนองเลือดที่ยืดเยื้อกันเป็นเวลากว่าหลายปี\nทุกชีวิตที่ถูกสังเวยไปในสงครามครั้งนี้ถูกกล่าวขานและรู้จักกันในชื่อของสงครามซอลไอรอน",
-        "reference_text_sha256": "1d10d046a230f0c84fc7ec55759b4b45174911f25309f56c069ef7a47639bc4d"
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/symon.wav",
+        "reference_sha256": "92de79801970d269fbd333ddce77af187fad566c06564e28773ff2d5d6f90949",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
       }
     },
-    "female_alt_B": {
-      "profile_alias": "bright_female",
+    "frani": {
+      "profile_alias": "young_male",
+      "original_voice": "male_02.wav",
       "generation_mode": "reference_first",
-      "instruction_override": "female, young adult, moderate pitch",
-      "speed": 1.0,
+      "speed": 1.02,
       "steps": 32,
-      "seed": 15016,
+      "seed": 26002,
       "reference_conditioning": {
         "enabled": true,
-        "reference_audio": "assets/triangle-strategy/approved_voice_references/runtime_24k/female_alt_B.wav",
-        "reference_sha256": "65a9ee00f44bb93199a3e658661dfa575ec2fc795cf2d34d2171975d979b9f65",
-        "reference_text": "โดยมีเบเนดิกต์ผู้เป็นที่ปรึกษาและทหารผ่านศึกซอลไอรอน องค์ชายโรแลนด์แห่งเกลนบรู๊คและเป็นเพื่อนรักของเซเรโนอา รวมถึงเฟรเดอริก้า คู่หมั้นผู้เดินทางมาจากราชรัฐซึ่งกลายเป็นศัตรูในปัจจุบัน",
-        "reference_text_sha256": "8aab6412ee0af5415e2a097ea3384ac6a0cf94897218ca60d1a990f6d8757911"
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/frani.wav",
+        "reference_sha256": "0c74decf60098ff40f0c530f496beee4789dca9aa4f9fe2bb6f836b5969bf6a5",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
       }
     },
-    "female_alt_C": {
+    "narrator": {
       "profile_alias": "bright_female",
+      "original_voice": "stream_013_selected_112kbps.wav",
       "generation_mode": "reference_first",
       "instruction_override": "female, young adult, moderate pitch",
       "speed": 1.0,
@@ -147,25 +197,10 @@
       "seed": 15016,
       "reference_conditioning": {
         "enabled": true,
-        "reference_audio": "assets/triangle-strategy/approved_voice_references/runtime_24k/female_alt_C.wav",
-        "reference_sha256": "f725a63d77fc5056f258ee15b3e7db2d4ddb3dc680ebda9d116c26bfb6a887dd",
-        "reference_text": "สงครามใหม่กำลังระอุขึ้น โดยมีเชื้อไฟเป็นหลักความเชื่ออันแน่วแน่ของดินแดนทั้งหลาย แต่เซเรโนอากับทัพของเขา มุ่งตรงเข้าสู่ไฟสงคราม โดยที่พวกเขายังไม่ค่อยเข้าใจสถานการณ์เท่าใดนัก...",
-        "reference_text_sha256": "58cd7e341f95dc1a5e06d37b9f547ccd73002065610c69c754583828537c5fe4"
-      }
-    },
-    "narrator_C": {
-      "profile_alias": "bright_female",
-      "generation_mode": "reference_first",
-      "instruction_override": "female, young adult, moderate pitch",
-      "speed": 1.0,
-      "steps": 32,
-      "seed": 15016,
-      "reference_conditioning": {
-        "enabled": true,
-        "reference_audio": "assets/triangle-strategy/approved_voice_references/runtime_24k/female_alt_A.wav",
-        "reference_sha256": "3a0aa116fda38854e67e6932b73d8f6624e62f9093dc334cc65812ec2a9803b2",
-        "reference_text": "ความขัดแย้งที่เกิดขึ้นนำไปสู่ชนวนสงคราม และในไม่ช้า\nก็เกิดเป็นสงครามนองเลือดที่ยืดเยื้อกันเป็นเวลากว่าหลายปี\nทุกชีวิตที่ถูกสังเวยไปในสงครามครั้งนี้ถูกกล่าวขานและรู้จักกันในชื่อของสงครามซอลไอรอน",
-        "reference_text_sha256": "1d10d046a230f0c84fc7ec55759b4b45174911f25309f56c069ef7a47639bc4d"
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/narrator.wav",
+        "reference_sha256": "902230792ec5b4f0bf64510281f41e0618c3c3fb9b95de98a349d66a11924dd3",
+        "reference_text": "เวลาที่ล่วงเลยไปถึงสามสิบปี ได้บันดาลให้ก่อเกิดสายสัมพันธ์อันดีระหว่าง\nราชรัฐแกรนด์ดัชชีแห่งเอสฟรอสต์ และตระกูลวูล์ฟฟอร์ตแห่งเกลนบรู๊ค\nซึ่งมีอำนาจในอาณาจักรเป็นรองเพียงแค่เหล่าเชื้อพระวงศ์ของอาณาจักรเท่านั้น",
+        "reference_text_sha256": "cf9fbb7a6f5e1520244b37418b2549863bc57c2d13adbf2595b567d3b2e6b779"
       }
     }
   }

@@ -55,7 +55,7 @@ python tools\check_installation.py
 Health check ต้องยืนยัน map, CSV และ SHA256 ของ reference นี้:
 
 ```text
-assets/triangle-strategy/approved_voice_references/runtime_24k/serenoa_male14.wav
+assets/triangle-strategy/approved_voice_references/serenoa.wav
 SHA256: 0b54c5e1bd6746e9845080c02c4282664a944683c760285204cbf637e4ccfa6a
 ```
 

@@ -8,6 +8,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import math
 import os
 import re
 from dataclasses import dataclass, field
@@ -189,6 +190,57 @@ def load_voice_target_map(
     return data
 
 
+def load_row_speed_overrides(
+    project_id: str | None = None,
+    *,
+    projects_root: Path = PROJECTS_ROOT,
+) -> dict[str, float]:
+    """Load optional project-owned per-row speed overrides.
+
+    The override is keyed by the CSV ``self_id`` and changes only effective
+    speed.  An absent file is intentionally a no-op for backwards
+    compatibility; malformed values fail closed before a batch can launch.
+    """
+    if not project_id:
+        return {}
+    project_id = validate_voice_project_id(project_id)
+    path = (projects_root / project_id / "row_speed_overrides.json").resolve()
+    try:
+        path.relative_to(projects_root.resolve())
+    except ValueError as exc:
+        raise VoiceTargetResolutionError("row speed override path is outside projects root") from exc
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise VoiceTargetResolutionError(f"cannot read row speed overrides: {exc}") from exc
+    overrides = data.get("overrides") if isinstance(data, dict) else None
+    if not isinstance(overrides, dict):
+        raise VoiceTargetResolutionError("row speed override schema is invalid")
+    result: dict[str, float] = {}
+    for key, value in overrides.items():
+        if not isinstance(key, str) or not key.strip():
+            raise VoiceTargetResolutionError("row speed override key must be a non-empty self_id")
+        try:
+            numeric = float(value)
+        except (TypeError, ValueError) as exc:
+            raise VoiceTargetResolutionError(f"row speed override for {key!r} is not numeric") from exc
+        if not math.isfinite(numeric) or numeric <= 0:
+            raise VoiceTargetResolutionError(f"row speed override for {key!r} must be finite and positive")
+        result[key] = numeric
+    return result
+
+
+def row_speed_override(row: CsvBatchRow, *, projects_root: Path = PROJECTS_ROOT) -> float | None:
+    """Return the optional speed override for one row, if configured."""
+    project = row.metadata("voice_project")
+    self_id = row.metadata("self_id")
+    if not project or not self_id:
+        return None
+    return load_row_speed_overrides(project, projects_root=projects_root).get(self_id)
+
+
 def resolve_generation_config(
     row: CsvBatchRow,
     voice_alias: str,
@@ -210,11 +262,12 @@ def resolve_generation_config(
     target = row.metadata("voice_target")
     if not target:
         voice = _resolve_voice_light(voice_alias, registry)
+        effective_speed = row_speed_override(row, projects_root=projects_root)
         return ResolvedGenerationConfig(
             voice_project=project, voice_target="", profile_alias=voice_alias,
             generation_mode=VOICE_DESIGN,
             instruction=voice["voice_instruction"], instruction_override=None,
-            speed=float(voice["speed"] if speed is None else speed),
+            speed=float(effective_speed if effective_speed is not None else (voice["speed"] if speed is None else speed)),
             steps=int(32 if steps is None else steps), seed=voice.get("seed"),
             reference_conditioning=False, reference_audio=None, reference_sha256=None,
             reference_text=None, reference_text_sha256=None,
@@ -251,6 +304,9 @@ def resolve_generation_config(
         raise VoiceTargetResolutionError(f"voice_target '{target}' มี speed/steps ไม่ถูกต้อง") from exc
     if mapped_speed <= 0 or mapped_steps < 1:
         raise VoiceTargetResolutionError(f"voice_target '{target}' มี speed/steps นอกช่วงที่ใช้ได้")
+    override_speed = row_speed_override(row, projects_root=projects_root)
+    if override_speed is not None:
+        mapped_speed = override_speed
     voice = _resolve_voice_light(profile_alias, registry)
     try:
         mapped_seed = int(target_data["seed"])
