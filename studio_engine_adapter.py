@@ -44,19 +44,36 @@ def validate_reference_audio(value: str | Path, expected_sha256: str) -> dict:
     actual_sha256 = hashlib.sha256(path.read_bytes()).hexdigest()
     if not expected_sha256 or actual_sha256.casefold() != expected_sha256.casefold():
         raise ValueError(f"reference_audio SHA256 ไม่ตรง: {path}")
-    try:
-        with wave.open(str(path), "rb") as audio:
+    if path.suffix.casefold() == ".wav":
+        try:
+            with wave.open(str(path), "rb") as audio:
+                metadata = {
+                    "sample_rate": audio.getframerate(),
+                    "channels": audio.getnchannels(),
+                    "sample_width": audio.getsampwidth(),
+                    "frames": audio.getnframes(),
+                    "compression": audio.getcomptype(),
+                    "format": "WAV",
+                }
+        except (wave.Error, EOFError) as exc:
+            raise ValueError(f"reference_audio ไม่ใช่ WAV ที่ใช้ได้: {path}") from exc
+        if (metadata["sample_rate"], metadata["channels"], metadata["sample_width"], metadata["compression"]) != (24000, 1, 2, "NONE"):
+            raise ValueError("reference_audio WAV ต้องเป็น PCM16 / 24000 Hz / mono")
+    else:
+        try:
+            info = sf.info(str(path))
             metadata = {
-                "sample_rate": audio.getframerate(),
-                "channels": audio.getnchannels(),
-                "sample_width": audio.getsampwidth(),
-                "frames": audio.getnframes(),
-                "compression": audio.getcomptype(),
+                "sample_rate": info.samplerate,
+                "channels": info.channels,
+                "sample_width": 2 if info.subtype == "PCM_16" else None,
+                "frames": info.frames,
+                "compression": info.format,
+                "format": info.format,
             }
-    except (wave.Error, EOFError) as exc:
-        raise ValueError(f"reference_audio ไม่ใช่ WAV ที่ใช้ได้: {path}") from exc
-    if (metadata["sample_rate"], metadata["channels"], metadata["sample_width"], metadata["compression"]) != (24000, 1, 2, "NONE"):
-        raise ValueError("reference_audio ต้องเป็น PCM16 / 24000 Hz / mono")
+        except (RuntimeError, ValueError, OSError) as exc:
+            raise ValueError(f"reference_audio อ่านไม่ได้ด้วย soundfile: {path}") from exc
+        if metadata["sample_width"] != 2 or metadata["frames"] <= 0:
+            raise ValueError("reference_audio compressed format ต้องอ่านได้และเป็น PCM16")
     return {
         "path": path,
         "sha256": actual_sha256,

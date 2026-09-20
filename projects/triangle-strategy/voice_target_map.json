@@ -21,7 +21,7 @@
     },
     "roland": {
       "profile_alias": "young_male",
-      "original_voice": "male_02.wav",
+      "original_voice": "male_03.wav",
       "generation_mode": "reference_first",
       "instruction_override": "male, teenager, moderate pitch",
       "speed": 0.94,
@@ -31,7 +31,7 @@
         "enabled": true,
         "reference_audio": "assets/triangle-strategy/approved_voice_references/roland.wav",
         "reference_sha256": "ef9db5fcd4d5632e9233e0fc2518b147e0b36a6e5eac982f43b1e6bdafa23b25",
-        "reference_text": "\u0e22\u0e34\u0e19\u0e14\u0e35\u0e17\u0e35\u0e48\u0e44\u0e14\u0e49\u0e1e\u0e1a \u0e02\u0e49\u0e32\u0e2b\u0e27\u0e31\u0e07\u0e27\u0e48\u0e32\u0e40\u0e23\u0e32\u0e08\u0e30\u0e23\u0e48\u0e27\u0e21\u0e40\u0e14\u0e34\u0e19\u0e17\u0e32\u0e07\u0e44\u0e1b\u0e14\u0e49\u0e27\u0e22\u0e01\u0e31\u0e19\u0e44\u0e14\u0e49",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
         "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
       }
     },
@@ -47,7 +47,7 @@
         "enabled": true,
         "reference_audio": "assets/triangle-strategy/approved_voice_references/benedict.wav",
         "reference_sha256": "cae049474de5027e77042d1ac76a50d288708197813f8d4b3f95f47bc24d2efe",
-        "reference_text": "\u0e22\u0e34\u0e19\u0e14\u0e35\u0e17\u0e35\u0e48\u0e44\u0e14\u0e49\u0e1e\u0e1a \u0e02\u0e49\u0e32\u0e2b\u0e27\u0e31\u0e07\u0e27\u0e48\u0e32\u0e40\u0e23\u0e32\u0e08\u0e30\u0e23\u0e48\u0e27\u0e21\u0e40\u0e14\u0e34\u0e19\u0e17\u0e32\u0e07\u0e44\u0e1b\u0e14\u0e49\u0e27\u0e22\u0e01\u0e31\u0e19\u0e44\u0e14\u0e49",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
         "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
       }
     },
@@ -63,7 +63,7 @@
         "enabled": true,
         "reference_audio": "assets/triangle-strategy/approved_voice_references/frederica.wav",
         "reference_sha256": "0a042044f296166618e075b6f4e6b7a736c04f1ac6af6d49d695fcb03a34171c",
-        "reference_text": "\u0e43\u0e19\u0e17\u0e35\u0e48\u0e2a\u0e38\u0e14\u0e01\u0e47\u0e21\u0e32\u0e16\u0e36\u0e07\u0e2a\u0e31\u0e01\u0e17\u0e35 \u0e09\u0e31\u0e19\u0e23\u0e2d\u0e15\u0e31\u0e49\u0e07\u0e19\u0e32\u0e19\u0e41\u0e25\u0e49\u0e27\u0e19\u0e30",
+        "reference_text": "ในที่สุดก็มาถึงสักที ฉันรอตั้งนานแล้วนะ",
         "reference_text_sha256": "ba6adf9e7b320941d21091e6e66889fa40db978164b88fea1ea82096ae9c6552"
       }
     },
@@ -185,6 +185,426 @@
         "reference_sha256": "0c74decf60098ff40f0c530f496beee4789dca9aa4f9fe2bb6f836b5969bf6a5",
         "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
         "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "MALE_CHILD_A": {
+      "profile_alias": "young_male",
+      "original_voice": "MALE_CHILD_C_01.wav",
+      "generation_mode": "reference_first",
+      "speed": 0.95,
+      "steps": 32,
+      "seed": 27201,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_CHILD_A.wav",
+        "reference_sha256": "4d93274d4aef4bd708ef5f9eb47fa9b25c15778ddb13f94ed131bda4a871495a",
+        "reference_text": "วันนี้อากาศดีจัง ข้าอยากไปดูข้างนอกซักหน่อย เผื่อจะมีอะไรน่าสนใจเกิดขึ้น",
+        "reference_text_sha256": "061a4b7e340136c2fdcf7bb834e98186a606aaa8e3ea3741d86933a8db5ffc04"
+      }
+    },
+    "MALE_CHILD_B": {
+      "profile_alias": "young_male",
+      "original_voice": "MALE_CHILD_B_03.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.04,
+      "steps": 32,
+      "seed": 27103,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_CHILD_B.wav",
+        "reference_sha256": "10739fd65a1b0ec75e1e55954e463d1233a09552522ac574ebcfb244b340cd90",
+        "reference_text": "วันนี้อากาศดีจัง ข้าอยากไปดูข้างนอกซักหน่อย เผื่อจะมีอะไรน่าสนใจเกิดขึ้น",
+        "reference_text_sha256": "061a4b7e340136c2fdcf7bb834e98186a606aaa8e3ea3741d86933a8db5ffc04"
+      }
+    },
+    "MALE_CHILD_C": {
+      "profile_alias": "young_male",
+      "original_voice": "MALE_CHILD_B_01.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.05,
+      "steps": 32,
+      "seed": 27101,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_CHILD_C.wav",
+        "reference_sha256": "e4c33abbfbc94af561927377383a9c9a494ff2dec389952fad81abd0ec0a35e2",
+        "reference_text": "วันนี้อากาศดีจัง ข้าอยากไปดูข้างนอกซักหน่อย เผื่อจะมีอะไรน่าสนใจเกิดขึ้น",
+        "reference_text_sha256": "061a4b7e340136c2fdcf7bb834e98186a606aaa8e3ea3741d86933a8db5ffc04"
+      }
+    },
+    "MALE_YOUNG_A": {
+      "profile_alias": "young_male",
+      "original_voice": "male_09.wav",
+      "generation_mode": "reference_first",
+      "speed": 0.92,
+      "steps": 32,
+      "seed": 26009,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_YOUNG_A.wav",
+        "reference_sha256": "029d034eabc2b07715a51f61c01bf3d647be8b0394483a1583527ec04b556c80",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "MALE_YOUNG_B": {
+      "profile_alias": "young_male",
+      "original_voice": "male_18.wav",
+      "generation_mode": "reference_first",
+      "speed": 0.92,
+      "steps": 32,
+      "seed": 26018,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_YOUNG_B.wav",
+        "reference_sha256": "b6ba9233a4a3a993137cd6dda7a428d9ef38d6a1e1b44bf77830457dcd3412b8",
+        "reference_text": "ข้าไม่รู้ว่าหนทางข้างหน้าจะเป็นเช่นไร แต่ตราบใดที่เรายังยืนอยู่ด้วยกัน ข้าจะไม่มีวันยอมแพ้",
+        "reference_text_sha256": "97f97a09e4f5ba4aa720d55a2c51e04485df0bed9d41a9603c788a41734e7a3a"
+      }
+    },
+    "MALE_YOUNG_C": {
+      "profile_alias": "young_male",
+      "original_voice": "male_05.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.05,
+      "steps": 32,
+      "seed": 26005,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_YOUNG_C.wav",
+        "reference_sha256": "667f27eee09089d98df245e35ae2e444775f663cee00daf84bf492d3402bd03c",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "MALE_ADULT_A": {
+      "profile_alias": "narrator",
+      "original_voice": "great_deku_tree_polished_raw.wav",
+      "generation_mode": "reference_first",
+      "speed": 0.78,
+      "steps": 32,
+      "seed": 20105,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_ADULT_A.wav",
+        "reference_sha256": "cae049474de5027e77042d1ac76a50d288708197813f8d4b3f95f47bc24d2efe",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "MALE_ADULT_B": {
+      "profile_alias": "young_male",
+      "original_voice": "male_08_young_quick.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.08,
+      "steps": 32,
+      "seed": 26008,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_ADULT_B.wav",
+        "reference_sha256": "cc8ca63fa98029d8f7a836acb30e0e4da48d8da0d8cdca6079f12aa47628cc3d",
+        "reference_text": "ข้าไม่รู้ว่าหนทางข้างหน้าจะเป็นเช่นไร แต่ตราบใดที่เรายังยืนอยู่ด้วยกัน ข้าจะไม่มีวันยอมแพ้",
+        "reference_text_sha256": "97f97a09e4f5ba4aa720d55a2c51e04485df0bed9d41a9603c788a41734e7a3a"
+      }
+    },
+    "MALE_ADULT_C": {
+      "profile_alias": "young_male",
+      "original_voice": "male_14.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 26014,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_ADULT_C.wav",
+        "reference_sha256": "5f62ec1e78c43cb0e9f43b72ac0dc4b6e436a293607a01efdf1ac1d587dd2450",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "MALE_OLD_A": {
+      "profile_alias": "young_male",
+      "original_voice": "male_06.wav",
+      "generation_mode": "reference_first",
+      "speed": 0.97,
+      "steps": 32,
+      "seed": 26006,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_OLD_A.wav",
+        "reference_sha256": "60184745003756c59fec46efd9e1c19b0559b155632a9238064be5974a4b23bb",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "MALE_OLD_B": {
+      "profile_alias": "young_male",
+      "original_voice": "male_07.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 26007,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_OLD_B.wav",
+        "reference_sha256": "7487a613cf551235635d4a5a382a438ec1c96b9fa9d0e8a8a1d64a9479786dd7",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "MALE_OLD_C": {
+      "profile_alias": "young_male",
+      "original_voice": "male_11.wav",
+      "generation_mode": "reference_first",
+      "speed": 0.9,
+      "steps": 32,
+      "seed": 26011,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_OLD_C.wav",
+        "reference_sha256": "44c834c2acd5c8383641815f54fdf7600dab8d68c6105fc261028182ab96f6ab",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "FEMALE_CHILD_B": {
+      "profile_alias": "bright_female",
+      "original_voice": "FEMALE_CHILD_B.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.04,
+      "steps": 32,
+      "seed": 28202,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_CHILD_B.wav",
+        "reference_sha256": "b17331425315bef7a101c9854cd228dab334588ba50910070d32442ad5290553",
+        "reference_text": "วันนี้อากาศดีจัง ข้าอยากไปดูข้างนอกซักหน่อย เผื่อจะมีอะไรน่าสนใจเกิดขึ้น",
+        "reference_text_sha256": "061a4b7e340136c2fdcf7bb834e98186a606aaa8e3ea3741d86933a8db5ffc04"
+      }
+    },
+    "FEMALE_CHILD_A": {
+      "profile_alias": "cute_young_female",
+      "original_voice": "mipha_candidate_B.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 19102,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_CHILD_A.wav",
+        "reference_sha256": "514c663a45df1f3982ac39025372014d9bcbf94a1572d13d55fcd094b85b00b0",
+        "reference_text": "ไม่ต้องกังวลนะ ฉันจะอยู่ตรงนี้กับเธอเอง",
+        "reference_text_sha256": "c2b4d60f022db29ca6d5c6022ec5f80fcbd4fd565fe2752b7587554c7256d8b2"
+      }
+    },
+    "FEMALE_CHILD_C": {
+      "profile_alias": "bright_female",
+      "original_voice": "FEMALE_CHILD_C.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.02,
+      "steps": 32,
+      "seed": 28203,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_CHILD_C.wav",
+        "reference_sha256": "4907112457ddaaa1099150a43c7156b7d23d68f44ded4a0d0283af26a8947e80",
+        "reference_text": "วันนี้อากาศดีจัง ข้าอยากไปดูข้างนอกซักหน่อย เผื่อจะมีอะไรน่าสนใจเกิดขึ้น",
+        "reference_text_sha256": "061a4b7e340136c2fdcf7bb834e98186a606aaa8e3ea3741d86933a8db5ffc04"
+      }
+    },
+    "FEMALE_YOUNG_A": {
+      "profile_alias": "bright_female",
+      "original_voice": "bright_02_dialogue_01_friendly.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 15016,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_YOUNG_A.wav",
+        "reference_sha256": "db717dd18264774162dbb2fb1601dc6afd65ba43b96f44d0c5e999130f11c1d5",
+        "reference_text": "ฉันจะรออยู่ตรงนี้ ไม่ต้องรีบร้อนนะ",
+        "reference_text_sha256": "9f3f11af59a72fdfd97233b0b534927b0d98d1a56e6b0dc6e68f9cdf7c1b8bb2"
+      }
+    },
+    "FEMALE_YOUNG_B": {
+      "profile_alias": "bright_female",
+      "original_voice": "bright_01_dialogue_02_bright.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.06,
+      "steps": 32,
+      "seed": 15016,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_YOUNG_B.wav",
+        "reference_sha256": "0a042044f296166618e075b6f4e6b7a736c04f1ac6af6d49d695fcb03a34171c",
+        "reference_text": "ในที่สุดก็มาถึงซักที ฉันรอตั้งนานแล้วนะ",
+        "reference_text_sha256": "7c35bee8f6178d712f24d5d323c58a3a965decc50bb72e486b9a27215191da5c"
+      }
+    },
+    "FEMALE_YOUNG_C": {
+      "profile_alias": "cute_teen_bright",
+      "original_voice": "cute_teen_02_dialogue_02_bright.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 15019,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_YOUNG_C.wav",
+        "reference_sha256": "814b5ab3e2010b6281b6f999994ee5a8fa38359aeb694be7110e7cd0ee67ee88",
+        "reference_text": "ในที่สุดก็มาถึงซักที ฉันรอตั้งนานแล้วนะ",
+        "reference_text_sha256": "7c35bee8f6178d712f24d5d323c58a3a965decc50bb72e486b9a27215191da5c"
+      }
+    },
+    "FEMALE_ADULT_A": {
+      "profile_alias": "bright_female",
+      "original_voice": "04_NNN_0030.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 15016,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_ADULT_A.wav",
+        "reference_sha256": "c9696d5e11dcb60f806c856836d2f5786403c0a561da74c8b4af2f684aa3f308",
+        "reference_text": "และในดินแดนทะเลทรายคืออาณาจักรรัฐศักดิ์สิทธิ์แห่งไฮแซนต์ ที่เป็นที่ตั้งของทะเลสาบและแหล่งเก็บเกี่ยวเกลือที่สำคัญต่อทุกชีวิต",
+        "reference_text_sha256": "e21a6cbe29d2d953ef935f2cdfd7155c8d3b3531fa65922fbd5087ba559645dc"
+      }
+    },
+    "FEMALE_ADULT_B": {
+      "profile_alias": "bright_female",
+      "original_voice": "08_NNN_0060.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 15016,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_ADULT_B.wav",
+        "reference_sha256": "d3da6d50e64cd040c807a8306b26bd6e26b0d3da9b2d31dbcc26c372e25a5f9e",
+        "reference_text": "ทัพทหารเอสฟรอสต์ภายใต้การควบคุมของผู้บัญชาการอัฟโลร่า เอาชนะเมืองหลวงแห่งเกลนบรู๊ค และปราสาทไวท์โฮล์มซึ่งตั้งตระหง่าน ก็ล่มสลายโดยไม่ทันตั้งตัว",
+        "reference_text_sha256": "ff56f55a5a602c5dd4a54628765d90f356ab3439e8a9f312a58806f18045b175"
+      }
+    },
+    "FEMALE_ADULT_C": {
+      "profile_alias": "bright_female",
+      "original_voice": "line_07_chunk_02.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 15016,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_ADULT_C.wav",
+        "reference_sha256": "abdf2d8a1b41e8c598b29862e8101fa0a1816f168deae6afe72ef91c03004a55",
+        "reference_text": "ในที่สุดมหาอำนาจทั้งสามก็เจรจาสงบศึกในที่สุด ความสงบสุขได้กลับมาเยือนนอร์เซเลียอีกครั้ง",
+        "reference_text_sha256": "4d799eaea2f2c6ed8a76a57ff5984b2aa542cc214ad8dbe8e3189b708efc2827"
+      }
+    },
+    "FEMALE_OLD_A": {
+      "profile_alias": "bright_female",
+      "original_voice": "line_12_chunk_03.wav",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 15016,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_OLD_A.wav",
+        "reference_sha256": "9ad0829d14fe52e0a2f236fd40705ae1a1524856a1582eaca75995dc4a7575ac",
+        "reference_text": "เพื่อเป็นตัวกลางในการดูแลการค้าเหล็กและเกลืออย่างยุติธรรม",
+        "reference_text_sha256": "9f3a0828ac99804f17180b18e71c1cce66926629fedb70c0b98fa033a42188f8"
+      }
+    },
+    "FEMALE_OLD_B": {
+      "profile_alias": "warm_female_1",
+      "original_voice": "FEMALE_OLD_B.wav",
+      "generation_mode": "reference_first",
+      "speed": 0.93,
+      "steps": 32,
+      "seed": 28402,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_OLD_B.wav",
+        "reference_sha256": "550b1667829f3f4da00fe0b593b2fafa281a4ea2601cd1d5a448c89e85a52819",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "FEMALE_OLD_C": {
+      "profile_alias": "warm_female_1",
+      "original_voice": "FEMALE_OLD_C.wav",
+      "generation_mode": "reference_first",
+      "speed": 0.9,
+      "steps": 32,
+      "seed": 28403,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_OLD_C.wav",
+        "reference_sha256": "8bcaa6fbbc7e2ca83a47047bd9844987cc8f6c7653c9b54a256566de946cd902",
+        "reference_text": "ยินดีที่ได้พบ ข้าหวังว่าเราจะร่วมเดินทางไปด้วยกันได้",
+        "reference_text_sha256": "60b12c6bf47ddd83d3d0633a5000b8ba2cb695c69619a3bdf8170b4e3b0884c1"
+      }
+    },
+    "MALE_ANGER_STRONG_01": {
+      "profile_alias": "young_male",
+      "original_voice": "s001_con_actor001_script2_2_2b.flac",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 28501,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_ANGER_STRONG_01.wav",
+        "reference_sha256": "f39f63c4bf06b5c77aa69fe4c434308f4639d59951f19bf9df54d01810cbefab",
+        "reference_text": "อ่านหนังสือพิมพ์วันนี้รึยัง รู้ไหมเรื่องนั้นกลายเป็นข่าวใหญ่ไปแล้ว",
+        "reference_text_sha256": "0ad50ff038b0da2939c9b325dcef5b474db4c2db813afd9784bd74a8149dd74d"
+      }
+    },
+    "MALE_ANGER_STRONG_02": {
+      "profile_alias": "young_male",
+      "original_voice": "s002_con_actor003_script2_2_2b.flac",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 28502,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/MALE_ANGER_STRONG_02.wav",
+        "reference_sha256": "ec03e32f99d1d113d06f4c5216be30d1541ef5a07c2b32141257ab7b4da1ac9a",
+        "reference_text": "อ่านหนังสือพิมพ์วันนี้รึยัง รู้ไหมเรื่องนั้นกลายเป็นข่าวใหญ่ไปแล้ว",
+        "reference_text_sha256": "0ad50ff038b0da2939c9b325dcef5b474db4c2db813afd9784bd74a8149dd74d"
+      }
+    },
+    "FEMALE_ANGER_STRONG_01": {
+      "profile_alias": "bright_female",
+      "original_voice": "s001_con_actor002_script2_2_2b.flac",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 28601,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_ANGER_STRONG_01.wav",
+        "reference_sha256": "a19d630d46bb35120ee409e98b643f33966f892cd17f3bc056ad1be05d793fa5",
+        "reference_text": "อ่านหนังสือพิมพ์วันนี้รึยัง รู้ไหมเรื่องนั้นกลายเป็นข่าวใหญ่ไปแล้ว",
+        "reference_text_sha256": "0ad50ff038b0da2939c9b325dcef5b474db4c2db813afd9784bd74a8149dd74d"
+      }
+    },
+    "FEMALE_ANGER_STRONG_02": {
+      "profile_alias": "bright_female",
+      "original_voice": "s003_con_actor005_script2_2_2b.flac",
+      "generation_mode": "reference_first",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 28602,
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/FEMALE_ANGER_STRONG_02.wav",
+        "reference_sha256": "6b30556f0e39dc444a074f787cf24893f3305acb4d7a1f64006f27f8f67fadcb",
+        "reference_text": "อ่านหนังสือพิมพ์วันนี้รึยัง รู้ไหมเรื่องนั้นกลายเป็นข่าวใหญ่ไปแล้ว",
+        "reference_text_sha256": "0ad50ff038b0da2939c9b325dcef5b474db4c2db813afd9784bd74a8149dd74d"
       }
     },
     "narrator": {
