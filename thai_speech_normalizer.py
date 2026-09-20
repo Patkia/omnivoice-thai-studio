@@ -81,6 +81,13 @@ def normalize_text(
     if time_style not in candidates["time_0217"]:
         raise ValueError(f"Unknown time style: {time_style}")
     result = _replace(result, "02:17", candidates["time_0217"][time_style], "time", log)
+    # Avoid sending elongated pain interjections such as "โอ้ยย!" / "โอ๊ยยย!" verbatim to TTS.
+    # OmniVoice can fail on repeated trailing ย in this specific interjection, so canonicalize it narrowly.
+    elongated_ouch = re.compile(r"โอ(?:้|๊)?ย{2,}")
+    if elongated_ouch.search(result):
+        source_before = result
+        result = elongated_ouch.sub("โอ๊ย", result)
+        log.append({"kind": "interjection", "source": source_before, "replacement": result})
     for source, options in {**candidates["names"], **candidates["game_terms"]}.items():
         result = _replace(result, source, options[0], "candidate_transliteration", log)
     # Decimal and comma-grouped values must be handled before standalone integer tokens.

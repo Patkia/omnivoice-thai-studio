@@ -29,6 +29,11 @@ class ThaiSpeechNormalizerTests(unittest.TestCase):
         normalized = normalize_text("ผมหั่นแอปเปิล", enabled=True).text
         self.assertEqual(preprocess_text(normalized, "pronunciation_dictionary.json", enabled=True), "ผมหั่นแอ๊ปเปิ้ล")
 
+    def test_elongated_ouch_interjection_is_canonicalized(self):
+        self.assertEqual(normalize_text("โอ้ยย !").text, "โอ๊ย !")
+        self.assertEqual(normalize_text("โอ๊ยยย!").text, "โอ๊ย!")
+        self.assertEqual(normalize_text("โอ๊ย!").text, "โอ๊ย!")
+
 
 if __name__ == "__main__":
     unittest.main()
