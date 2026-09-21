@@ -6,7 +6,7 @@
 
 ## Screenshot
 
-![OmniVoice Thai Studio](docs/images/omnivoice-studio.jpg)
+![OmniVoice Thai Studio](docs/images/omnivoice-studio.png)
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
