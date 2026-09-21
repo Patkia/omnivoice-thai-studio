@@ -4,6 +4,10 @@
 
 `Thai TTS Studio` เป็น native Windows desktop frontend ของ Engine v1 เดิม ไม่ได้สร้างหรือเปลี่ยน TTS pipeline ใหม่
 
+## Screenshot
+
+![OmniVoice Thai Studio](docs/images/omnivoice-studio.jpg)
+
 ```powershell
 .\.venv\Scripts\Activate.ps1
 python studio.py
