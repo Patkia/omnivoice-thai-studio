@@ -19,6 +19,14 @@ output/*
 output/studio/*
 !output/studio/batch/
 !output/studio/triangle-strategy/
+!output/studio/triangle-strategy/**
+
+# WAV policy: generated WAVs are local-only except the explicitly tracked
+# Triangle Strategy Studio tree (and historical tracked assets/microtests).
+*.wav
+!output/studio/triangle-strategy/**/*.wav
+!assets/triangle-strategy/approved_voice_references/**/*.wav
+!output/chapter1_main_microtest/**/*.wav
 
 !output/chapter1_main_microtest/
 
