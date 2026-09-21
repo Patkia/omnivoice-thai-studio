@@ -766,7 +766,18 @@ class StudioWindow(QMainWindow):
         alias = self.settings.value("voice", "narrator"); self.voice.setCurrentText(alias if alias in self.aliases else "narrator")
         self.speed.setValue(float(self.settings.value("speed", self.speed.value())))
         directory = self.settings.value("output_dir", "")
-        if directory: self.output.setText(str(Path(directory) / default_output_path().name))
+        if directory:
+            saved_dir = Path(directory)
+            parts = list(saved_dir.parts)
+            try:
+                old_root_index = parts.index("omnivoice-thai-poc")
+            except ValueError:
+                pass
+            else:
+                relative_parts = parts[old_root_index + 1:]
+                saved_dir = ROOT.joinpath(*relative_parts)
+                self.settings.setValue("output_dir", str(saved_dir))
+            self.output.setText(str(saved_dir / default_output_path().name))
 
     def _voice_changed(self, alias: str) -> None:
         item = self.aliases[alias]; self.description.setText(item["description_th"])
