@@ -1,3 +1,3 @@
 @echo off
-cd /d "C:\Users\Pat\Workshop\omnivoice-thai-poc"
+cd /d "%~dp0"
 ".venv\Scripts\python.exe" "studio.py"

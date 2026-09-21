@@ -6,7 +6,7 @@
 
 ## Workspace และความปลอดภัย
 
-ทำงานเฉพาะ `C:\Users\Pat\Workshop\omnivoice-thai-poc` ห้ามแตะ F5-TTS, ไฟล์เกม, Git/GitHub โดยไม่ได้รับอนุญาต
+ทำงานเฉพาะ `C:\Users\Pat\Workshop\omnivoice-thai-studio` ห้ามแตะ F5-TTS, ไฟล์เกม, Git/GitHub โดยไม่ได้รับอนุญาต
 
 ## Engine
 

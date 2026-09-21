@@ -6,7 +6,7 @@
 
 ```powershell
 git clone <PRIVATE_REPO_URL>
-Set-Location .\omnivoice-thai-poc
+Set-Location .\omnivoice-thai-studio
 ```
 
 `<PRIVATE_REPO_URL>` เป็น placeholder ให้แทนด้วย private repository URL จริงภายหลัง ผู้ใช้เป็นผู้สร้าง remote และ push เอง
