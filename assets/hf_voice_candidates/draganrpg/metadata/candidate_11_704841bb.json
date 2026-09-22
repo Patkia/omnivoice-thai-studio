@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 10,
+  "speaker_id": "1",
+  "source_id": "ex01-ex02_enunciated_001__ch1_38.55-50.27",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/10/audio/audio.wav?Expires=1790047582&Signature=cq3YTemiao051ZN1pDmFqWKBpY9-Od1C~K5BEiIrtWtKlPQ8mtV5NU9DZRsvJ5F6YEn0hwu5ZU1CDOfbcP0SqMHw1IzFr1EHE3BASiwuVefHpD3UqkYeccVbq0yF3KGWAwhVd79hfHYSu62xx41NwPwO1NdFbGt2zS1YkrnnlUESr~4MSWajptO857b9~RbaQdLghOLADEfpphmV~Vrk2DduwssJ47PmybHK7bfNSDdLraTZR4-3HH3LwlJHhMOV49yEOCk5c7pMmc0DHrGQljnap4nWff4pgO947TkP8qw5pNearUP5XU9J07gMm2UBo6vB1l98h-FGYkgxv2Kv5g__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_enunciated_001__ch1_38.55-50.27",
+  "transcript": "Thank you. Okay. The bomb is in its shell still. I don't see any wires. And I don't...",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_enunciated_001__ch1_38.55-50.27",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/10/audio/audio.wav?Expires=1790047582&Signature=cq3YTemiao051ZN1pDmFqWKBpY9-Od1C~K5BEiIrtWtKlPQ8mtV5NU9DZRsvJ5F6YEn0hwu5ZU1CDOfbcP0SqMHw1IzFr1EHE3BASiwuVefHpD3UqkYeccVbq0yF3KGWAwhVd79hfHYSu62xx41NwPwO1NdFbGt2zS1YkrnnlUESr~4MSWajptO857b9~RbaQdLghOLADEfpphmV~Vrk2DduwssJ47PmybHK7bfNSDdLraTZR4-3HH3LwlJHhMOV49yEOCk5c7pMmc0DHrGQljnap4nWff4pgO947TkP8qw5pNearUP5XU9J07gMm2UBo6vB1l98h-FGYkgxv2Kv5g__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "Thank you. Okay. The bomb is in its shell still. I don't see any wires. And I don't...",
+    "speaker_id": 1,
+    "style": "enunciated",
+    "other_speaker_id": 2,
+    "other_style": "enunciated",
+    "source_file_id": "ex01-ex02_enunciated_001",
+    "channel": 1,
+    "start_s": 38.54999923706055,
+    "end_s": 50.27000045776367
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_11_704841bb",
+  "duration": 11.72,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "d268b53fad5ab7388fc1ff2e55268f5b1e791e8d2caaed3cf565bc5e1fd86836",
+  "clipping": false,
+  "validation": "PASS",
+  "reject_reason": "",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 5,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "PENDING_HUMAN_REVIEW",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_11_704841bb.wav",
+  "runtime_path": "assets/hf_voice_candidates/draganrpg/runtime_24k/candidate_11_704841bb.wav",
+  "audition_status": "COMPLETE",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

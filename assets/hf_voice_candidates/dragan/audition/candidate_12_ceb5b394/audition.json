@@ -1,0 +1,141 @@
+{
+  "character": "Dragan",
+  "candidate_id": "candidate_12_ceb5b394",
+  "reference_sha256": "391c98e0ef774476cf48c58b92c29b729728365aca13206a8603c5ac570fe6b1",
+  "reference_transcript": "The mountaineer quickly formed a loop in one end of the rope, making it large enough to permit of its slipping over the shoulders of a man.",
+  "reference_file": "assets/hf_voice_candidates/dragan/master/candidate_12_ceb5b394.wav",
+  "runtime_reference": "assets/hf_voice_candidates/dragan/runtime_24k/candidate_12_ceb5b394.wav",
+  "voice_clone_prompt": {
+    "status": "PREPARED",
+    "reference_prompt_cache_hit": false,
+    "reference_prompt_seconds": 2.71,
+    "reference_prompt_prep_count": 1,
+    "model_load_seconds": 2.687,
+    "model_load_count": 1,
+    "model_reused": false,
+    "device": "cpu"
+  },
+  "audition_lines": {
+    "A": "ข้าคิดว่าเรื่องนี้ยังมีบางอย่างที่พวกเรามองข้ามไป",
+    "B": "หากเราตรวจสอบให้รอบคอบกว่านี้ อาจพบคำตอบที่ตามหาก็เป็นได้"
+  },
+  "generation_mode": "reference_first",
+  "outputs": [
+    {
+      "file": "line_A_v1.wav",
+      "status": "REUSED"
+    },
+    {
+      "file": "line_B_v1.wav",
+      "status": "COMPLETE",
+      "instruction": "male, young adult, moderate pitch",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 15016,
+      "generation": {
+        "model_load_seconds": 0.0,
+        "inference_seconds": 200.695,
+        "model_reused": true,
+        "model_load_count": 1,
+        "device": "cpu",
+        "seed": 15016,
+        "generation_mode": "reference_first",
+        "reference_conditioning": true,
+        "reference_prompt_prep_count": 1,
+        "audio_signal_stats": {
+          "peak": 0.697296142578125,
+          "rms": 0.12574277818202972,
+          "mean": 0.0003015603870153427,
+          "centered_rms": 0.12574242055416107,
+          "zero_crossing_rate": 0.04020255984488289,
+          "dc_ratio": 0.002398232259341313
+        }
+      },
+      "audio": {
+        "duration": 4.04,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "subtype": "PCM_16",
+        "peak": 0.8912353515625,
+        "rms": 0.16071842873564385,
+        "clipping": false
+      }
+    },
+    {
+      "file": "line_A_v2.wav",
+      "status": "COMPLETE",
+      "instruction": "male, young adult, moderate pitch",
+      "speed": 0.98,
+      "steps": 32,
+      "seed": 26003,
+      "generation": {
+        "model_load_seconds": 0.0,
+        "inference_seconds": 233.62,
+        "model_reused": true,
+        "model_load_count": 1,
+        "device": "cpu",
+        "seed": 26003,
+        "generation_mode": "reference_first",
+        "reference_conditioning": true,
+        "reference_prompt_prep_count": 1,
+        "audio_signal_stats": {
+          "peak": 0.847076416015625,
+          "rms": 0.1706002652645111,
+          "mean": 0.00027740394580177963,
+          "centered_rms": 0.1706000417470932,
+          "zero_crossing_rate": 0.03480514069193609,
+          "dc_ratio": 0.001626046391965876
+        }
+      },
+      "audio": {
+        "duration": 3.2,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "subtype": "PCM_16",
+        "peak": 0.891265869140625,
+        "rms": 0.17949694584852682,
+        "clipping": false
+      }
+    },
+    {
+      "file": "line_B_v2.wav",
+      "status": "COMPLETE",
+      "instruction": "male, young adult, moderate pitch",
+      "speed": 0.98,
+      "steps": 32,
+      "seed": 26003,
+      "generation": {
+        "model_load_seconds": 0.0,
+        "inference_seconds": 188.184,
+        "model_reused": true,
+        "model_load_count": 1,
+        "device": "cpu",
+        "seed": 26003,
+        "generation_mode": "reference_first",
+        "reference_conditioning": true,
+        "reference_prompt_prep_count": 1,
+        "audio_signal_stats": {
+          "peak": 0.79693603515625,
+          "rms": 0.1374606192111969,
+          "mean": -0.0005608744104392827,
+          "centered_rms": 0.13745947182178497,
+          "zero_crossing_rate": 0.04075688467723177,
+          "dc_ratio": 0.004080255229881842
+        }
+      },
+      "audio": {
+        "duration": 4.12,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "subtype": "PCM_16",
+        "peak": 0.8912353515625,
+        "rms": 0.15372872305198532,
+        "clipping": false
+      }
+    }
+  ],
+  "errors": []
+}

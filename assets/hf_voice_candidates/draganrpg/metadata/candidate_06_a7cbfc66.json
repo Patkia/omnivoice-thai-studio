@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 5,
+  "speaker_id": "2",
+  "source_id": "ex01-ex02_default_007__ch2_11.06-17.82",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/5/audio/audio.wav?Expires=1790047877&Signature=YxOUGsDSCLkQ05sRJL0SbGp7U6evtcp3LuSHeIg17fbNWqJJ4OSvcHKYTBTmAmE7CP0mbLtfpnw~lNPIbD02lrqdb~vxNf2r~MbhbmznR902xyg-f96rUwULznMGVvqpeuyHMdN35T8i8Z25HDCP-~8t0AfuSTnNmCYyNm6fvykpCI-z7DSom4eVXm8ku9co9aVxIzQ69dTTzaFuL6Zn4OWiOV2MsZHMTwl9q6Z3zuhZHgkrTr3ir491CKwkVIV6ytWyKdWr8dGqDGnfpL6f3qEaHNPUKM-y0gO1UfWq5UvJ06P6dNuK1gvX2i0RhQ97fnKV-TVhrHBBCkaACsbUeg__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_default_007__ch2_11.06-17.82",
+  "transcript": "Yeah, you look tanned. You have to tell me where you went because I'm so jealous. I need to go on a vacation now.",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_default_007__ch2_11.06-17.82",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/5/audio/audio.wav?Expires=1790047877&Signature=YxOUGsDSCLkQ05sRJL0SbGp7U6evtcp3LuSHeIg17fbNWqJJ4OSvcHKYTBTmAmE7CP0mbLtfpnw~lNPIbD02lrqdb~vxNf2r~MbhbmznR902xyg-f96rUwULznMGVvqpeuyHMdN35T8i8Z25HDCP-~8t0AfuSTnNmCYyNm6fvykpCI-z7DSom4eVXm8ku9co9aVxIzQ69dTTzaFuL6Zn4OWiOV2MsZHMTwl9q6Z3zuhZHgkrTr3ir491CKwkVIV6ytWyKdWr8dGqDGnfpL6f3qEaHNPUKM-y0gO1UfWq5UvJ06P6dNuK1gvX2i0RhQ97fnKV-TVhrHBBCkaACsbUeg__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "Yeah, you look tanned. You have to tell me where you went because I'm so jealous. I need to go on a vacation now.",
+    "speaker_id": 2,
+    "style": "default",
+    "other_speaker_id": 1,
+    "other_style": "default",
+    "source_file_id": "ex01-ex02_default_007",
+    "channel": 2,
+    "start_s": 11.0600004196167,
+    "end_s": 17.81999969482422
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_06_a7cbfc66",
+  "duration": 6.76,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "bb46e78d825e36458d35117b0798c29c817797ebd2b0a5479ce838e0c378aef7",
+  "clipping": false,
+  "validation": "PASS",
+  "reject_reason": "",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 4,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "PENDING_HUMAN_REVIEW",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_06_a7cbfc66.wav",
+  "runtime_path": "assets/hf_voice_candidates/draganrpg/runtime_24k/candidate_06_a7cbfc66.wav",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

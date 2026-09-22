@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 2,
+  "speaker_id": "1",
+  "source_id": "ex01-ex02_default_007__ch1_18.28-35.10",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/2/audio/audio.wav?Expires=1790047877&Signature=txened0SXedGGpxwJRh25bnyE1ij6anjKpRg2zojGdwdMJaZtAZ-jrgE2LOj4EWGhRQUJ~2d4eiK-pEE0RU-Tpu~6YE9mWp3LduVCbmN073jBgDLENImdbA13ouKaaUk86eAVeK1YAgRWdq8rrHIU5LRXr9ExVTJJFhPsgKMxDtOiNNoV5BONyRPxWmyRUIFOyqlf6xUL1nSkT~jHnWG4B7Sg4J-5JYunbG37F3HaiMxcr7I4s09fjb-lQdbtdvldERdUjHHVb5rgWQKwjUQ1KoxafbqoNTP0aYoj8~iliQEpNgA3IQzbsQbfeCiPprdMU5SevckntMxKEf~PiR91g__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_default_007__ch1_18.28-35.10",
+  "transcript": "Okay, okay, so I went... Are you an outdoorsy person, Mikey? You love the outdoors. Okay, okay. So I drove just a couple hours north. There's this wonderful, wonderful national park called Yosemite. You ever been?",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_default_007__ch1_18.28-35.10",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/2/audio/audio.wav?Expires=1790047877&Signature=txened0SXedGGpxwJRh25bnyE1ij6anjKpRg2zojGdwdMJaZtAZ-jrgE2LOj4EWGhRQUJ~2d4eiK-pEE0RU-Tpu~6YE9mWp3LduVCbmN073jBgDLENImdbA13ouKaaUk86eAVeK1YAgRWdq8rrHIU5LRXr9ExVTJJFhPsgKMxDtOiNNoV5BONyRPxWmyRUIFOyqlf6xUL1nSkT~jHnWG4B7Sg4J-5JYunbG37F3HaiMxcr7I4s09fjb-lQdbtdvldERdUjHHVb5rgWQKwjUQ1KoxafbqoNTP0aYoj8~iliQEpNgA3IQzbsQbfeCiPprdMU5SevckntMxKEf~PiR91g__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "Okay, okay, so I went... Are you an outdoorsy person, Mikey? You love the outdoors. Okay, okay. So I drove just a couple hours north. There's this wonderful, wonderful national park called Yosemite. You ever been?",
+    "speaker_id": 1,
+    "style": "default",
+    "other_speaker_id": 2,
+    "other_style": "default",
+    "source_file_id": "ex01-ex02_default_007",
+    "channel": 1,
+    "start_s": 18.280000686645508,
+    "end_s": 35.099998474121094
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_03_6012c6f1",
+  "duration": 16.82,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "cf2cd961ffbb7c7927df9fbb38ed208b91f9e475b6730c29ea238c929e5027c7",
+  "clipping": false,
+  "validation": "PASS",
+  "reject_reason": "",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 4,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "PENDING_HUMAN_REVIEW",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_03_6012c6f1.wav",
+  "runtime_path": "assets/hf_voice_candidates/draganrpg/runtime_24k/candidate_03_6012c6f1.wav",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

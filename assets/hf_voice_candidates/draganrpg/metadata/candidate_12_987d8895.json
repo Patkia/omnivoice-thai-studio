@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 11,
+  "speaker_id": "2",
+  "source_id": "ex01-ex02_enunciated_001__ch2_0.00-21.56",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/11/audio/audio.wav?Expires=1790047582&Signature=XS10RhjOoaHUWB~yGHt74WZmq3SlF-fkEHQGecK7ywCgtiPUPYsytP2IAnYCfRY7fzjY3zP61V35Q~rqDW9onx8QacB4GNDPcD1aFPrlGD7NStSzShjqm749HGaz22tU0wvm4zy6aBVcWmghLWW5ZetB5mkL5ca85sTUg9~rR2klaIyA2VKs1gqBunfcZembP1GocITZ2kBoynKWsY7n2YehRfVhpvpW8np7l48ZBEm~ZGOS5PgpLc~IyaAFaKe1jmVmFsALLOA3asRQFlBnM2~cVTr27JO5YdXox2HyGv6GT5hRd89F2civEFbXB8y3OxJhdHfBBHARV0~~m5Upmw__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_enunciated_001__ch2_0.00-21.56",
+  "transcript": "James, we need to make sure that we stay very calm so every instruction I give you is going to be slow so that we can ensure that we do not go too fast and set the bomb off.",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_enunciated_001__ch2_0.00-21.56",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/11/audio/audio.wav?Expires=1790047582&Signature=XS10RhjOoaHUWB~yGHt74WZmq3SlF-fkEHQGecK7ywCgtiPUPYsytP2IAnYCfRY7fzjY3zP61V35Q~rqDW9onx8QacB4GNDPcD1aFPrlGD7NStSzShjqm749HGaz22tU0wvm4zy6aBVcWmghLWW5ZetB5mkL5ca85sTUg9~rR2klaIyA2VKs1gqBunfcZembP1GocITZ2kBoynKWsY7n2YehRfVhpvpW8np7l48ZBEm~ZGOS5PgpLc~IyaAFaKe1jmVmFsALLOA3asRQFlBnM2~cVTr27JO5YdXox2HyGv6GT5hRd89F2civEFbXB8y3OxJhdHfBBHARV0~~m5Upmw__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "James, we need to make sure that we stay very calm so every instruction I give you is going to be slow so that we can ensure that we do not go too fast and set the bomb off.",
+    "speaker_id": 2,
+    "style": "enunciated",
+    "other_speaker_id": 1,
+    "other_style": "enunciated",
+    "source_file_id": "ex01-ex02_enunciated_001",
+    "channel": 2,
+    "start_s": 0.0,
+    "end_s": 21.559999465942383
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_12_987d8895",
+  "duration": 21.56,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "41fb7b22193fbf3d9efe9f7364856fde3590b7a91fe0ebb00016f6d919ef55f2",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_12_987d8895.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

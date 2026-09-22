@@ -1,0 +1,63 @@
+{
+  "repo": "mythicinfinity/libritts_r",
+  "config": "clean",
+  "split": "dev.clean",
+  "row_idx": 1418,
+  "speaker_id": "6313",
+  "source_id": "6313_66125_000036_000000",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/1418/audio/audio.wav?Expires=1790047338&Signature=dhNbPCdx4jehIa6uAoRFsngZZDm0MohPuFA8ycEBS6il72n3iMNyqWFioW05CNJ-jfID27kewnR6nh0seEfonAQHoxQO5epELWbGbauzTR-HLe8td7j3ahtOawi57enqOiQRdwQ3gmSZw-1AMzcPYXkDqhGWc662ymq5jIR7kchObcsEqVVMMqex3RAoBEDk2ISU0ODtZ2VfwfVVBbH04St1UEPr3xdlHO64tilNlwYO1a7UAHduFGLDng4e6x5EpU~~jk-ysl7IICcv5BbJnZ~gemqBL9SJDFyJYtQMRYl8vrwH4SBm6jPxUir07j5yTX2EOT9nG-zVLANIT3y4KQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/6313/66125/6313_66125_000036_000000.wav",
+  "transcript": "\"Fainted, probably.",
+  "license": "cc-by-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/1418/audio/audio.wav?Expires=1790047338&Signature=dhNbPCdx4jehIa6uAoRFsngZZDm0MohPuFA8ycEBS6il72n3iMNyqWFioW05CNJ-jfID27kewnR6nh0seEfonAQHoxQO5epELWbGbauzTR-HLe8td7j3ahtOawi57enqOiQRdwQ3gmSZw-1AMzcPYXkDqhGWc662ymq5jIR7kchObcsEqVVMMqex3RAoBEDk2ISU0ODtZ2VfwfVVBbH04St1UEPr3xdlHO64tilNlwYO1a7UAHduFGLDng4e6x5EpU~~jk-ysl7IICcv5BbJnZ~gemqBL9SJDFyJYtQMRYl8vrwH4SBm6jPxUir07j5yTX2EOT9nG-zVLANIT3y4KQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text_normalized": "\"Fainted, probably.",
+    "text_original": "\"Fainted, probably.",
+    "speaker_id": "6313",
+    "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/6313/66125/6313_66125_000036_000000.wav",
+    "chapter_id": "66125",
+    "id": "6313_66125_000036_000000"
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_10_8defaa4f",
+  "duration": 0.96,
+  "sample_rate": 24000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "fd5748c5fa4879e6d0e2e1d5e9233bc62c5f8c46fbf8a770df821e3c81704157",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_10_8defaa4f.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

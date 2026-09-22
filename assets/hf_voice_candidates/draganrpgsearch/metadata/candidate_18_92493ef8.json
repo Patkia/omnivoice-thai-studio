@@ -1,0 +1,63 @@
+{
+  "repo": "mythicinfinity/libritts_r",
+  "config": "clean",
+  "split": "dev.clean",
+  "row_idx": 2806,
+  "speaker_id": "2428",
+  "source_id": "2428_83705_000005_000001",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2806/audio/audio.wav?Expires=1790047339&Signature=CS64nn6K~EKxS01HLu5M-o67UoeDpJfPdZ3yNl9XVCw0v-DDel~Iz-3g2LHKW5Euiska0exrnHFvhYMU7Q1KNoPxMwEgnAD4Ce1XRDmC0lip~oEl93MgenNu39EfCUTiia9-MNBbywop3N3J6gixpDUjQMjuNYmoHEB6-~8xGkYkBASlA-Zf1jUSwtbDYR8Ohz-e7KV-WAqrB58Rm1P8HRxGsIOCTszHeo-gFqUvM8oubEu2l~LG5zZG2H~jN8v-m70b-Ef9cVji6frAYbISVp9MAyrJT4LRtanbNMZUoJiK8P68sw0pzLI9zXP4LQiicAa08xqGczDIkERRfVkA5w__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000005_000001.wav",
+  "transcript": "All, apparently, that is left for me to do, is to pay for everything.",
+  "license": "cc-by-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2806/audio/audio.wav?Expires=1790047339&Signature=CS64nn6K~EKxS01HLu5M-o67UoeDpJfPdZ3yNl9XVCw0v-DDel~Iz-3g2LHKW5Euiska0exrnHFvhYMU7Q1KNoPxMwEgnAD4Ce1XRDmC0lip~oEl93MgenNu39EfCUTiia9-MNBbywop3N3J6gixpDUjQMjuNYmoHEB6-~8xGkYkBASlA-Zf1jUSwtbDYR8Ohz-e7KV-WAqrB58Rm1P8HRxGsIOCTszHeo-gFqUvM8oubEu2l~LG5zZG2H~jN8v-m70b-Ef9cVji6frAYbISVp9MAyrJT4LRtanbNMZUoJiK8P68sw0pzLI9zXP4LQiicAa08xqGczDIkERRfVkA5w__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text_normalized": "All, apparently, that is left for me to do, is to pay for everything.",
+    "text_original": "All, apparently, that is left for me to do, is to pay for everything.",
+    "speaker_id": "2428",
+    "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000005_000001.wav",
+    "chapter_id": "83705",
+    "id": "2428_83705_000005_000001"
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_18_92493ef8",
+  "duration": 4.4,
+  "sample_rate": 24000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "d8791c964f60f854dfbf8d48bce0e1e1d9ff933acc8998d2031418d27bc19570",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_18_92493ef8.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

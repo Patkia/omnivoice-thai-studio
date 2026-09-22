@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 9,
+  "speaker_id": "1",
+  "source_id": "ex01-ex02_enunciated_001__ch1_28.27-33.75",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/9/audio/audio.wav?Expires=1790047877&Signature=YYyHbkM1GUO~vrvKtBLmsub4swArXeXEOwh5bGqMk7VUINdAp1MdmY-Uv36gsrlHZhgJ0OH-ntrVFy8OXm7QjheiflTxtgWPFLCF4eqcNtDTQPEdoyCmyvkX9DvCqfhvjTfsAoaOWkEZHgjrS-DPtoN1KC~~1i8ojQOGrF1nJX7nrpt5-ZVAGPwLVcwZHVI6aUwIXqnLsb6NG23dhPmMdOsJwG2EDCXLNG6FsbOYygUlNq~dPW9CMjDOF2wrdpF6YRyVMfMWJkdYimyeZaeEAWmpPQ5z8sE2tOiM8C1cRZQo6cG6iY78jJxaOtZ4JtetBaIZxiG1fwb8drIreF4mXA__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_enunciated_001__ch1_28.27-33.75",
+  "transcript": "My hands are sweaty and I'm scared.",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_enunciated_001__ch1_28.27-33.75",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/9/audio/audio.wav?Expires=1790047877&Signature=YYyHbkM1GUO~vrvKtBLmsub4swArXeXEOwh5bGqMk7VUINdAp1MdmY-Uv36gsrlHZhgJ0OH-ntrVFy8OXm7QjheiflTxtgWPFLCF4eqcNtDTQPEdoyCmyvkX9DvCqfhvjTfsAoaOWkEZHgjrS-DPtoN1KC~~1i8ojQOGrF1nJX7nrpt5-ZVAGPwLVcwZHVI6aUwIXqnLsb6NG23dhPmMdOsJwG2EDCXLNG6FsbOYygUlNq~dPW9CMjDOF2wrdpF6YRyVMfMWJkdYimyeZaeEAWmpPQ5z8sE2tOiM8C1cRZQo6cG6iY78jJxaOtZ4JtetBaIZxiG1fwb8drIreF4mXA__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "My hands are sweaty and I'm scared.",
+    "speaker_id": 1,
+    "style": "enunciated",
+    "other_speaker_id": 2,
+    "other_style": "enunciated",
+    "source_file_id": "ex01-ex02_enunciated_001",
+    "channel": 1,
+    "start_s": 28.270000457763672,
+    "end_s": 33.75
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_10_84d7f74e",
+  "duration": 5.48,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "194695ee0f32a1774f2cbc458ae3cfdbaf4dde5fd54aac5079e8a213916f0f29",
+  "clipping": false,
+  "validation": "PASS",
+  "reject_reason": "",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 4,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "PENDING_HUMAN_REVIEW",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_10_84d7f74e.wav",
+  "runtime_path": "assets/hf_voice_candidates/draganrpg/runtime_24k/candidate_10_84d7f74e.wav",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

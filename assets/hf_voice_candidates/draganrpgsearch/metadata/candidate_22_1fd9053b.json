@@ -1,0 +1,63 @@
+{
+  "repo": "mythicinfinity/libritts_r",
+  "config": "clean",
+  "split": "dev.clean",
+  "row_idx": 2810,
+  "speaker_id": "2428",
+  "source_id": "2428_83705_000037_000001",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2810/audio/audio.wav?Expires=1790047339&Signature=Yr9R~c5EAARiP9wuB8iQmUw9US0Q72R5nBECQLukY4kbXZEh987Y~FC3ABzcqRF5RNXwAUcA-V2xUrk6-oVNQksT7pOuyKdoMKGIlIxYBFWeBrsmSuZWxuLG0SVR3anV7I6vYT1MDgc088gyNhJWPWRJCNolF6LTm4c4Fva1yfKeEk2BPuDj6iKlK7SJ~2FVCHaGzLTSBcrnZqamTYQ3ff35Rb3MYiJa9S~g~03S9AoCt1Uk8X5DKFQxMOCXWkSw-rJp5mUX23fFF9OgYRWWDTkhxzJoYJhHcM5JRmQaPP~ziCN~nFlUT4HjMsWk5ksXYxP2vvIrQfJzYddZ~lxJ~w__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000037_000001.wav",
+  "transcript": "It is true that they are a trifle large for me, and that I shall never be able to keep them on my feet except when I am sitting still.",
+  "license": "cc-by-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2810/audio/audio.wav?Expires=1790047339&Signature=Yr9R~c5EAARiP9wuB8iQmUw9US0Q72R5nBECQLukY4kbXZEh987Y~FC3ABzcqRF5RNXwAUcA-V2xUrk6-oVNQksT7pOuyKdoMKGIlIxYBFWeBrsmSuZWxuLG0SVR3anV7I6vYT1MDgc088gyNhJWPWRJCNolF6LTm4c4Fva1yfKeEk2BPuDj6iKlK7SJ~2FVCHaGzLTSBcrnZqamTYQ3ff35Rb3MYiJa9S~g~03S9AoCt1Uk8X5DKFQxMOCXWkSw-rJp5mUX23fFF9OgYRWWDTkhxzJoYJhHcM5JRmQaPP~ziCN~nFlUT4HjMsWk5ksXYxP2vvIrQfJzYddZ~lxJ~w__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text_normalized": "It is true that they are a trifle large for me, and that I shall never be able to keep them on my feet except when I am sitting still.",
+    "text_original": "It is true that they are a trifle large for me, and that I shall never be able to keep them on my feet except when I am sitting still.",
+    "speaker_id": "2428",
+    "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000037_000001.wav",
+    "chapter_id": "83705",
+    "id": "2428_83705_000037_000001"
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_22_1fd9053b",
+  "duration": 6.28,
+  "sample_rate": 24000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "620b3d5ebfd1d6bbb0ddc1d8a3cf85e1d588ce9c6ed549fd226653c77ba11d87",
+  "clipping": false,
+  "validation": "PASS",
+  "reject_reason": "",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 4,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "PENDING_HUMAN_REVIEW",
+  "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_22_1fd9053b.wav",
+  "runtime_path": "assets/hf_voice_candidates/draganrpgsearch/runtime_24k/candidate_22_1fd9053b.wav",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

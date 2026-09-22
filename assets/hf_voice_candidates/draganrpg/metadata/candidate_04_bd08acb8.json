@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 3,
+  "speaker_id": "1",
+  "source_id": "ex01-ex02_default_007__ch1_37.63-60.00",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/3/audio/audio.wav?Expires=1790047877&Signature=FfigBjyoUA12OUGrVj0EhTXQ0O-vbOFfHPTlnE7lRYvHPwb7rt5YSaQipj2uZvUHeuD23B4piLgWeAlzJV3t3bOTTurbvy61tiEmUMlYTfu91mqqFlzsGPUPI24KwptRqkOfoHpCnKUNkULRLpMmUiBaMOc8PanTeN2SnMcZlILilX5w0CHMFuxqdWKbDexC1pi0V3k46HPZEvcYY0FrSh1sfuOSBjb4kmP-lG6HxpTqmrhYEf5Ir9Rq0uDMEZZkF7HsyyWuhI1q9tuY~Cfi06cEQppbV9SkDyFSeEFreXS7ZZCHSsXZ-lpT6Rzf42x7~MeQPgGhP23zixofxDNVFA__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_default_007__ch1_37.63-60.00",
+  "transcript": "it's gorgeous especially this time of year it's like you know you know it's like late february early march so you're kind of avoiding all of i guess the tourists and all of that stuff so it's just you and the park and the silence and uh the fresh crisp air because you know you're getting out of winter right there's still there's still fresh",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_default_007__ch1_37.63-60.00",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/3/audio/audio.wav?Expires=1790047877&Signature=FfigBjyoUA12OUGrVj0EhTXQ0O-vbOFfHPTlnE7lRYvHPwb7rt5YSaQipj2uZvUHeuD23B4piLgWeAlzJV3t3bOTTurbvy61tiEmUMlYTfu91mqqFlzsGPUPI24KwptRqkOfoHpCnKUNkULRLpMmUiBaMOc8PanTeN2SnMcZlILilX5w0CHMFuxqdWKbDexC1pi0V3k46HPZEvcYY0FrSh1sfuOSBjb4kmP-lG6HxpTqmrhYEf5Ir9Rq0uDMEZZkF7HsyyWuhI1q9tuY~Cfi06cEQppbV9SkDyFSeEFreXS7ZZCHSsXZ-lpT6Rzf42x7~MeQPgGhP23zixofxDNVFA__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "it's gorgeous especially this time of year it's like you know you know it's like late february early march so you're kind of avoiding all of i guess the tourists and all of that stuff so it's just you and the park and the silence and uh the fresh crisp air because you know you're getting out of winter right there's still there's still fresh",
+    "speaker_id": 1,
+    "style": "default",
+    "other_speaker_id": 2,
+    "other_style": "default",
+    "source_file_id": "ex01-ex02_default_007",
+    "channel": 1,
+    "start_s": 37.630001068115234,
+    "end_s": 60.0
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_04_bd08acb8",
+  "duration": 22.37,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "33a0f92b601485e18ddadfd00b3eba81d2dc5a7cd557b5c6510fd4e2df013e59",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_04_bd08acb8.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

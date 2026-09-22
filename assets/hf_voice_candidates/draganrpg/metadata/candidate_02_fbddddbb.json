@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 1,
+  "speaker_id": "1",
+  "source_id": "ex01-ex02_default_007__ch1_8.63-11.69",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/1/audio/audio.wav?Expires=1790047877&Signature=ecIvCqIocsuss0rGyP-mg9MvprkG2-AfSZ823g86RRb3iEWyfTbdEGgFFP2EtuY8FzmS9RpkuivahuMD7phybHgy2DEiSYuvjO89EWsFHAbBWWpD1sVbi8vgglb0jl1L9tIvURt-TUqVOATFhXEEsJ389QGGWA-AxWjg~6sVY8fxmVTU28qPbyVwxT1q17h9ZLYPucoPFmkMJACgtohAjPrpnHMVR4-vV4MFuzDZ5o2jlgr6SkMJMuHcbIMkhon6stewS7z8txEg7HwHH-yxA57okN4IPwCZ8v6bPHinGUR3Z83Y2M6XWcoYzkUv0Yx1ivOG1D8mCUCqIUH~5w2Q7g__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_default_007__ch1_8.63-11.69",
+  "transcript": "Uh-huh. Do you notice anything different?",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_default_007__ch1_8.63-11.69",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/1/audio/audio.wav?Expires=1790047877&Signature=ecIvCqIocsuss0rGyP-mg9MvprkG2-AfSZ823g86RRb3iEWyfTbdEGgFFP2EtuY8FzmS9RpkuivahuMD7phybHgy2DEiSYuvjO89EWsFHAbBWWpD1sVbi8vgglb0jl1L9tIvURt-TUqVOATFhXEEsJ389QGGWA-AxWjg~6sVY8fxmVTU28qPbyVwxT1q17h9ZLYPucoPFmkMJACgtohAjPrpnHMVR4-vV4MFuzDZ5o2jlgr6SkMJMuHcbIMkhon6stewS7z8txEg7HwHH-yxA57okN4IPwCZ8v6bPHinGUR3Z83Y2M6XWcoYzkUv0Yx1ivOG1D8mCUCqIUH~5w2Q7g__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "Uh-huh. Do you notice anything different?",
+    "speaker_id": 1,
+    "style": "default",
+    "other_speaker_id": 2,
+    "other_style": "default",
+    "source_file_id": "ex01-ex02_default_007",
+    "channel": 1,
+    "start_s": 8.630000114440918,
+    "end_s": 11.6899995803833
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_02_fbddddbb",
+  "duration": 3.06,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "68b4ff644e7a69243503e102a7d5ea5ce03cdffa72a21dddcb5f7836e3ac4294",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_02_fbddddbb.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

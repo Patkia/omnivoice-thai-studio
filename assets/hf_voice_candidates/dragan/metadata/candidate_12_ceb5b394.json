@@ -1,0 +1,63 @@
+{
+  "repo": "mythicinfinity/libritts_r",
+  "config": "clean",
+  "split": "dev.clean",
+  "row_idx": 1411,
+  "speaker_id": "6313",
+  "source_id": "6313_66125_000027_000000",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/1411/audio/audio.wav?Expires=1790045887&Signature=i1mYzGP~xJwdygYAXRMsVigPWRvFdRZ834A612fadHzq0nfuvbbExHn9p2rt10H3ge2cJ0FPIHJT0qIlG9Sc6Mbnaa3NIUUVl8CBTa-6qKFMVoWU9zI6dOuNEqr5wd36d8Qkc~wXIpzMBKfA8oPmvjnHB-mFfGOzEimWDgjU2a3zZoV2sTeCET-Ujs5OLbXFOoc17MBUlU-f3Ig9YTgdHwfIGVUt8iAn4D9el0IGCJ3elm3-5GWBAg0c-UaF2Dk3ggKsCOxTpm90C4UJvazBRPnuI~jAEZ3C0vw6JVWKGxfNbUaVYYfpPFVaSQFy2heiK8GVxSwIpDpagR1V-LFE8A__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/6313/66125/6313_66125_000027_000000.wav",
+  "transcript": "The mountaineer quickly formed a loop in one end of the rope, making it large enough to permit of its slipping over the shoulders of a man.",
+  "license": "cc-by-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/1411/audio/audio.wav?Expires=1790045887&Signature=i1mYzGP~xJwdygYAXRMsVigPWRvFdRZ834A612fadHzq0nfuvbbExHn9p2rt10H3ge2cJ0FPIHJT0qIlG9Sc6Mbnaa3NIUUVl8CBTa-6qKFMVoWU9zI6dOuNEqr5wd36d8Qkc~wXIpzMBKfA8oPmvjnHB-mFfGOzEimWDgjU2a3zZoV2sTeCET-Ujs5OLbXFOoc17MBUlU-f3Ig9YTgdHwfIGVUt8iAn4D9el0IGCJ3elm3-5GWBAg0c-UaF2Dk3ggKsCOxTpm90C4UJvazBRPnuI~jAEZ3C0vw6JVWKGxfNbUaVYYfpPFVaSQFy2heiK8GVxSwIpDpagR1V-LFE8A__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text_normalized": "The mountaineer quickly formed a loop in one end of the rope, making it large enough to permit of its slipping over the shoulders of a man.",
+    "text_original": "The mountaineer quickly formed a loop in one end of the rope, making it large enough to permit of its slipping over the shoulders of a man.",
+    "speaker_id": "6313",
+    "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/6313/66125/6313_66125_000027_000000.wav",
+    "chapter_id": "66125",
+    "id": "6313_66125_000027_000000"
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_12_ceb5b394",
+  "duration": 6.4,
+  "sample_rate": 24000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "391c98e0ef774476cf48c58b92c29b729728365aca13206a8603c5ac570fe6b1",
+  "clipping": false,
+  "validation": "PASS",
+  "reject_reason": "",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 4,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "PENDING_HUMAN_REVIEW",
+  "master_path": "assets/hf_voice_candidates/dragan/master/candidate_12_ceb5b394.wav",
+  "runtime_path": "assets/hf_voice_candidates/dragan/runtime_24k/candidate_12_ceb5b394.wav",
+  "audition_status": "COMPLETE",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 7,
+  "speaker_id": "2",
+  "source_id": "ex01-ex02_default_007__ch2_35.07-37.43",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/7/audio/audio.wav?Expires=1790047877&Signature=rMOi3BkLqi5KxKqGLqoVvQWZvrHL12zkoSmvwS58eY2XKk6TiBrdUrrYML4JX0L4~jWhF0KNbXhWMwdCieMMoGgbQUXbwRihE97lvx58zNUXWNbJGq8wBfcGpPqU0Ubi96nUESbCIyWDgDX9QBzgV~kONvKGsvAIEr6To7jrxEWVg3CrZWjfBWFSezMWLENN1zCqNQYm0DvWkqS7ulWOAyyli1SqTHtBj3WEpE-R2gwKLQhnKjF1zqwvyb-Fo8EdCNDj6tdKqcr1ypbNWVTX0Aq0Och1Ihofr62VPoCUqW6zCbzfhpHAGEpwUboldaqL-VW5AIob8llHmjwiTCbRUQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_default_007__ch2_35.07-37.43",
+  "transcript": "No, I've never been to Yosemite.",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_default_007__ch2_35.07-37.43",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/7/audio/audio.wav?Expires=1790047877&Signature=rMOi3BkLqi5KxKqGLqoVvQWZvrHL12zkoSmvwS58eY2XKk6TiBrdUrrYML4JX0L4~jWhF0KNbXhWMwdCieMMoGgbQUXbwRihE97lvx58zNUXWNbJGq8wBfcGpPqU0Ubi96nUESbCIyWDgDX9QBzgV~kONvKGsvAIEr6To7jrxEWVg3CrZWjfBWFSezMWLENN1zCqNQYm0DvWkqS7ulWOAyyli1SqTHtBj3WEpE-R2gwKLQhnKjF1zqwvyb-Fo8EdCNDj6tdKqcr1ypbNWVTX0Aq0Och1Ihofr62VPoCUqW6zCbzfhpHAGEpwUboldaqL-VW5AIob8llHmjwiTCbRUQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "No, I've never been to Yosemite.",
+    "speaker_id": 2,
+    "style": "default",
+    "other_speaker_id": 1,
+    "other_style": "default",
+    "source_file_id": "ex01-ex02_default_007",
+    "channel": 2,
+    "start_s": 35.06999969482422,
+    "end_s": 37.43000030517578
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_08_4bb4d439",
+  "duration": 2.36,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "88c8d1cf912037cc1e87b825244f9a4e814bb786d2d92ad5214177d57db56a76",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_08_4bb4d439.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "repo": "mythicinfinity/libritts_r",
+  "config": "clean",
+  "split": "dev.clean",
+  "row_idx": 2812,
+  "speaker_id": "2428",
+  "source_id": "2428_83705_000010_000001",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2812/audio/audio.wav?Expires=1790047339&Signature=tXSstQs86t7pry67CYyKBp29KeYYf5bvt7jlzFiYAbiwQylKFkW8YcOj-YdfySXhpS9uJj3fM5j8uVYHijKy~q1BJftmiNuLtZ1O287KvXl1SwIDn4XVoVcfkQ6-~sm8gKjoKCjJDkp9h7uHsBHPU0NgCWAeHzf3upGbuuL1SQTzErd8d2bHWplk2bX0FehxKJZ60oT78ivXH26ivWRXhne4krNdbVtajMTtzlNqJK6doA800PttxNtBQk1H1GRGnTTWDNhRqetXbVFAXBBw9kys0HXn7K24IdOKojtWPfHnSAFKXAjwel28~gUbqejrB9TWE7P~wxLaMXXxMnbYzg__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000010_000001.wav",
+  "transcript": "The girl is fretting, but you don't seem to notice it.",
+  "license": "cc-by-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2812/audio/audio.wav?Expires=1790047339&Signature=tXSstQs86t7pry67CYyKBp29KeYYf5bvt7jlzFiYAbiwQylKFkW8YcOj-YdfySXhpS9uJj3fM5j8uVYHijKy~q1BJftmiNuLtZ1O287KvXl1SwIDn4XVoVcfkQ6-~sm8gKjoKCjJDkp9h7uHsBHPU0NgCWAeHzf3upGbuuL1SQTzErd8d2bHWplk2bX0FehxKJZ60oT78ivXH26ivWRXhne4krNdbVtajMTtzlNqJK6doA800PttxNtBQk1H1GRGnTTWDNhRqetXbVFAXBBw9kys0HXn7K24IdOKojtWPfHnSAFKXAjwel28~gUbqejrB9TWE7P~wxLaMXXxMnbYzg__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text_normalized": "The girl is fretting, but you don't seem to notice it.",
+    "text_original": "The girl is fretting, but you don't seem to notice it.",
+    "speaker_id": "2428",
+    "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000010_000001.wav",
+    "chapter_id": "83705",
+    "id": "2428_83705_000010_000001"
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_24_fed70f25",
+  "duration": 2.88,
+  "sample_rate": 24000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "f2bd8c616014afae89a0d2990aa8f2b60f38cca13958564fe8bd51e9eb762414",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_24_fed70f25.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

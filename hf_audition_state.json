@@ -1,0 +1,506 @@
+{
+  "Dragan": {
+    "updated": "2026-09-22",
+    "searched_datasets": [],
+    "candidates": [
+      {
+        "repo": "mythicinfinity/libritts_r",
+        "config": "clean",
+        "split": "dev.clean",
+        "row_idx": 1411,
+        "speaker_id": "6313",
+        "source_id": "6313_66125_000027_000000",
+        "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/1411/audio/audio.wav?Expires=1790045887&Signature=i1mYzGP~xJwdygYAXRMsVigPWRvFdRZ834A612fadHzq0nfuvbbExHn9p2rt10H3ge2cJ0FPIHJT0qIlG9Sc6Mbnaa3NIUUVl8CBTa-6qKFMVoWU9zI6dOuNEqr5wd36d8Qkc~wXIpzMBKfA8oPmvjnHB-mFfGOzEimWDgjU2a3zZoV2sTeCET-Ujs5OLbXFOoc17MBUlU-f3Ig9YTgdHwfIGVUt8iAn4D9el0IGCJ3elm3-5GWBAg0c-UaF2Dk3ggKsCOxTpm90C4UJvazBRPnuI~jAEZ3C0vw6JVWKGxfNbUaVYYfpPFVaSQFy2heiK8GVxSwIpDpagR1V-LFE8A__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/6313/66125/6313_66125_000027_000000.wav",
+        "transcript": "The mountaineer quickly formed a loop in one end of the rope, making it large enough to permit of its slipping over the shoulders of a man.",
+        "license": "cc-by-4.0",
+        "license_status": "LICENSE_OK",
+        "license_source": "dataset card/tags",
+        "row": {
+          "audio": [
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/1411/audio/audio.wav?Expires=1790045887&Signature=i1mYzGP~xJwdygYAXRMsVigPWRvFdRZ834A612fadHzq0nfuvbbExHn9p2rt10H3ge2cJ0FPIHJT0qIlG9Sc6Mbnaa3NIUUVl8CBTa-6qKFMVoWU9zI6dOuNEqr5wd36d8Qkc~wXIpzMBKfA8oPmvjnHB-mFfGOzEimWDgjU2a3zZoV2sTeCET-Ujs5OLbXFOoc17MBUlU-f3Ig9YTgdHwfIGVUt8iAn4D9el0IGCJ3elm3-5GWBAg0c-UaF2Dk3ggKsCOxTpm90C4UJvazBRPnuI~jAEZ3C0vw6JVWKGxfNbUaVYYfpPFVaSQFy2heiK8GVxSwIpDpagR1V-LFE8A__&Key-Pair-Id=K3C0L9WB6U5DUC",
+              "type": "audio/wav"
+            }
+          ],
+          "text_normalized": "The mountaineer quickly formed a loop in one end of the rope, making it large enough to permit of its slipping over the shoulders of a man.",
+          "text_original": "The mountaineer quickly formed a loop in one end of the rope, making it large enough to permit of its slipping over the shoulders of a man.",
+          "speaker_id": "6313",
+          "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/6313/66125/6313_66125_000027_000000.wav",
+          "chapter_id": "66125",
+          "id": "6313_66125_000027_000000"
+        },
+        "enrichment": {
+          "_requested_gender": "male"
+        },
+        "candidate_id": "candidate_12_ceb5b394",
+        "duration": 6.4,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "sha256": "391c98e0ef774476cf48c58b92c29b729728365aca13206a8603c5ac570fe6b1",
+        "clipping": false,
+        "validation": "PASS",
+        "reject_reason": "",
+        "scores": {
+          "cleanliness": 5,
+          "transcript_accuracy": 5,
+          "speaker_isolation": 4,
+          "duration_score": 4,
+          "natural_speech": 4,
+          "no_clipping": 5,
+          "license_clarity": 5,
+          "character_fit": 3,
+          "distinctness": 2,
+          "rpg_character_presence": 3,
+          "dramatic_dialogue_suitability": 3,
+          "vocal_distinctiveness": 3,
+          "acting_performance_quality": 3
+        },
+        "human_status": "PENDING_HUMAN_REVIEW",
+        "master_path": "assets/hf_voice_candidates/dragan/master/candidate_12_ceb5b394.wav",
+        "runtime_path": "assets/hf_voice_candidates/dragan/runtime_24k/candidate_12_ceb5b394.wav",
+        "audition_status": "COMPLETE",
+        "notes": [
+          "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+          "distinctness_check=HUMAN_REQUIRED"
+        ]
+      }
+    ],
+    "review_path": "assets/hf_voice_candidates/dragan/audition_review.html"
+  },
+  "DraganRPGSearch": {
+    "updated": "2026-09-22",
+    "searched_datasets": [
+      "mythicinfinity/libritts_r",
+      "parler-tts/libritts-r-filtered-speaker-descriptions",
+      "cdminix/libritts-r-aligned",
+      "ylacombe/libritts_r_test_tag",
+      "ylacombe/libritts_r_tags",
+      "ylacombe/test_libritts_r_v1",
+      "ylacombe/libritts_r_tags_and_text",
+      "ylacombe/libritts_r_tags_tagged_10k",
+      "parler-tts/libritts_r_tags_tagged_10k_generated",
+      "azain/LibriTTS-raw",
+      "pharaouk/libritts_r",
+      "ylacombe/libritts-r-text-tags-v2"
+    ],
+    "candidates": [
+      {
+        "repo": "mythicinfinity/libritts_r",
+        "config": "clean",
+        "split": "dev.clean",
+        "row_idx": 2805,
+        "speaker_id": "2428",
+        "source_id": "2428_83705_000030_000004",
+        "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2805/audio/audio.wav?Expires=1790047339&Signature=ndshzDivQXWe7KHGF8Q7miBR8o7TZxVSL4QsQ4FjhB43ngXUDRb5FPxmXPItJ-0SVlQY1U6WbPGHgWdpIRjZsB14NvpEVbfBzPdREQaAkBT-afwzuBP099BOFu69aO9anDEwDrffXc97T6r7AC7ZpUMd479GkSADWUGK28sjc16f4xkWSVWgYg70n8obEOPke0vD-nJBJ~-9fSsIcYQ1Ew2PsXWLPVkTLpCgSlcaQ0QSVl4JlLV7oHWbtuZzl7l9OuadjfdN9-PDD2IVigeqB95WQr6AXtzeX2jUvyyuNjuBYdl86Ml1D7jq1a9AgHYrpnDVVdJLseUSPbGVshJD4w__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000030_000004.wav",
+        "transcript": "I have no intention of being presented with an endless collection of duplicates, or a lot of useless rubbish which I don't know what to do with.",
+        "license": "cc-by-4.0",
+        "license_status": "LICENSE_OK",
+        "license_source": "dataset card/tags",
+        "row": {
+          "audio": [
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2805/audio/audio.wav?Expires=1790047339&Signature=ndshzDivQXWe7KHGF8Q7miBR8o7TZxVSL4QsQ4FjhB43ngXUDRb5FPxmXPItJ-0SVlQY1U6WbPGHgWdpIRjZsB14NvpEVbfBzPdREQaAkBT-afwzuBP099BOFu69aO9anDEwDrffXc97T6r7AC7ZpUMd479GkSADWUGK28sjc16f4xkWSVWgYg70n8obEOPke0vD-nJBJ~-9fSsIcYQ1Ew2PsXWLPVkTLpCgSlcaQ0QSVl4JlLV7oHWbtuZzl7l9OuadjfdN9-PDD2IVigeqB95WQr6AXtzeX2jUvyyuNjuBYdl86Ml1D7jq1a9AgHYrpnDVVdJLseUSPbGVshJD4w__&Key-Pair-Id=K3C0L9WB6U5DUC",
+              "type": "audio/wav"
+            }
+          ],
+          "text_normalized": "I have no intention of being presented with an endless collection of duplicates, or a lot of useless rubbish which I don't know what to do with.",
+          "text_original": "I have no intention of being presented with an endless collection of duplicates, or a lot of useless rubbish which I don't know what to do with.",
+          "speaker_id": "2428",
+          "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000030_000004.wav",
+          "chapter_id": "83705",
+          "id": "2428_83705_000030_000004"
+        },
+        "enrichment": {
+          "_requested_gender": "male"
+        },
+        "candidate_id": "candidate_17_c6b8c0e5",
+        "duration": 8.0,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "sha256": "87f76742a749b29cafaa88768e5493b7914bc5c6e6ec1e9a798814224dbebd83",
+        "clipping": false,
+        "validation": "PASS",
+        "reject_reason": "",
+        "scores": {
+          "cleanliness": 5,
+          "transcript_accuracy": 5,
+          "speaker_isolation": 4,
+          "duration_score": 5,
+          "natural_speech": 4,
+          "no_clipping": 5,
+          "license_clarity": 5,
+          "character_fit": 3,
+          "distinctness": 2,
+          "rpg_character_presence": 3,
+          "dramatic_dialogue_suitability": 3,
+          "vocal_distinctiveness": 3,
+          "acting_performance_quality": 3
+        },
+        "human_status": "PENDING_HUMAN_REVIEW",
+        "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_17_c6b8c0e5.wav",
+        "runtime_path": "assets/hf_voice_candidates/draganrpgsearch/runtime_24k/candidate_17_c6b8c0e5.wav",
+        "audition_status": "NOT_RUN",
+        "notes": [
+          "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+          "distinctness_check=HUMAN_REQUIRED"
+        ]
+      },
+      {
+        "repo": "mythicinfinity/libritts_r",
+        "config": "clean",
+        "split": "dev.clean",
+        "row_idx": 2808,
+        "speaker_id": "2428",
+        "source_id": "2428_83705_000030_000003",
+        "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2808/audio/audio.wav?Expires=1790047339&Signature=okyr~VfIfOyNIn5f3AcX71RbXy1regbNPxHCNgm8udEjIoV28e~MMmCJJPAtVw30utZfLXvLYDX6CDjNzfuDzFiepGY~0KdbBKW7EyFxZthRsQg0-Thf9t6sW~nKXS7aox-4iFhRVsc-6fevNit1CkgUvkIZxzf2YTh0~h1O0lY4jrcVH4xJvVamOylqLdW7QXC8Cq4c6wRbOYZQVwjJMCT~1vPMfrxGrRF0fiEKDZ5qYR4b-ePWQdGWsalRJDbusoJCp2mgOLZpscAvSdAwnKiCEcftoG-y-uax71IHTigXYh5aIW0vimMwGEk0cFFywn8EFWOmK4TasfFF-v8GGQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000030_000003.wav",
+        "transcript": "Of course there are some people with whom you can't be perfectly plain, but I shall be as plain as I can; there's a way and a manner of doing that kind of thing.",
+        "license": "cc-by-4.0",
+        "license_status": "LICENSE_OK",
+        "license_source": "dataset card/tags",
+        "row": {
+          "audio": [
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2808/audio/audio.wav?Expires=1790047339&Signature=okyr~VfIfOyNIn5f3AcX71RbXy1regbNPxHCNgm8udEjIoV28e~MMmCJJPAtVw30utZfLXvLYDX6CDjNzfuDzFiepGY~0KdbBKW7EyFxZthRsQg0-Thf9t6sW~nKXS7aox-4iFhRVsc-6fevNit1CkgUvkIZxzf2YTh0~h1O0lY4jrcVH4xJvVamOylqLdW7QXC8Cq4c6wRbOYZQVwjJMCT~1vPMfrxGrRF0fiEKDZ5qYR4b-ePWQdGWsalRJDbusoJCp2mgOLZpscAvSdAwnKiCEcftoG-y-uax71IHTigXYh5aIW0vimMwGEk0cFFywn8EFWOmK4TasfFF-v8GGQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+              "type": "audio/wav"
+            }
+          ],
+          "text_normalized": "Of course there are some people with whom you can't be perfectly plain, but I shall be as plain as I can; there's a way and a manner of doing that kind of thing.",
+          "text_original": "Of course there are some people with whom you can't be perfectly plain, but I shall be as plain as I can; there's a way and a manner of doing that kind of thing.",
+          "speaker_id": "2428",
+          "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000030_000003.wav",
+          "chapter_id": "83705",
+          "id": "2428_83705_000030_000003"
+        },
+        "enrichment": {
+          "_requested_gender": "male"
+        },
+        "candidate_id": "candidate_20_a56430b7",
+        "duration": 9.76,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "sha256": "1f3f3bf31c7cd8544fa1d75815023a79e936611fb083cf3168292f9261fcfbc4",
+        "clipping": false,
+        "validation": "PASS",
+        "reject_reason": "",
+        "scores": {
+          "cleanliness": 5,
+          "transcript_accuracy": 5,
+          "speaker_isolation": 4,
+          "duration_score": 5,
+          "natural_speech": 4,
+          "no_clipping": 5,
+          "license_clarity": 5,
+          "character_fit": 3,
+          "distinctness": 2,
+          "rpg_character_presence": 3,
+          "dramatic_dialogue_suitability": 3,
+          "vocal_distinctiveness": 3,
+          "acting_performance_quality": 3
+        },
+        "human_status": "PENDING_HUMAN_REVIEW",
+        "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_20_a56430b7.wav",
+        "runtime_path": "assets/hf_voice_candidates/draganrpgsearch/runtime_24k/candidate_20_a56430b7.wav",
+        "audition_status": "NOT_RUN",
+        "notes": [
+          "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+          "distinctness_check=HUMAN_REQUIRED"
+        ]
+      },
+      {
+        "repo": "mythicinfinity/libritts_r",
+        "config": "clean",
+        "split": "dev.clean",
+        "row_idx": 2809,
+        "speaker_id": "2428",
+        "source_id": "2428_83705_000027_000000",
+        "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2809/audio/audio.wav?Expires=1790047339&Signature=mUB9hmVhZ1viXdNtlqqV6ya5mPmtfKOVZiIBHEMr499XuF2JJhBD0TqajUmbl5ZXKn-h2CKmz93nnbVeP6mMfRAo3HR4QoSgIUdLYDgUSS6KYcKyuYWn7Q~1HKT7zVEr3fcLheErGn-AyJ1nbzpTnSF15suQiFbYPcSGAwN7fVU6PLdD10nFIp2EzqXn-T73f44KbLjXxa-ImsyKMa7nD-W9miPWyrex9pkdIknoykPPZ8NQknWDhe24DS-HLjacLWZ9AAiM65WamarnU0iQIUzVzLS-rw2-zYV-isFT6t-Z9iiz46FcHeo5LOWZEHvt2rMk8Fu8tQXW0V9jF25rXQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000027_000000.wav",
+        "transcript": "It turned out that she had a little money of her own; about a hundred and thirty pounds a year.",
+        "license": "cc-by-4.0",
+        "license_status": "LICENSE_OK",
+        "license_source": "dataset card/tags",
+        "row": {
+          "audio": [
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2809/audio/audio.wav?Expires=1790047339&Signature=mUB9hmVhZ1viXdNtlqqV6ya5mPmtfKOVZiIBHEMr499XuF2JJhBD0TqajUmbl5ZXKn-h2CKmz93nnbVeP6mMfRAo3HR4QoSgIUdLYDgUSS6KYcKyuYWn7Q~1HKT7zVEr3fcLheErGn-AyJ1nbzpTnSF15suQiFbYPcSGAwN7fVU6PLdD10nFIp2EzqXn-T73f44KbLjXxa-ImsyKMa7nD-W9miPWyrex9pkdIknoykPPZ8NQknWDhe24DS-HLjacLWZ9AAiM65WamarnU0iQIUzVzLS-rw2-zYV-isFT6t-Z9iiz46FcHeo5LOWZEHvt2rMk8Fu8tQXW0V9jF25rXQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+              "type": "audio/wav"
+            }
+          ],
+          "text_normalized": "It turned out that she had a little money of her own; about a hundred and thirty pounds a year.",
+          "text_original": "It turned out that she had a little money of her own; about a hundred and thirty pounds a year.",
+          "speaker_id": "2428",
+          "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000027_000000.wav",
+          "chapter_id": "83705",
+          "id": "2428_83705_000027_000000"
+        },
+        "enrichment": {
+          "_requested_gender": "male"
+        },
+        "candidate_id": "candidate_21_4ba29b7e",
+        "duration": 5.12,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "sha256": "81794a3f09793947aa62235802993eb82b6468a566a265648feaa16db79a25f0",
+        "clipping": false,
+        "validation": "PASS",
+        "reject_reason": "",
+        "scores": {
+          "cleanliness": 5,
+          "transcript_accuracy": 5,
+          "speaker_isolation": 4,
+          "duration_score": 4,
+          "natural_speech": 4,
+          "no_clipping": 5,
+          "license_clarity": 5,
+          "character_fit": 3,
+          "distinctness": 2,
+          "rpg_character_presence": 3,
+          "dramatic_dialogue_suitability": 3,
+          "vocal_distinctiveness": 3,
+          "acting_performance_quality": 3
+        },
+        "human_status": "PENDING_HUMAN_REVIEW",
+        "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_21_4ba29b7e.wav",
+        "runtime_path": "assets/hf_voice_candidates/draganrpgsearch/runtime_24k/candidate_21_4ba29b7e.wav",
+        "audition_status": "NOT_RUN",
+        "notes": [
+          "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+          "distinctness_check=HUMAN_REQUIRED"
+        ]
+      },
+      {
+        "repo": "mythicinfinity/libritts_r",
+        "config": "clean",
+        "split": "dev.clean",
+        "row_idx": 2810,
+        "speaker_id": "2428",
+        "source_id": "2428_83705_000037_000001",
+        "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2810/audio/audio.wav?Expires=1790047339&Signature=Yr9R~c5EAARiP9wuB8iQmUw9US0Q72R5nBECQLukY4kbXZEh987Y~FC3ABzcqRF5RNXwAUcA-V2xUrk6-oVNQksT7pOuyKdoMKGIlIxYBFWeBrsmSuZWxuLG0SVR3anV7I6vYT1MDgc088gyNhJWPWRJCNolF6LTm4c4Fva1yfKeEk2BPuDj6iKlK7SJ~2FVCHaGzLTSBcrnZqamTYQ3ff35Rb3MYiJa9S~g~03S9AoCt1Uk8X5DKFQxMOCXWkSw-rJp5mUX23fFF9OgYRWWDTkhxzJoYJhHcM5JRmQaPP~ziCN~nFlUT4HjMsWk5ksXYxP2vvIrQfJzYddZ~lxJ~w__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000037_000001.wav",
+        "transcript": "It is true that they are a trifle large for me, and that I shall never be able to keep them on my feet except when I am sitting still.",
+        "license": "cc-by-4.0",
+        "license_status": "LICENSE_OK",
+        "license_source": "dataset card/tags",
+        "row": {
+          "audio": [
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2810/audio/audio.wav?Expires=1790047339&Signature=Yr9R~c5EAARiP9wuB8iQmUw9US0Q72R5nBECQLukY4kbXZEh987Y~FC3ABzcqRF5RNXwAUcA-V2xUrk6-oVNQksT7pOuyKdoMKGIlIxYBFWeBrsmSuZWxuLG0SVR3anV7I6vYT1MDgc088gyNhJWPWRJCNolF6LTm4c4Fva1yfKeEk2BPuDj6iKlK7SJ~2FVCHaGzLTSBcrnZqamTYQ3ff35Rb3MYiJa9S~g~03S9AoCt1Uk8X5DKFQxMOCXWkSw-rJp5mUX23fFF9OgYRWWDTkhxzJoYJhHcM5JRmQaPP~ziCN~nFlUT4HjMsWk5ksXYxP2vvIrQfJzYddZ~lxJ~w__&Key-Pair-Id=K3C0L9WB6U5DUC",
+              "type": "audio/wav"
+            }
+          ],
+          "text_normalized": "It is true that they are a trifle large for me, and that I shall never be able to keep them on my feet except when I am sitting still.",
+          "text_original": "It is true that they are a trifle large for me, and that I shall never be able to keep them on my feet except when I am sitting still.",
+          "speaker_id": "2428",
+          "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000037_000001.wav",
+          "chapter_id": "83705",
+          "id": "2428_83705_000037_000001"
+        },
+        "enrichment": {
+          "_requested_gender": "male"
+        },
+        "candidate_id": "candidate_22_1fd9053b",
+        "duration": 6.28,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "sha256": "620b3d5ebfd1d6bbb0ddc1d8a3cf85e1d588ce9c6ed549fd226653c77ba11d87",
+        "clipping": false,
+        "validation": "PASS",
+        "reject_reason": "",
+        "scores": {
+          "cleanliness": 5,
+          "transcript_accuracy": 5,
+          "speaker_isolation": 4,
+          "duration_score": 4,
+          "natural_speech": 4,
+          "no_clipping": 5,
+          "license_clarity": 5,
+          "character_fit": 3,
+          "distinctness": 2,
+          "rpg_character_presence": 3,
+          "dramatic_dialogue_suitability": 3,
+          "vocal_distinctiveness": 3,
+          "acting_performance_quality": 3
+        },
+        "human_status": "PENDING_HUMAN_REVIEW",
+        "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_22_1fd9053b.wav",
+        "runtime_path": "assets/hf_voice_candidates/draganrpgsearch/runtime_24k/candidate_22_1fd9053b.wav",
+        "audition_status": "NOT_RUN",
+        "notes": [
+          "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+          "distinctness_check=HUMAN_REQUIRED"
+        ]
+      },
+      {
+        "repo": "mythicinfinity/libritts_r",
+        "config": "clean",
+        "split": "dev.clean",
+        "row_idx": 2875,
+        "speaker_id": "2428",
+        "source_id": "2428_83699_000008_000006",
+        "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2875/audio/audio.wav?Expires=1790047340&Signature=RmnWGHZ7biZi6jhLXDrrq0HMiP59aEWcqg-oVszlZ23Vi853vGd04VZZtaXijKIKm3wAHyWS6JIhysd0fPqauBU2zbV7kO7lVPOQJ3ZxwWm2MUeOUvgEStYxhAn8hcpjZ0sfTa9teBSIuNNdaGKwQMWHn~xM-8AkYHMq9KCDL7f8DSL4QZ0KL4QbmDBiO8I4uqXxLyRH-Qmq~LgvStEz~mhOI9tuL0aAEksAdV-BDBO3z5E2asQG4y4l9aX31i4LQnaDBurKVdnDnTt2u8rY96UA-YgWh32zpvvH~YgZMxRwkDI44bb911BcuRCaYiJEEEJApTACTgrlHxCLDum-RA__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83699/2428_83699_000008_000006.wav",
+        "transcript": "There was nothing said about the sort of accommodation which would be provided, nothing about the kind of establishment which was maintained, or the table which was kept.",
+        "license": "cc-by-4.0",
+        "license_status": "LICENSE_OK",
+        "license_source": "dataset card/tags",
+        "row": {
+          "audio": [
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2875/audio/audio.wav?Expires=1790047340&Signature=RmnWGHZ7biZi6jhLXDrrq0HMiP59aEWcqg-oVszlZ23Vi853vGd04VZZtaXijKIKm3wAHyWS6JIhysd0fPqauBU2zbV7kO7lVPOQJ3ZxwWm2MUeOUvgEStYxhAn8hcpjZ0sfTa9teBSIuNNdaGKwQMWHn~xM-8AkYHMq9KCDL7f8DSL4QZ0KL4QbmDBiO8I4uqXxLyRH-Qmq~LgvStEz~mhOI9tuL0aAEksAdV-BDBO3z5E2asQG4y4l9aX31i4LQnaDBurKVdnDnTt2u8rY96UA-YgWh32zpvvH~YgZMxRwkDI44bb911BcuRCaYiJEEEJApTACTgrlHxCLDum-RA__&Key-Pair-Id=K3C0L9WB6U5DUC",
+              "type": "audio/wav"
+            }
+          ],
+          "text_normalized": "There was nothing said about the sort of accommodation which would be provided, nothing about the kind of establishment which was maintained, or the table which was kept.",
+          "text_original": "There was nothing said about the sort of accommodation which would be provided, nothing about the kind of establishment which was maintained, or the table which was kept.",
+          "speaker_id": "2428",
+          "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83699/2428_83699_000008_000006.wav",
+          "chapter_id": "83699",
+          "id": "2428_83699_000008_000006"
+        },
+        "enrichment": {
+          "text": "There was nothing said about the sort of accommodation which would be provided, nothing about the kind of establishment which was maintained, or the table which was kept.",
+          "text_original": "There was nothing said about the sort of accommodation which would be provided, nothing about the kind of establishment which was maintained, or the table which was kept.",
+          "speaker_id": "2428",
+          "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83699/2428_83699_000008_000006.wav",
+          "chapter_id": "83699",
+          "id": "2428_83699_000008_000006",
+          "snr": 47.9969596862793,
+          "c50": 59.86796188354492,
+          "speech_duration": 8.673750000000002,
+          "speaking_rate": "slightly fast",
+          "phonemes": "ðɛɹ wɑz nʌθɪŋ sɛd ʌbaʊt ðʌ sɔɹt ʌv ʌkɑmʌdeɪʃʌn wɪtʃ wʊd bi pɹʌvaɪdɪd, nʌθɪŋ ʌbaʊt ðʌ kaɪnd ʌv ɪstæblɪʃmʌnt wɪtʃ wɑz meɪnteɪnd, ɔɹ ðʌ teɪbʌl wɪtʃ wɑz kɛpt.",
+          "stoi": 0.999618649482727,
+          "si-sdr": 30.10988998413086,
+          "pesq": 4.155717372894287,
+          "gender": "male",
+          "utterance_pitch_std": 20.039459228515625,
+          "utterance_pitch_mean": 123.0711441040039,
+          "pitch": "slightly high-pitch",
+          "noise": "balanced in clarity",
+          "reverberation": "very close-sounding",
+          "speech_monotony": "very monotone",
+          "sdr_noise": "very clear",
+          "pesq_speech_quality": "wonderful speech quality",
+          "accent": "American",
+          "text_description": " A male speaker delivers his very monotone and slightly hurried words with a slightly high-pitch. The recording quality is excellent and the speech is very clear.",
+          "_requested_gender": "male"
+        },
+        "candidate_id": "candidate_01_63b4a4bb",
+        "duration": 8.68,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "sha256": "970fee317751447bc67f77c45cc41417da16441d1d8d84152247ef280cee44ae",
+        "clipping": false,
+        "validation": "PASS",
+        "reject_reason": "",
+        "scores": {
+          "cleanliness": 5,
+          "transcript_accuracy": 5,
+          "speaker_isolation": 4,
+          "duration_score": 5,
+          "natural_speech": 3,
+          "no_clipping": 5,
+          "license_clarity": 5,
+          "character_fit": 4,
+          "distinctness": 2,
+          "rpg_character_presence": 2,
+          "dramatic_dialogue_suitability": 3,
+          "vocal_distinctiveness": 3,
+          "acting_performance_quality": 2
+        },
+        "human_status": "PENDING_HUMAN_REVIEW",
+        "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_01_63b4a4bb.wav",
+        "runtime_path": "assets/hf_voice_candidates/draganrpgsearch/runtime_24k/candidate_01_63b4a4bb.wav",
+        "audition_status": "NOT_RUN",
+        "notes": [
+          "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+          "distinctness_check=HUMAN_REQUIRED"
+        ]
+      }
+    ],
+    "review_path": "assets/hf_voice_candidates/draganrpgsearch/audition_review.html"
+  },
+  "DraganRPG": {
+    "updated": "2026-09-22",
+    "searched_datasets": [],
+    "candidates": [
+      {
+        "repo": "shangeth/expresso",
+        "config": "conversational",
+        "split": "dev",
+        "row_idx": 10,
+        "speaker_id": "1",
+        "source_id": "ex01-ex02_enunciated_001__ch1_38.55-50.27",
+        "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/10/audio/audio.wav?Expires=1790047582&Signature=cq3YTemiao051ZN1pDmFqWKBpY9-Od1C~K5BEiIrtWtKlPQ8mtV5NU9DZRsvJ5F6YEn0hwu5ZU1CDOfbcP0SqMHw1IzFr1EHE3BASiwuVefHpD3UqkYeccVbq0yF3KGWAwhVd79hfHYSu62xx41NwPwO1NdFbGt2zS1YkrnnlUESr~4MSWajptO857b9~RbaQdLghOLADEfpphmV~Vrk2DduwssJ47PmybHK7bfNSDdLraTZR4-3HH3LwlJHhMOV49yEOCk5c7pMmc0DHrGQljnap4nWff4pgO947TkP8qw5pNearUP5XU9J07gMm2UBo6vB1l98h-FGYkgxv2Kv5g__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "source_file": "ex01-ex02_enunciated_001__ch1_38.55-50.27",
+        "transcript": "Thank you. Okay. The bomb is in its shell still. I don't see any wires. And I don't...",
+        "license": "cc-by-nc-4.0",
+        "license_status": "LICENSE_OK",
+        "license_source": "dataset card/tags",
+        "row": {
+          "id": "ex01-ex02_enunciated_001__ch1_38.55-50.27",
+          "audio": [
+            {
+              "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/10/audio/audio.wav?Expires=1790047582&Signature=cq3YTemiao051ZN1pDmFqWKBpY9-Od1C~K5BEiIrtWtKlPQ8mtV5NU9DZRsvJ5F6YEn0hwu5ZU1CDOfbcP0SqMHw1IzFr1EHE3BASiwuVefHpD3UqkYeccVbq0yF3KGWAwhVd79hfHYSu62xx41NwPwO1NdFbGt2zS1YkrnnlUESr~4MSWajptO857b9~RbaQdLghOLADEfpphmV~Vrk2DduwssJ47PmybHK7bfNSDdLraTZR4-3HH3LwlJHhMOV49yEOCk5c7pMmc0DHrGQljnap4nWff4pgO947TkP8qw5pNearUP5XU9J07gMm2UBo6vB1l98h-FGYkgxv2Kv5g__&Key-Pair-Id=K3C0L9WB6U5DUC",
+              "type": "audio/wav"
+            }
+          ],
+          "text": "Thank you. Okay. The bomb is in its shell still. I don't see any wires. And I don't...",
+          "speaker_id": 1,
+          "style": "enunciated",
+          "other_speaker_id": 2,
+          "other_style": "enunciated",
+          "source_file_id": "ex01-ex02_enunciated_001",
+          "channel": 1,
+          "start_s": 38.54999923706055,
+          "end_s": 50.27000045776367
+        },
+        "enrichment": {
+          "_requested_gender": "male"
+        },
+        "candidate_id": "candidate_11_704841bb",
+        "duration": 11.72,
+        "sample_rate": 48000,
+        "channels": 1,
+        "bit_depth": 16,
+        "sha256": "d268b53fad5ab7388fc1ff2e55268f5b1e791e8d2caaed3cf565bc5e1fd86836",
+        "clipping": false,
+        "validation": "PASS",
+        "reject_reason": "",
+        "scores": {
+          "cleanliness": 5,
+          "transcript_accuracy": 5,
+          "speaker_isolation": 4,
+          "duration_score": 5,
+          "natural_speech": 4,
+          "no_clipping": 5,
+          "license_clarity": 5,
+          "character_fit": 3,
+          "distinctness": 2,
+          "rpg_character_presence": 3,
+          "dramatic_dialogue_suitability": 3,
+          "vocal_distinctiveness": 3,
+          "acting_performance_quality": 3
+        },
+        "human_status": "PENDING_HUMAN_REVIEW",
+        "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_11_704841bb.wav",
+        "runtime_path": "assets/hf_voice_candidates/draganrpg/runtime_24k/candidate_11_704841bb.wav",
+        "audition_status": "COMPLETE",
+        "notes": [
+          "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+          "distinctness_check=HUMAN_REQUIRED"
+        ]
+      }
+    ],
+    "review_path": "assets/hf_voice_candidates/draganrpg/audition_review.html"
+  }
+}

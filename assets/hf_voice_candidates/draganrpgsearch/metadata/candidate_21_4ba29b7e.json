@@ -1,0 +1,63 @@
+{
+  "repo": "mythicinfinity/libritts_r",
+  "config": "clean",
+  "split": "dev.clean",
+  "row_idx": 2809,
+  "speaker_id": "2428",
+  "source_id": "2428_83705_000027_000000",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2809/audio/audio.wav?Expires=1790047339&Signature=mUB9hmVhZ1viXdNtlqqV6ya5mPmtfKOVZiIBHEMr499XuF2JJhBD0TqajUmbl5ZXKn-h2CKmz93nnbVeP6mMfRAo3HR4QoSgIUdLYDgUSS6KYcKyuYWn7Q~1HKT7zVEr3fcLheErGn-AyJ1nbzpTnSF15suQiFbYPcSGAwN7fVU6PLdD10nFIp2EzqXn-T73f44KbLjXxa-ImsyKMa7nD-W9miPWyrex9pkdIknoykPPZ8NQknWDhe24DS-HLjacLWZ9AAiM65WamarnU0iQIUzVzLS-rw2-zYV-isFT6t-Z9iiz46FcHeo5LOWZEHvt2rMk8Fu8tQXW0V9jF25rXQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000027_000000.wav",
+  "transcript": "It turned out that she had a little money of her own; about a hundred and thirty pounds a year.",
+  "license": "cc-by-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2809/audio/audio.wav?Expires=1790047339&Signature=mUB9hmVhZ1viXdNtlqqV6ya5mPmtfKOVZiIBHEMr499XuF2JJhBD0TqajUmbl5ZXKn-h2CKmz93nnbVeP6mMfRAo3HR4QoSgIUdLYDgUSS6KYcKyuYWn7Q~1HKT7zVEr3fcLheErGn-AyJ1nbzpTnSF15suQiFbYPcSGAwN7fVU6PLdD10nFIp2EzqXn-T73f44KbLjXxa-ImsyKMa7nD-W9miPWyrex9pkdIknoykPPZ8NQknWDhe24DS-HLjacLWZ9AAiM65WamarnU0iQIUzVzLS-rw2-zYV-isFT6t-Z9iiz46FcHeo5LOWZEHvt2rMk8Fu8tQXW0V9jF25rXQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text_normalized": "It turned out that she had a little money of her own; about a hundred and thirty pounds a year.",
+    "text_original": "It turned out that she had a little money of her own; about a hundred and thirty pounds a year.",
+    "speaker_id": "2428",
+    "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000027_000000.wav",
+    "chapter_id": "83705",
+    "id": "2428_83705_000027_000000"
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_21_4ba29b7e",
+  "duration": 5.12,
+  "sample_rate": 24000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "81794a3f09793947aa62235802993eb82b6468a566a265648feaa16db79a25f0",
+  "clipping": false,
+  "validation": "PASS",
+  "reject_reason": "",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 4,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "PENDING_HUMAN_REVIEW",
+  "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_21_4ba29b7e.wav",
+  "runtime_path": "assets/hf_voice_candidates/draganrpgsearch/runtime_24k/candidate_21_4ba29b7e.wav",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

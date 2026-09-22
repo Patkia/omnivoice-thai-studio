@@ -1,0 +1,174 @@
+{
+  "character": "DraganRPG",
+  "candidate_id": "candidate_11_704841bb",
+  "reference_sha256": "d268b53fad5ab7388fc1ff2e55268f5b1e791e8d2caaed3cf565bc5e1fd86836",
+  "reference_transcript": "Thank you. Okay. The bomb is in its shell still. I don't see any wires. And I don't...",
+  "reference_file": "assets/hf_voice_candidates/draganrpg/master/candidate_11_704841bb.wav",
+  "runtime_reference": "assets/hf_voice_candidates/draganrpg/runtime_24k/candidate_11_704841bb.wav",
+  "voice_clone_prompt": {
+    "status": "PREPARED",
+    "reference_prompt_cache_hit": false,
+    "reference_prompt_seconds": 6.021,
+    "reference_prompt_prep_count": 1,
+    "model_load_seconds": 3.824,
+    "model_load_count": 1,
+    "model_reused": false,
+    "device": "cpu"
+  },
+  "audition_lines": {
+    "A": "ข้าคิดว่าเรื่องนี้ยังมีบางอย่างที่พวกเรามองข้ามไป",
+    "B": "หากเราตรวจสอบให้รอบคอบกว่านี้ อาจพบคำตอบที่ตามหาก็เป็นได้"
+  },
+  "generation_mode": "reference_first",
+  "outputs": [
+    {
+      "file": "line_A_v1.wav",
+      "status": "COMPLETE",
+      "instruction": "male, young adult, moderate pitch",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 15016,
+      "generation": {
+        "model_load_seconds": 0.0,
+        "inference_seconds": 340.195,
+        "model_reused": true,
+        "model_load_count": 1,
+        "device": "cpu",
+        "seed": 15016,
+        "generation_mode": "reference_first",
+        "reference_conditioning": true,
+        "reference_prompt_prep_count": 1,
+        "audio_signal_stats": {
+          "peak": 0.5301524996757507,
+          "rms": 0.07344160228967667,
+          "mean": 5.051985863246955e-05,
+          "centered_rms": 0.07344158738851547,
+          "zero_crossing_rate": 0.048470277484549316,
+          "dc_ratio": 0.0006878915636018318
+        }
+      },
+      "audio": {
+        "duration": 8.96,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "subtype": "PCM_16",
+        "peak": 0.891265869140625,
+        "rms": 0.12346425050229834,
+        "clipping": false
+      }
+    },
+    {
+      "file": "line_B_v1.wav",
+      "status": "COMPLETE",
+      "instruction": "male, young adult, moderate pitch",
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 15016,
+      "generation": {
+        "model_load_seconds": 0.0,
+        "inference_seconds": 315.999,
+        "model_reused": true,
+        "model_load_count": 1,
+        "device": "cpu",
+        "seed": 15016,
+        "generation_mode": "reference_first",
+        "reference_conditioning": true,
+        "reference_prompt_prep_count": 1,
+        "audio_signal_stats": {
+          "peak": 0.5765107274055481,
+          "rms": 0.07251632213592529,
+          "mean": 1.7975624359678477e-05,
+          "centered_rms": 0.07251632213592529,
+          "zero_crossing_rate": 0.05333209664703427,
+          "dc_ratio": 0.0002478838395304273
+        }
+      },
+      "audio": {
+        "duration": 11.68,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "subtype": "PCM_16",
+        "peak": 0.8912353515625,
+        "rms": 0.11210591801734057,
+        "clipping": false
+      }
+    },
+    {
+      "file": "line_A_v2.wav",
+      "status": "COMPLETE",
+      "instruction": "male, young adult, moderate pitch",
+      "speed": 0.98,
+      "steps": 32,
+      "seed": 26003,
+      "generation": {
+        "model_load_seconds": 0.0,
+        "inference_seconds": 251.598,
+        "model_reused": true,
+        "model_load_count": 1,
+        "device": "cpu",
+        "seed": 26003,
+        "generation_mode": "reference_first",
+        "reference_conditioning": true,
+        "reference_prompt_prep_count": 1,
+        "audio_signal_stats": {
+          "peak": 0.4465497136116028,
+          "rms": 0.06886231899261475,
+          "mean": -0.00013700270210392773,
+          "centered_rms": 0.0688621923327446,
+          "zero_crossing_rate": 0.04881692624692181,
+          "dc_ratio": 0.001989516242092004
+        }
+      },
+      "audio": {
+        "duration": 9.12,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "subtype": "PCM_16",
+        "peak": 0.8912353515625,
+        "rms": 0.13743962045732327,
+        "clipping": false
+      }
+    },
+    {
+      "file": "line_B_v2.wav",
+      "status": "COMPLETE",
+      "instruction": "male, young adult, moderate pitch",
+      "speed": 0.98,
+      "steps": 32,
+      "seed": 26003,
+      "generation": {
+        "model_load_seconds": 0.0,
+        "inference_seconds": 403.595,
+        "model_reused": true,
+        "model_load_count": 1,
+        "device": "cpu",
+        "seed": 26003,
+        "generation_mode": "reference_first",
+        "reference_conditioning": true,
+        "reference_prompt_prep_count": 1,
+        "audio_signal_stats": {
+          "peak": 0.5045734643936157,
+          "rms": 0.06812987476587296,
+          "mean": -0.0001782192412065342,
+          "centered_rms": 0.06812964379787445,
+          "zero_crossing_rate": 0.0549432156097422,
+          "dc_ratio": 0.0026158750741723997
+        }
+      },
+      "audio": {
+        "duration": 11.7,
+        "sample_rate": 24000,
+        "channels": 1,
+        "bit_depth": 16,
+        "subtype": "PCM_16",
+        "peak": 0.8912353515625,
+        "rms": 0.12034091977158301,
+        "clipping": false
+      }
+    }
+  ],
+  "errors": []
+}

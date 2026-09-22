@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 8,
+  "speaker_id": "1",
+  "source_id": "ex01-ex02_enunciated_001__ch1_22.33-26.41",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/8/audio/audio.wav?Expires=1790047877&Signature=FvDTlzs6tXJvYsFAYfTHfI6F-aIm~pSghv~Wlfsyyzbhiul0Ahwd7ufZHvWQ6QqXPnZLGpzCDqm0BRYVjlmwH22~duZUnM6GjuHvlJLjUVbQI0PohSNhpleaCC3MltNgNTub-RDyOT-iVkf0r7ZFj0A1FAEqi82wVkdC1IyVLbsBDXVVomIN~o7IvGDxI3QIezLq6MzARFqZiuRqBHQuauFJTwHFPRcnoqzqvuZU54zaiUANTbfn1f98kKh3x5Hni0Gmv-~eq66krobtMoZbzmLKAvXn23im0UTfOnCw2aLbC-S0Ak-Njh~A~-MbcyH2p4aTv388T35tVcOIZv9Exw__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_enunciated_001__ch1_22.33-26.41",
+  "transcript": "Can you get me a towel?",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_enunciated_001__ch1_22.33-26.41",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/8/audio/audio.wav?Expires=1790047877&Signature=FvDTlzs6tXJvYsFAYfTHfI6F-aIm~pSghv~Wlfsyyzbhiul0Ahwd7ufZHvWQ6QqXPnZLGpzCDqm0BRYVjlmwH22~duZUnM6GjuHvlJLjUVbQI0PohSNhpleaCC3MltNgNTub-RDyOT-iVkf0r7ZFj0A1FAEqi82wVkdC1IyVLbsBDXVVomIN~o7IvGDxI3QIezLq6MzARFqZiuRqBHQuauFJTwHFPRcnoqzqvuZU54zaiUANTbfn1f98kKh3x5Hni0Gmv-~eq66krobtMoZbzmLKAvXn23im0UTfOnCw2aLbC-S0Ak-Njh~A~-MbcyH2p4aTv388T35tVcOIZv9Exw__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "Can you get me a towel?",
+    "speaker_id": 1,
+    "style": "enunciated",
+    "other_speaker_id": 2,
+    "other_style": "enunciated",
+    "source_file_id": "ex01-ex02_enunciated_001",
+    "channel": 1,
+    "start_s": 22.329999923706055,
+    "end_s": 26.40999984741211
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_09_29568952",
+  "duration": 4.08,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "bff5c00106df9d7862779264a6638cb337391f6234794bebe56614b4a429c433",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_09_29568952.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

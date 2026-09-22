@@ -1,0 +1,63 @@
+{
+  "repo": "mythicinfinity/libritts_r",
+  "config": "clean",
+  "split": "dev.clean",
+  "row_idx": 2813,
+  "speaker_id": "2428",
+  "source_id": "2428_83705_000008_000000",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2813/audio/audio.wav?Expires=1790047339&Signature=IGQNgFOa9WF~0d-gZ2LWDVfXe~LEbOXvxrsdaNvfvWhBWPPJQMtFI8URXLQ6P53uihMluApcinMl5caNUuLSmNWJdk8DgQz3C6NGc5ykKBJqQbEfjd3U9NO6CjdlEkylS9qJI1L0vOmGCCO0YDv4bYK3ipj~BuNkrzIiousOgLlmU9L9pHbE7rByla2HYxH-UXc-lWQdDbNMFWRQL0kiv7mDK~54f6FAxQx6FCNgTtccGZzT89hkhx4RBpoCKEIQjv3FXQAncFAzSxKcPC7bS8vPvea6aiytSBM-zcKJzWSP1syC5NgtEOY0TQSKjj8J6T62qcrmmSS8xDCA5Nh5iw__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000008_000000.wav",
+  "transcript": "Besides, I was turning things over in my mind.",
+  "license": "cc-by-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/mythicinfinity/libritts_r/--/0d1718db351207d5a493135a62d5ed8cc4733830/--/clean/dev.clean/2813/audio/audio.wav?Expires=1790047339&Signature=IGQNgFOa9WF~0d-gZ2LWDVfXe~LEbOXvxrsdaNvfvWhBWPPJQMtFI8URXLQ6P53uihMluApcinMl5caNUuLSmNWJdk8DgQz3C6NGc5ykKBJqQbEfjd3U9NO6CjdlEkylS9qJI1L0vOmGCCO0YDv4bYK3ipj~BuNkrzIiousOgLlmU9L9pHbE7rByla2HYxH-UXc-lWQdDbNMFWRQL0kiv7mDK~54f6FAxQx6FCNgTtccGZzT89hkhx4RBpoCKEIQjv3FXQAncFAzSxKcPC7bS8vPvea6aiytSBM-zcKJzWSP1syC5NgtEOY0TQSKjj8J6T62qcrmmSS8xDCA5Nh5iw__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text_normalized": "Besides, I was turning things over in my mind.",
+    "text_original": "Besides, I was turning things over in my mind.",
+    "speaker_id": "2428",
+    "path": "/root/.cache/huggingface/datasets/downloads/extracted/5551a515e85b9e463062524539c2e1cb52ba32affe128dffd866db0205248bdd/LibriTTS_R/dev-clean/2428/83705/2428_83705_000008_000000.wav",
+    "chapter_id": "83705",
+    "id": "2428_83705_000008_000000"
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_25_657d17a3",
+  "duration": 3.36,
+  "sample_rate": 24000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "3814a7911af9c0d56a09b37bd29ea1c1083175f108c494d0ece7d38bd6851fed",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpgsearch/master/candidate_25_657d17a3.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

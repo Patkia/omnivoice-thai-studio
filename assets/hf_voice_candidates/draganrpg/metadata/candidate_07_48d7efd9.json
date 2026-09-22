@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 6,
+  "speaker_id": "2",
+  "source_id": "ex01-ex02_default_007__ch2_23.39-26.12",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/6/audio/audio.wav?Expires=1790047877&Signature=bXF3Efhzjc6TYVPcql~hmmvI28K29QXdfCR4lxt9qQJSllaBoKNRpEdEQtfrEcznBVfZIODjTA-ndbLAhhhDqXixvWuhn0WggKt3NR0I6JUugoRRR4PdAD2hFqAemfXRdTfd~6LfO53ELDXwOysbWVCDhWSkNsCTgDzhxmz0OMbQJJN7qhOfUguLrgp~a0T9t0jrWPKzzJj3NmlfjRlB54hFw1xzL~UF86--pC6cmDB2JMNNIyxDVVd5nl40HNV3ry0HIKr4Sv6pgoN7~l227ntfZHHsLheEkSRWDgQqCDRipfQLrel58LRyLCc4SEQx2QbU24UfTVxr4ldr1ZhrMg__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_default_007__ch2_23.39-26.12",
+  "transcript": "I love the outdoors.",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_default_007__ch2_23.39-26.12",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/6/audio/audio.wav?Expires=1790047877&Signature=bXF3Efhzjc6TYVPcql~hmmvI28K29QXdfCR4lxt9qQJSllaBoKNRpEdEQtfrEcznBVfZIODjTA-ndbLAhhhDqXixvWuhn0WggKt3NR0I6JUugoRRR4PdAD2hFqAemfXRdTfd~6LfO53ELDXwOysbWVCDhWSkNsCTgDzhxmz0OMbQJJN7qhOfUguLrgp~a0T9t0jrWPKzzJj3NmlfjRlB54hFw1xzL~UF86--pC6cmDB2JMNNIyxDVVd5nl40HNV3ry0HIKr4Sv6pgoN7~l227ntfZHHsLheEkSRWDgQqCDRipfQLrel58LRyLCc4SEQx2QbU24UfTVxr4ldr1ZhrMg__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "I love the outdoors.",
+    "speaker_id": 2,
+    "style": "default",
+    "other_speaker_id": 1,
+    "other_style": "default",
+    "source_file_id": "ex01-ex02_default_007",
+    "channel": 2,
+    "start_s": 23.389999389648438,
+    "end_s": 26.1200008392334
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_07_48d7efd9",
+  "duration": 2.73,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "9096bf36ae414cf57835b6c2f4258df8b7efedc85cfd9f4fda52834cf2dc8a97",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_07_48d7efd9.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

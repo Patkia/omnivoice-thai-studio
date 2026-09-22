@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 0,
+  "speaker_id": "1",
+  "source_id": "ex01-ex02_default_007__ch1_0.91-5.94",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/0/audio/audio.wav?Expires=1790047877&Signature=s2uGXstrTJFH0J9so-IXmSPPco4TfUfd9pVzvOckyA71X-KgvBrjNW-N9s7wUqaXbr8-IYv2uuQMOtXHE8zFU3EGoVG-eHrMQT5gtcDysaap9rNHEqyOMjXULKAFm1wmBtOwgit87WHGSj9BS5jxVH7e-hfYB0x8rnW64-vv65shTnyY0Ihtrqa9EhRWfCGZAcbiu0j78k6IqRybl7tpE73ykq3RlrddJsa2fFVgcXRTMUQf8cp8IQCsBRUT1pIC9HBNTDezSwxoUaf8H4ulX2gvtrKZ2ODVgfYSa~6yn6IbOEoXMEfxMJGdC7Cbwjjq7eywyWB5jdqN2~itTo1FXQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_default_007__ch1_0.91-5.94",
+  "transcript": "Yes, good to see you too. It's been a little bit, huh? Feels good to be back, I can tell you that.",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_default_007__ch1_0.91-5.94",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/0/audio/audio.wav?Expires=1790047877&Signature=s2uGXstrTJFH0J9so-IXmSPPco4TfUfd9pVzvOckyA71X-KgvBrjNW-N9s7wUqaXbr8-IYv2uuQMOtXHE8zFU3EGoVG-eHrMQT5gtcDysaap9rNHEqyOMjXULKAFm1wmBtOwgit87WHGSj9BS5jxVH7e-hfYB0x8rnW64-vv65shTnyY0Ihtrqa9EhRWfCGZAcbiu0j78k6IqRybl7tpE73ykq3RlrddJsa2fFVgcXRTMUQf8cp8IQCsBRUT1pIC9HBNTDezSwxoUaf8H4ulX2gvtrKZ2ODVgfYSa~6yn6IbOEoXMEfxMJGdC7Cbwjjq7eywyWB5jdqN2~itTo1FXQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "Yes, good to see you too. It's been a little bit, huh? Feels good to be back, I can tell you that.",
+    "speaker_id": 1,
+    "style": "default",
+    "other_speaker_id": 2,
+    "other_style": "default",
+    "source_file_id": "ex01-ex02_default_007",
+    "channel": 1,
+    "start_s": 0.9100000262260437,
+    "end_s": 5.940000057220459
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_01_bde75d61",
+  "duration": 5.03,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "b497e4d6268354ff4c7a725ded8edce93081d84e4e4438ece46594c01d6bfcc6",
+  "clipping": false,
+  "validation": "PASS",
+  "reject_reason": "",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 4,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "PENDING_HUMAN_REVIEW",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_01_bde75d61.wav",
+  "runtime_path": "assets/hf_voice_candidates/draganrpg/runtime_24k/candidate_01_bde75d61.wav",
+  "audition_status": "COMPLETE",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}

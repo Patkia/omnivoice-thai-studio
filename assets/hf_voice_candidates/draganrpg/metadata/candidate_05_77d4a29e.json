@@ -1,0 +1,67 @@
+{
+  "repo": "shangeth/expresso",
+  "config": "conversational",
+  "split": "dev",
+  "row_idx": 4,
+  "speaker_id": "2",
+  "source_id": "ex01-ex02_default_007__ch2_5.52-9.26",
+  "source_url": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/4/audio/audio.wav?Expires=1790047877&Signature=uQRRNDh-wKyLfoZHHbdwSVQPF4PozUmPgKx1PQbQysj5tp26sm9y~81~BqcV2q8Ej0YOdZcRWlMrKM70iZFa8byB83sqppln2X6D~43dOYjeE0ESnvjtDM1m30ym7n5Ja4k512re7WkfJZj6AUHCJ3MvmGOcM4PrMq2IO4PZKDZXce4erPz7i8B5suil86v5R0RUpxPcpeOsgdskNOj0WO6PZwr1BRWQAZ4JSF2RdGonLMD1Gf5nJmBh1hT-k9jszblMagvkj6h~2g55mpz~KXgHV~rvtOe0n4zJthLAd-vcEGkmhokRzhNQLJRP1SiUzD~N33gDZRs15bDB0hYIwg__&Key-Pair-Id=K3C0L9WB6U5DUC",
+  "source_file": "ex01-ex02_default_007__ch2_5.52-9.26",
+  "transcript": "I'm so happy that you're back from your vacation.",
+  "license": "cc-by-nc-4.0",
+  "license_status": "LICENSE_OK",
+  "license_source": "dataset card/tags",
+  "row": {
+    "id": "ex01-ex02_default_007__ch2_5.52-9.26",
+    "audio": [
+      {
+        "src": "https://datasets-server.huggingface.co/cached-assets/shangeth/expresso/--/4e771845a19bf9a97f585fa07fef791ccfd535f7/--/conversational/dev/4/audio/audio.wav?Expires=1790047877&Signature=uQRRNDh-wKyLfoZHHbdwSVQPF4PozUmPgKx1PQbQysj5tp26sm9y~81~BqcV2q8Ej0YOdZcRWlMrKM70iZFa8byB83sqppln2X6D~43dOYjeE0ESnvjtDM1m30ym7n5Ja4k512re7WkfJZj6AUHCJ3MvmGOcM4PrMq2IO4PZKDZXce4erPz7i8B5suil86v5R0RUpxPcpeOsgdskNOj0WO6PZwr1BRWQAZ4JSF2RdGonLMD1Gf5nJmBh1hT-k9jszblMagvkj6h~2g55mpz~KXgHV~rvtOe0n4zJthLAd-vcEGkmhokRzhNQLJRP1SiUzD~N33gDZRs15bDB0hYIwg__&Key-Pair-Id=K3C0L9WB6U5DUC",
+        "type": "audio/wav"
+      }
+    ],
+    "text": "I'm so happy that you're back from your vacation.",
+    "speaker_id": 2,
+    "style": "default",
+    "other_speaker_id": 1,
+    "other_style": "default",
+    "source_file_id": "ex01-ex02_default_007",
+    "channel": 2,
+    "start_s": 5.519999980926514,
+    "end_s": 9.260000228881836
+  },
+  "enrichment": {
+    "_requested_gender": "male"
+  },
+  "candidate_id": "candidate_05_77d4a29e",
+  "duration": 3.74,
+  "sample_rate": 48000,
+  "channels": 1,
+  "bit_depth": 16,
+  "sha256": "ffedc1743694397d08055b5b7f706330d5966e761f0a0bafa813d0f7218d6d98",
+  "clipping": false,
+  "validation": "REJECT",
+  "reject_reason": "DURATION_OUT_OF_RANGE",
+  "scores": {
+    "cleanliness": 5,
+    "transcript_accuracy": 5,
+    "speaker_isolation": 4,
+    "duration_score": 1,
+    "natural_speech": 4,
+    "no_clipping": 5,
+    "license_clarity": 5,
+    "character_fit": 3,
+    "distinctness": 2,
+    "rpg_character_presence": 3,
+    "dramatic_dialogue_suitability": 3,
+    "vocal_distinctiveness": 3,
+    "acting_performance_quality": 3
+  },
+  "human_status": "REJECT_AUTO",
+  "master_path": "assets/hf_voice_candidates/draganrpg/master/candidate_05_77d4a29e.wav",
+  "runtime_path": "",
+  "audition_status": "NOT_RUN",
+  "notes": [
+    "RPG/character scores are metadata heuristics; Human Listening is authoritative.",
+    "distinctness_check=HUMAN_REQUIRED"
+  ]
+}
