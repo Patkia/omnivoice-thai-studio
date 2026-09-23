@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import tempfile
 import unittest
@@ -51,7 +51,7 @@ class StudioCsvBatchTests(unittest.TestCase):
         self.assertEqual(window.batch_table.item(0, 6).text(), "narrator")
         window.close()
 
-    def test_import_uses_project_namespaced_default_output(self):
+    def test_import_uses_csv_sibling_output_directory(self):
         with tempfile.TemporaryDirectory() as temp:
             csv_path = Path(temp) / "rows.csv"
             csv_path.write_text(
@@ -64,7 +64,7 @@ class StudioCsvBatchTests(unittest.TestCase):
                 window.import_csv()
             self.assertEqual(
                 Path(window.batch_output_label.text()),
-                Path("output/studio/triangle-strategy").resolve(),
+                csv_path.parent / "output",
             )
             self.assertIn("Voice Project: triangle-strategy", window.batch_resolution_summary.text())
             window.close()
@@ -97,7 +97,7 @@ class StudioCsvBatchTests(unittest.TestCase):
             root = Path(temp)
             csv_path = root / "fresh.csv"
             csv_path.write_text("placeholder", encoding="utf-8-sig")
-            output = root / "out"
+            output = root / "output"
             output.mkdir()
             target = CsvBatchRow(2, {
                 "file_name": "MS01_X01_A1_1005_M_SEL_0030.wav",
@@ -119,6 +119,8 @@ class StudioCsvBatchTests(unittest.TestCase):
                 window.import_csv()
             self.assertIsNone(window.batch_mission_id)
             self.assertIsNone(window.batch_job_path)
+            self.assertEqual(Path(window.batch_output_label.text()), output)
+            self.assertFalse(window._batch_output_user_selected)
             self.assertEqual(len(window.batch_rows), 1)
             self.assertFalse(window.batch_rows[0].selected)
             self.assertEqual(window.batch_table.item(0, 0).checkState().name, "Unchecked")
@@ -173,7 +175,7 @@ class StudioCsvBatchTests(unittest.TestCase):
         self.assertIn("Voice Target: narrator", summary)
         self.assertIn("Profile Alias: bright_female", summary)
         self.assertIn("Instruction: NONE (reference identity only)", summary)
-        self.assertIn("Speed: 1.00", summary)
+        self.assertIn("Speed: 1.30", summary)
         self.assertIn("Seed: 15016", summary)
         self.assertIn("Reference Conditioning: ON", summary)
         self.assertIn("assets/triangle-strategy/approved_voice_references/narrator.wav", summary)

@@ -81,10 +81,24 @@ python tts.py --text "เวลา 02:17" --voice bright_female --dry-run --show
 imports/example_batch.csv
 ```
 
-Studio สามารถ import CSV, เลือกเฉพาะบาง row, กำหนด output directory และสร้าง batch job ได้โดยตรง. สำหรับ runner แบบ command line:
+Studio สามารถ import CSV, เลือกเฉพาะบาง row, กำหนด output directory และสร้าง batch job ได้โดยตรง. เมื่อนำเข้า CSV ใหม่ Studio จะใช้ `<โฟลเดอร์ CSV>\\output` เป็นค่าเริ่มต้นและข้าม WAV ที่มีอยู่แล้ว.
+
+สำหรับการรัน CSV ตรงจาก Command Prompt ใช้ wrapper นี้:
+
+```bat
+omnivoice_csv.cmd "C:\\path\\to\\chapter0_omnivoice_studio.csv"
+```
+
+CLI ใช้ resolver, `voice_target_map`, persistent model session, checkpoint/recovery และ output policy เดียวกับ Studio. ค่าเริ่มต้นคือสร้างใน `<โฟลเดอร์ CSV>\\output` และ skip WAV ที่มีอยู่แล้ว. หากต้องการสร้างทับ:
+
+```bat
+omnivoice_csv.cmd "C:\\path\\to\\chapter0_omnivoice_studio.csv" --overwrite
+```
+
+สำหรับ low-level runner ที่มี job JSON อยู่แล้ว:
 
 ```powershell
-.\.venv\Scripts\python.exe tts_batch_runner.py run --job tts_batch_job.example.json --line-timeout 600
+.\\.venv\\Scripts\\python.exe tts_batch_runner.py run --job tts_batch_job.example.json --line-timeout 600
 ```
 
 ตรวจสถานะ mission:

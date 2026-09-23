@@ -363,13 +363,15 @@ class StudioWindow(QMainWindow):
         if not path:
             return
         try:
-            self.batch_rows = read_csv(Path(path))
-            self.batch_csv_path = Path(path)
+            csv_path = Path(path)
+            self.batch_rows = read_csv(csv_path)
+            self.batch_csv_path = csv_path
             self.batch_mission_id = None
             self.batch_job_path = None
-            project = batch_voice_project(self.batch_rows)
-            if project and not self._batch_output_user_selected:
-                self.batch_output_label.setText(str(default_project_output_dir(project)))
+            # A freshly imported CSV owns its default output beside the CSV.
+            # Users can still choose a custom directory after import.
+            self.batch_output_label.setText(str(csv_path.parent / "output"))
+            self._batch_output_user_selected = False
             self.validate_batch_rows(reset_selection=True)
             self.batch_csv_label.setText(path)
             self.batch_status.setText(f"นำเข้า CSV {len(self.batch_rows)} row แล้ว")
