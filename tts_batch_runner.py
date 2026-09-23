@@ -34,6 +34,8 @@ STATE_ROOT = ROOT / "output" / "batch_state"
 POLL_SECONDS = 0.5
 MAX_GENERATION_RETRIES = 1
 DEFAULT_LINE_TIMEOUT_SECONDS = 1800.0
+HARD_STALL_MULTIPLIER = 4.0
+MIN_HARD_STALL_SECONDS = 7200.0
 
 
 class BatchRunnerError(RuntimeError):
@@ -71,8 +73,11 @@ def _utc_now() -> str:
 def _atomic_json(path: Path, data: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temp = path.with_suffix(path.suffix + f".{os.getpid()}.tmp")
-    temp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    os.replace(temp, path)
+    try:
+        temp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        os.replace(temp, path)
+    finally:
+        temp.unlink(missing_ok=True)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -341,7 +346,7 @@ def _retryable_generation_error(exc: Exception) -> bool:
     return isinstance(exc, RuntimeError)
 
 
-def worker_main(job_path: Path, checkpoint_path: Path) -> int:
+def _worker_main_impl(job_path: Path, checkpoint_path: Path) -> int:
     job = _load_job(job_path)
     checkpoint = _load_or_init_checkpoint(job, checkpoint_path)
     output_dir = Path(job["output_dir"])
@@ -405,7 +410,7 @@ def worker_main(job_path: Path, checkpoint_path: Path) -> int:
         part_output.unlink(missing_ok=True)
         line_state.update({
             "signature": _line_signature(line), "status": "running", "started_at_epoch": time.time(),
-            "started_at": _utc_now(), "error": None,
+            "last_progress_epoch": time.time(), "started_at": _utc_now(), "error": None,
         })
         _mark(checkpoint_path, checkpoint, status="running", current=line["id"])
         succeeded = False
@@ -454,6 +459,44 @@ def worker_main(job_path: Path, checkpoint_path: Path) -> int:
     return 1 if failed_count else 0
 
 
+def _last_completed_row(checkpoint: dict[str, Any]) -> str | None:
+    last = None
+    for line_id, state in (checkpoint.get("lines") or {}).items():
+        if state.get("status") in {"completed", "skipped"}:
+            last = line_id
+    return last
+
+
+def _record_batch_interruption(checkpoint_path: Path, checkpoint: dict[str, Any], exc: BaseException, *, stage: str, process_exit_reason: str | None = None) -> None:
+    current = checkpoint.get("current_line_id")
+    current_state = (checkpoint.get("lines") or {}).get(current, {}) if current else {}
+    if current and current_state.get("status") == "running":
+        current_state.update({"status": "pending", "interrupted": True})
+    checkpoint.update({
+        "status": "interrupted",
+        "batch_error_type": type(exc).__name__,
+        "batch_error_message": str(exc),
+        "batch_error_stage": stage,
+        "batch_traceback": "".join(traceback.format_exception(exc)),
+        "last_active_row": current,
+        "last_completed_row": _last_completed_row(checkpoint),
+        "process_exit_reason": process_exit_reason or "batch_exception",
+    })
+    _mark(checkpoint_path, checkpoint, status="interrupted", current=None)
+
+
+def worker_main(job_path: Path, checkpoint_path: Path) -> int:
+    try:
+        return _worker_main_impl(job_path, checkpoint_path)
+    except Exception as exc:
+        try:
+            checkpoint = _read_json(checkpoint_path)
+            _record_batch_interruption(checkpoint_path, checkpoint, exc, stage="WORKER", process_exit_reason="worker_exception")
+        except Exception:
+            pass
+        raise
+
+
 def _spawn_worker(snapshot: Path, checkpoint: Path) -> subprocess.Popen:
     command = [sys.executable, str(Path(__file__).resolve()), "_worker", "--job", str(snapshot), "--checkpoint", str(checkpoint)]
     return subprocess.Popen(command, cwd=str(ROOT), **background_process_kwargs())
@@ -474,19 +517,48 @@ def _watch_worker(proc: subprocess.Popen, checkpoint_path: Path, line_timeout: f
             current = checkpoint.get("current_line_id")
             if current:
                 state = checkpoint.get("lines", {}).get(current, {})
-                started = state.get("started_at_epoch")
-                if started and time.time() - float(started) > line_timeout:
-                    # Re-read once to avoid killing a worker that completed at the boundary.
+                started = float(state.get("started_at_epoch", 0) or 0)
+                last_progress = float(state.get("last_progress_epoch", started) or started)
+                now = time.time()
+                part_path = None
+                part_mtime = None
+                if output_dir is not None:
+                    output_name = str(state.get("output", ""))
+                    if output_name:
+                        final = output_dir / output_name
+                        part_path = final.with_name(final.stem + ".part" + final.suffix)
+                        try:
+                            part_mtime = part_path.stat().st_mtime
+                        except OSError:
+                            part_mtime = None
+                observed_progress = part_mtime if part_mtime is not None and part_mtime > last_progress else last_progress
+                elapsed = now - started if started else 0.0
+                stalled_for = now - observed_progress if observed_progress else elapsed
+                hard_stall_seconds = max(line_timeout * HARD_STALL_MULTIPLIER, MIN_HARD_STALL_SECONDS)
+                if elapsed > line_timeout:
                     latest = _read_json(checkpoint_path)
-                    if latest.get("current_line_id") == current and latest.get("lines", {}).get(current, {}).get("status") == "running":
-                        _kill_tree(proc.pid)
-                        if output_dir is not None:
-                            partial = output_dir / str(latest["lines"][current].get("output", ""))
-                            partial = partial.with_name(partial.stem + ".part" + partial.suffix)
-                            partial.unlink(missing_ok=True)
-                        latest["lines"][current].update({"status": "timeout", "error": f"เกิน timeout {line_timeout:.0f}s", "failed_at": _utc_now()})
-                        _mark(checkpoint_path, latest, status="timeout", current=current)
-                        return 124
+                    latest_state = latest.get("lines", {}).get(current, {})
+                    if latest.get("current_line_id") == current and latest_state.get("status") == "running":
+                        latest_state["watchdog_warning"] = f"watchdog threshold {line_timeout:.0f}s exceeded; worker still active"
+                        latest_state["watchdog_warning_count"] = int(latest_state.get("watchdog_warning_count", 0)) + 1
+                        latest_state["watchdog_last_warning_epoch"] = now
+                        latest["watchdog_warning"] = {
+                            "row": current, "line_timeout_seconds": line_timeout,
+                            "recorded_at": _utc_now(), "worker_alive": True,
+                        }
+                        if stalled_for >= hard_stall_seconds and not latest_state.get("watchdog_suspected_stall"):
+                            latest_state["watchdog_suspected_stall"] = {
+                                "elapsed_seconds": round(elapsed, 3),
+                                "stalled_for_seconds": round(stalled_for, 3),
+                                "hard_stall_threshold_seconds": hard_stall_seconds,
+                                "last_progress_epoch": observed_progress,
+                                "part_path": str(part_path) if part_path else None,
+                                "part_mtime": part_mtime,
+                                "worker_pid": proc.pid,
+                                "action": "manual_cancel_required",
+                            }
+                            latest["watchdog_suspected_stall"] = latest_state["watchdog_suspected_stall"]
+                        _mark(checkpoint_path, latest, status="running", current=current)
         time.sleep(poll_seconds)
 
 
@@ -507,6 +579,13 @@ def run_job(job_path: Path, line_timeout: float, reset: bool = False) -> int:
         lock["worker_pid"] = proc.pid
         _atomic_json(lock_path, lock)
         code = _watch_worker(proc, paths["checkpoint"], line_timeout, output_dir=Path(job["output_dir"]))
+        try:
+            final_checkpoint = _read_json(paths["checkpoint"])
+            if code not in (0, 124) and final_checkpoint.get("status") == "running":
+                exit_error = BatchRunnerError(f"worker exited with code {code}")
+                _record_batch_interruption(paths["checkpoint"], final_checkpoint, exit_error, stage="WORKER_EXIT", process_exit_reason=f"worker_exit_{code}")
+        except Exception:
+            pass
         if code == 0:
             print(json.dumps({"mission_id": job["mission_id"], "status": "completed", "checkpoint": str(paths["checkpoint"])}, ensure_ascii=False))
         elif code == 124:

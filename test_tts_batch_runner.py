@@ -320,8 +320,11 @@ class BatchRunnerTests(unittest.TestCase):
                 batch.worker_main(snapshot, self.root / "failed-reference-checkpoint.json")
         route.assert_not_called()
         checkpoint = batch._read_json(self.root / "failed-reference-checkpoint.json")
-        self.assertEqual(checkpoint["status"], "failed")
+        self.assertEqual(checkpoint["status"], "interrupted")
         self.assertEqual(checkpoint["lines"]["001"]["status"], "pending")
+        self.assertEqual(checkpoint["batch_error_type"], "RuntimeError")
+        self.assertEqual(checkpoint["batch_error_stage"], "WORKER")
+        self.assertIn("prompt failed", checkpoint["batch_traceback"])
         self.assertEqual(next(iter(checkpoint["reference_prompts"].values()))["status"], "failed")
 
     def test_runtime_generation_failure_retries_once_and_records_attempts(self):
@@ -379,6 +382,23 @@ class BatchRunnerTests(unittest.TestCase):
         self.assertIn("Traceback", failed["traceback"])
         self.assertEqual(checkpoint["lines"]["002"]["status"], "completed")
 
+    def test_unexpected_worker_exception_persists_interrupted_batch_diagnostics(self):
+        job_path = self.write_job(lines=[{"id": "001", "text": "text", "voice": "narrator"}])
+        job = batch._load_job(job_path)
+        snapshot = self.root / "unexpected.snapshot.json"
+        snapshot.write_text(json.dumps(job, ensure_ascii=False), encoding="utf-8")
+        checkpoint = self.root / "unexpected-checkpoint.json"
+        batch._load_or_init_checkpoint(job, checkpoint)
+        with patch.object(batch, "_worker_main_impl", side_effect=RuntimeError("unexpected batch crash")):
+            with self.assertRaisesRegex(RuntimeError, "unexpected batch crash"):
+                batch.worker_main(snapshot, checkpoint)
+        state = batch._read_json(checkpoint)
+        self.assertEqual(state["status"], "interrupted")
+        self.assertEqual(state["batch_error_type"], "RuntimeError")
+        self.assertEqual(state["batch_error_stage"], "WORKER")
+        self.assertEqual(state["process_exit_reason"], "worker_exception")
+        self.assertIn("unexpected batch crash", state["batch_traceback"])
+
     def test_windows_background_process_uses_no_console_and_process_group(self):
         class FakeStartupInfo:
             def __init__(self):
@@ -432,7 +452,7 @@ class BatchRunnerTests(unittest.TestCase):
             batch._spawn_worker(Path("snapshot.json"), Path("checkpoint.json"))
         self.assertEqual(popen.call_args.kwargs["creationflags"], 123)
 
-    def test_watchdog_kills_only_worker_and_marks_timeout(self):
+    def test_watchdog_warns_without_killing_live_worker(self):
         checkpoint_path = self.root / "checkpoint.json"
         checkpoint = {
             "status": "running", "current_line_id": "001", "updated_at": "x",
@@ -440,14 +460,14 @@ class BatchRunnerTests(unittest.TestCase):
         }
         batch._atomic_json(checkpoint_path, checkpoint)
         proc = MagicMock(pid=4321)
-        proc.poll.return_value = None
-        with patch.object(batch.time, "time", return_value=111.0), patch.object(batch, "_kill_tree") as kill:
+        proc.poll.side_effect = [None, 0]
+        with patch.object(batch.time, "time", side_effect=[111.0, 112.0]), patch.object(batch, "_kill_tree") as kill:
             code = batch._watch_worker(proc, checkpoint_path, line_timeout=10.0, poll_seconds=0)
-        self.assertEqual(code, 124)
-        kill.assert_called_once_with(4321)
+        self.assertEqual(code, 0)
+        kill.assert_not_called()
         final = batch._read_json(checkpoint_path)
-        self.assertEqual(final["status"], "timeout")
-        self.assertEqual(final["lines"]["001"]["status"], "timeout")
+        self.assertEqual(final["status"], "running")
+        self.assertIn("watchdog_warning", final["lines"]["001"])
 
     def test_default_timeout_is_conservative_and_per_item(self):
         self.assertEqual(batch.DEFAULT_LINE_TIMEOUT_SECONDS, 1800.0)
@@ -458,13 +478,14 @@ class BatchRunnerTests(unittest.TestCase):
                        "002": {"status": "completed"}},
         }
         batch._atomic_json(checkpoint_path, checkpoint)
-        proc = MagicMock(pid=4321); proc.poll.return_value = None
-        with patch.object(batch.time, "time", return_value=200.0), patch.object(batch, "_kill_tree") as kill:
+        proc = MagicMock(pid=4321); proc.poll.side_effect = [None, 0]
+        with patch.object(batch.time, "time", side_effect=[200.0, 201.0]), patch.object(batch, "_kill_tree") as kill:
             code = batch._watch_worker(proc, checkpoint_path, line_timeout=50.0, poll_seconds=0)
-        self.assertEqual(code, 124)
-        kill.assert_called_once_with(4321)
+        self.assertEqual(code, 0)
+        kill.assert_not_called()
         final = batch._read_json(checkpoint_path)
         self.assertEqual(final["lines"]["002"]["status"], "completed")
+        self.assertIn("watchdog_warning", final["lines"]["001"])
 
     def test_timeout_removes_only_partial_output_and_preserves_completed_output(self):
         output_dir = self.root / "outputs"; output_dir.mkdir(parents=True)
@@ -476,11 +497,45 @@ class BatchRunnerTests(unittest.TestCase):
             "lines": {"001": {"status": "completed", "output": "001.wav"},
                        "002": {"status": "running", "output": "002.wav", "started_at_epoch": 100.0}},
         })
-        proc = MagicMock(pid=4321); proc.poll.return_value = None
-        with patch.object(batch.time, "time", return_value=200.0), patch.object(batch, "_kill_tree"):
-            self.assertEqual(batch._watch_worker(proc, checkpoint_path, 50.0, 0, output_dir), 124)
+        proc = MagicMock(pid=4321); proc.poll.side_effect = [None, 0]
+        with patch.object(batch.time, "time", side_effect=[200.0, 201.0]), patch.object(batch, "_kill_tree") as kill:
+            self.assertEqual(batch._watch_worker(proc, checkpoint_path, 50.0, 0, output_dir), 0)
+        kill.assert_not_called()
         self.assertTrue((output_dir / "001.wav").exists())
-        self.assertFalse((output_dir / "002.part.wav").exists())
+        self.assertTrue((output_dir / "002.part.wav").exists())
+
+    def test_hard_stall_records_suspected_without_killing_live_worker(self):
+        checkpoint_path = self.root / "hard-stall-checkpoint.json"
+        batch._atomic_json(checkpoint_path, {
+            "status": "running", "current_line_id": "001",
+            "lines": {"001": {"status": "running", "output": "001.wav",
+                                "started_at_epoch": 100.0, "last_progress_epoch": 100.0}},
+        })
+        proc = MagicMock(pid=4321); proc.poll.side_effect = [None, 0]
+        with patch.object(batch.time, "time", side_effect=[7301.0, 7302.0]), patch.object(batch, "_kill_tree") as kill:
+            self.assertEqual(batch._watch_worker(proc, checkpoint_path, 10.0, 0, self.root), 0)
+        kill.assert_not_called()
+        final = batch._read_json(checkpoint_path)
+        self.assertEqual(final["status"], "running")
+        suspected = final["lines"]["001"]["watchdog_suspected_stall"]
+        self.assertEqual(suspected["action"], "manual_cancel_required")
+        self.assertEqual(suspected["worker_pid"], 4321)
+
+    def test_output_part_mtime_counts_as_progress_for_stall_observation(self):
+        output_dir = self.root / "progress-output"; output_dir.mkdir(parents=True)
+        (output_dir / "001.part.wav").write_bytes(b"progress")
+        checkpoint_path = self.root / "part-progress-checkpoint.json"
+        batch._atomic_json(checkpoint_path, {
+            "status": "running", "current_line_id": "001",
+            "lines": {"001": {"status": "running", "output": "001.wav",
+                                "started_at_epoch": 100.0, "last_progress_epoch": 100.0}},
+        })
+        proc = MagicMock(pid=4321); proc.poll.side_effect = [None, 0]
+        with patch.object(batch.time, "time", side_effect=[7301.0, 7302.0]), patch.object(batch, "_kill_tree") as kill:
+            self.assertEqual(batch._watch_worker(proc, checkpoint_path, 10.0, 0, output_dir), 0)
+        kill.assert_not_called()
+        final = batch._read_json(checkpoint_path)
+        self.assertNotIn("watchdog_suspected_stall", final["lines"]["001"])
 
     def test_cancel_kills_mission_processes_and_preserves_resume_state(self):
         paths = batch._mission_paths("cancel-me")
