@@ -1,0 +1,3 @@
+line_no,file_name,self_id,cue,sequence,waveform,awb_stream,character_name,role,gender,voice_target,reference_audio,thai_text,pronunciation_note,prosody_note,status,tts_text,voice_project
+1,example_001.wav,EXAMPLE_001,,,,,ตัวอย่าง,narrator,female,,,สวัสดี นี่คือตัวอย่างการสร้างเสียงแบบ CSV Batch,,,PENDING,,
+2,example_002.wav,EXAMPLE_002,,,,,ตัวอย่าง,narrator,male,,,ระบบสามารถประมวลผลหลายบรรทัดและบันทึกเป็นไฟล์แยกกันได้,,,PENDING,,

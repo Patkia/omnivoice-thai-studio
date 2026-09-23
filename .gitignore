@@ -13,22 +13,22 @@ __pycache__/
 .coverage
 htmlcov/
 
-# Generated/runtime output
-output/*
-!output/studio/
-output/studio/*
-!output/studio/batch/
-!output/studio/triangle-strategy/
-!output/studio/triangle-strategy/**
+# Generated/runtime output stays local
+output/
 
-# WAV policy: generated WAVs are local-only except the explicitly tracked
-# Triangle Strategy Studio tree (and historical tracked assets/microtests).
+# Audio assets stay local. Public releases contain code/config/metadata only.
 *.wav
-!output/studio/triangle-strategy/**/*.wav
-!assets/triangle-strategy/approved_voice_references/**/*.wav
-!output/chapter1_main_microtest/**/*.wav
+*.flac
+*.mp3
+*.m4a
+*.ogg
+*.part.wav
+*.part
 
-!output/chapter1_main_microtest/
+# Game-specific CSV data stays local; keep only the generic public example.
+imports/chapter1_*.csv
+imports/triangle-strategy_*.csv
+!imports/example_batch.csv
 
 # Historical/generated experiment workspace and local recovery artifacts
 work/
@@ -72,7 +72,3 @@ hf_cache/
 Thumbs.db
 .idea/
 .vscode/
-
-# Local test/runtime state
-*.part.wav
-*.part
