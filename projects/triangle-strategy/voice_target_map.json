@@ -1432,6 +1432,28 @@
         "reference_text": "ก่อนหน้านี้ ขอบคุณที่ช่วยข้าด้วยนะเจ้าคะ",
         "reference_text_sha256": "c25284465a9ab54e2d2b408bd4e08cd49b081d1fd942701bfec681fdc779146e"
       }
+    },
+    "orlaea": {
+      "profile_alias": "bright_female",
+      "original_voice": "cute_teen_01_dialogue_01_friendly.wav",
+      "generation_mode": "reference_first",
+      "language": "Thai",
+      "denoise": true,
+      "postprocess_output": true,
+      "speed": 1.0,
+      "steps": 32,
+      "seed": 42032,
+      "character_name_th": "ออร์เลีย",
+      "character_name_en": "Orlaea",
+      "speaker_code": "ORL",
+      "gender": "female",
+      "reference_conditioning": {
+        "enabled": true,
+        "reference_audio": "assets/triangle-strategy/approved_voice_references/orlaea.wav",
+        "reference_sha256": "ff6bfa666446b646b01e0e81d2e3841bc4a089860c9e71b77b5ff4c978394ff5",
+        "reference_text": "ฉันจะรออยู่ตรงนี้ ไม่ต้องรีบร้อนนะ",
+        "reference_text_sha256": "9f3f11af59a72fdfd97233b0b534927b0d98d1a56e6b0dc6e68f9cdf7c1b8bb2"
+      }
     }
   }
 }
