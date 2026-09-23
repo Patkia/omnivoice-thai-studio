@@ -324,6 +324,61 @@ class BatchRunnerTests(unittest.TestCase):
         self.assertEqual(checkpoint["lines"]["001"]["status"], "pending")
         self.assertEqual(next(iter(checkpoint["reference_prompts"].values()))["status"], "failed")
 
+    def test_runtime_generation_failure_retries_once_and_records_attempts(self):
+        job_path = self.write_job(lines=[{"id": "001", "text": "retry", "voice": "narrator"}])
+        job = batch._load_job(job_path)
+        snapshot = self.root / "retry.snapshot.json"
+        snapshot.write_text(json.dumps(job, ensure_ascii=False), encoding="utf-8")
+        fake = FakeAdapter()
+        calls = {"count": 0}
+
+        def routed(*args, **kwargs):
+            calls["count"] += 1
+            if calls["count"] == 1:
+                raise RuntimeError("transient audio failure")
+            output = Path(args[5])
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_bytes(b"RIFF-retry")
+            return {"cache_hit": False, "inference_seconds": 1.0}
+
+        with patch.object(batch, "StudioEngineAdapter", return_value=fake), \
+             patch.object(batch, "generate_studio_request", side_effect=routed):
+            self.assertEqual(batch.worker_main(snapshot, self.root / "retry-checkpoint.json"), 0)
+        checkpoint = batch._read_json(self.root / "retry-checkpoint.json")
+        state = checkpoint["lines"]["001"]
+        self.assertEqual(state["status"], "completed")
+        self.assertEqual(state["attempts"], 2)
+        self.assertEqual(calls["count"], 2)
+
+    def test_permanent_row_failure_records_traceback_and_continues(self):
+        job_path = self.write_job(lines=[
+            {"id": "001", "text": "bad", "voice": "narrator"},
+            {"id": "002", "text": "good", "voice": "narrator"},
+        ])
+        job = batch._load_job(job_path)
+        snapshot = self.root / "failure.snapshot.json"
+        snapshot.write_text(json.dumps(job, ensure_ascii=False), encoding="utf-8")
+        fake = FakeAdapter()
+
+        def routed(*args, **kwargs):
+            if Path(args[5]).name.startswith("001"):
+                raise ValueError("invalid generation config")
+            output = Path(args[5])
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_bytes(b"RIFF-good")
+            return {"cache_hit": False, "inference_seconds": 1.0}
+
+        with patch.object(batch, "StudioEngineAdapter", return_value=fake), \
+             patch.object(batch, "generate_studio_request", side_effect=routed):
+            self.assertEqual(batch.worker_main(snapshot, self.root / "failure-checkpoint.json"), 1)
+        checkpoint = batch._read_json(self.root / "failure-checkpoint.json")
+        failed = checkpoint["lines"]["001"]
+        self.assertEqual(checkpoint["status"], "failed")
+        self.assertEqual(failed["status"], "failed")
+        self.assertEqual(failed["error_type"], "ValueError")
+        self.assertIn("Traceback", failed["traceback"])
+        self.assertEqual(checkpoint["lines"]["002"]["status"], "completed")
+
     def test_windows_background_process_uses_no_console_and_process_group(self):
         class FakeStartupInfo:
             def __init__(self):

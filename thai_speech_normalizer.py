@@ -81,13 +81,24 @@ def normalize_text(
     if time_style not in candidates["time_0217"]:
         raise ValueError(f"Unknown time style: {time_style}")
     result = _replace(result, "02:17", candidates["time_0217"][time_style], "time", log)
-    # Avoid sending elongated pain interjections such as "โอ้ยย!" / "โอ๊ยยย!" verbatim to TTS.
-    # OmniVoice can fail on repeated trailing ย in this specific interjection, so canonicalize it narrowly.
-    elongated_ouch = re.compile(r"โอ(?:้|๊)?ย{2,}")
-    if elongated_ouch.search(result):
-        source_before = result
-        result = elongated_ouch.sub("โอ๊ย", result)
-        log.append({"kind": "interjection", "source": source_before, "replacement": result})
+    # Canonicalize common elongated interjections before TTS. OmniVoice may read repeated
+    # trailing consonants (กกก / ยยย / ดดด) as separate consonant names instead of one cry.
+    elongated_interjections = (
+        (re.compile(r"อ(?:้|๊)าก{2,}"), "อ๊าก"),
+        (re.compile(r"ว(?:้|๊)าก{2,}"), "ว้าก"),
+        (re.compile(r"จ(?:้|๊)าก{2,}"), "จ๊าก"),
+        (re.compile(r"โว(?:้|๊)?ย{2,}"), "โว้ย"),
+        (re.compile(r"โอย{2,}"), "โอย"),
+        (re.compile(r"โอ(?:้|๊)?ย{2,}"), "โอ๊ย"),
+        (re.compile(r"เฮ(?:้|๊)?ย{2,}"), "เฮ้ย"),
+        (re.compile(r"อุ(?:้|๊)?ย{2,}"), "อุ๊ย"),
+        (re.compile(r"กรี(?:้|๊)ด{2,}"), "กรี๊ด"),
+    )
+    for pattern, canonical in elongated_interjections:
+        if pattern.search(result):
+            source_before = result
+            result = pattern.sub(canonical, result)
+            log.append({"kind": "interjection", "source": source_before, "replacement": result})
     for source, options in {**candidates["names"], **candidates["game_terms"]}.items():
         result = _replace(result, source, options[0], "candidate_transliteration", log)
     # Decimal and comma-grouped values must be handled before standalone integer tokens.

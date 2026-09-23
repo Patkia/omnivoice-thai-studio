@@ -1,0 +1,54 @@
+[
+  {
+    "id": "MALE_ANGER_STRONG_01",
+    "file": "MALE_ANGER_STRONG_01.flac",
+    "source_audio_id": "s001_con_actor001_script2_2_2b.flac",
+    "actor_id": "001",
+    "actor_gender": "Male",
+    "actor_age": 30,
+    "assigned_emo": "Angry",
+    "script_intensity": "High",
+    "reference_text": "อ่านหนังสือพิมพ์วันนี้รึยัง รู้ไหมเรื่องนั้นกลายเป็นข่าวใหญ่ไปแล้ว",
+    "sha256": "5ecc498a8b878dd059c290fa909d85bc341f8ae74ce690bce8ee120269761b7c",
+    "source_dataset": "airesearch/thai-ser (same THAI-SER corpus used by awghuku/thai_ser)"
+  },
+  {
+    "id": "MALE_ANGER_STRONG_02",
+    "file": "MALE_ANGER_STRONG_02.flac",
+    "source_audio_id": "s002_con_actor003_script2_2_2b.flac",
+    "actor_id": "003",
+    "actor_gender": "Male",
+    "actor_age": 28,
+    "assigned_emo": "Angry",
+    "script_intensity": "High",
+    "reference_text": "อ่านหนังสือพิมพ์วันนี้รึยัง รู้ไหมเรื่องนั้นกลายเป็นข่าวใหญ่ไปแล้ว",
+    "sha256": "ec227dfd86c90ee149781019e307c945a42f8c93bd8f9026e5277a190b46f2ba",
+    "source_dataset": "airesearch/thai-ser (same THAI-SER corpus used by awghuku/thai_ser)"
+  },
+  {
+    "id": "FEMALE_ANGER_STRONG_01",
+    "file": "FEMALE_ANGER_STRONG_01.flac",
+    "source_audio_id": "s001_con_actor002_script2_2_2b.flac",
+    "actor_id": "002",
+    "actor_gender": "Female",
+    "actor_age": 22,
+    "assigned_emo": "Angry",
+    "script_intensity": "High",
+    "reference_text": "อ่านหนังสือพิมพ์วันนี้รึยัง รู้ไหมเรื่องนั้นกลายเป็นข่าวใหญ่ไปแล้ว",
+    "sha256": "c021863615c068e1d4f8db669cddcb6bf37d8f2d8d29c17b2140186c96dff21d",
+    "source_dataset": "airesearch/thai-ser (same THAI-SER corpus used by awghuku/thai_ser)"
+  },
+  {
+    "id": "FEMALE_ANGER_STRONG_02",
+    "file": "FEMALE_ANGER_STRONG_02.flac",
+    "source_audio_id": "s003_con_actor005_script2_2_2b.flac",
+    "actor_id": "005",
+    "actor_gender": "Female",
+    "actor_age": 30,
+    "assigned_emo": "Angry",
+    "script_intensity": "High",
+    "reference_text": "อ่านหนังสือพิมพ์วันนี้รึยัง รู้ไหมเรื่องนั้นกลายเป็นข่าวใหญ่ไปแล้ว",
+    "sha256": "d4c30a7d5156560905c0754146a9c252911d9846d732380d62f5f61f4f8d032e",
+    "source_dataset": "airesearch/thai-ser (same THAI-SER corpus used by awghuku/thai_ser)"
+  }
+]

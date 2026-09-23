@@ -38,6 +38,7 @@ EXPECTED = {
     "cordelia": ("narrator", 1.02, 32, 34001, "cordelia.wav", "7cae6b54365e1e5d49860316d40a5d5c082911be26a3671254c4d4f67462a95a", "CRD_A.wav"),
     "erika": ("narrator", 1.01, 32, 34002, "erika.wav", "af57149d9cf6a40490b24a8cbc81bc5f2beee62fd07f0d2532a677d388f5eb08", "CRD_B.wav"),
     "narrator": ("bright_female", 1.0, 32, 15016, "narrator.wav", "902230792ec5b4f0bf64510281f41e0618c3c3fb9b95de98a349d66a11924dd3", "stream_013_selected_112kbps.wav"),
+    "orlaea": ("bright_female", 1.0, 32, 42032, "orlaea.wav", "ff6bfa666446b646b01e0e81d2e3841bc4a089860c9e71b77b5ff4c978394ff5", "cute_teen_01_dialogue_01_friendly.wav"),
     "MALE_CHILD_A": ("young_male", 0.95, 32, 27201, "MALE_CHILD_A.wav", "4d93274d4aef4bd708ef5f9eb47fa9b25c15778ddb13f94ed131bda4a871495a", "MALE_CHILD_C_01.wav"),
     "MALE_CHILD_B": ("young_male", 1.04, 32, 27103, "MALE_CHILD_B.wav", "10739fd65a1b0ec75e1e55954e463d1233a09552522ac574ebcfb244b340cd90", "MALE_CHILD_B_03.wav"),
     "MALE_CHILD_C": ("young_male", 1.05, 32, 27101, "MALE_CHILD_C.wav", "e4c33abbfbc94af561927377383a9c9a494ff2dec389952fad81abd0ec0a35e2", "MALE_CHILD_B_01.wav"),

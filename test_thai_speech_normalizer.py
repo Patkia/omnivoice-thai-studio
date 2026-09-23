@@ -29,10 +29,28 @@ class ThaiSpeechNormalizerTests(unittest.TestCase):
         normalized = normalize_text("ผมหั่นแอปเปิล", enabled=True).text
         self.assertEqual(preprocess_text(normalized, "pronunciation_dictionary.json", enabled=True), "ผมหั่นแอ๊ปเปิ้ล")
 
-    def test_elongated_ouch_interjection_is_canonicalized(self):
-        self.assertEqual(normalize_text("โอ้ยย !").text, "โอ๊ย !")
-        self.assertEqual(normalize_text("โอ๊ยยย!").text, "โอ๊ย!")
-        self.assertEqual(normalize_text("โอ๊ย!").text, "โอ๊ย!")
+    def test_elongated_interjections_are_canonicalized(self):
+        cases = {
+            "อ้ากกก !!": "อ๊าก !!",
+            "อ๊ากกก!": "อ๊าก!",
+            "ว้ากกก!!!": "ว้าก!!!",
+            "จ้ากกกก!": "จ๊าก!",
+            "โว้ยยยย!": "โว้ย!",
+            "โอยยยย...": "โอย...",
+            "โอ้ยยยยย!": "โอ๊ย!",
+            "โอ๊ยยย!": "โอ๊ย!",
+            "เฮ้ยยย!": "เฮ้ย!",
+            "อุ๊ยยย!": "อุ๊ย!",
+            "กรี๊ดดดด!": "กรี๊ด!",
+        }
+        for source, expected in cases.items():
+            with self.subTest(source=source):
+                self.assertEqual(normalize_text(source).text, expected)
+
+        # Already canonical forms must stay unchanged.
+        for source in ("อ๊าก!", "ว้าก!", "จ๊าก!", "โว้ย!", "โอย!", "โอ๊ย!", "เฮ้ย!", "อุ๊ย!", "กรี๊ด!"):
+            with self.subTest(source=source):
+                self.assertEqual(normalize_text(source).text, source)
 
 
 if __name__ == "__main__":

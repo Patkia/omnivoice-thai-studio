@@ -668,7 +668,11 @@ class StudioWindow(QMainWindow):
                 row.status, row.error = GENERATING, None
             elif raw_status in terminal:
                 row.status = terminal[raw_status]
-                row.error = line.get("error") or line.get("reason")
+                error = line.get("error") or line.get("reason")
+                if error and (line.get("error_type") or line.get("error_stage")):
+                    details = ": ".join(filter(None, (line.get("error_stage"), line.get("error_type"))))
+                    error = f"[{details}] {error}"
+                row.error = error
             else:
                 row.status, row.error = PENDING, None
             if row.status in {DONE, SKIPPED, ERROR}:

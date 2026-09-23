@@ -18,6 +18,7 @@ import os
 import subprocess
 import sys
 import time
+import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -31,6 +32,7 @@ from studio_generation import generate_studio_request
 ROOT = Path(__file__).resolve().parent
 STATE_ROOT = ROOT / "output" / "batch_state"
 POLL_SECONDS = 0.5
+MAX_GENERATION_RETRIES = 1
 DEFAULT_LINE_TIMEOUT_SECONDS = 1800.0
 
 
@@ -323,12 +325,29 @@ def _valid_completed_line(state: dict[str, Any], line: dict[str, Any], output_di
     return state.get("status") == "completed" and state.get("signature") == _line_signature(line) and output.is_file()
 
 
+def _generation_error(exc: Exception, *, attempt: int) -> dict[str, Any]:
+    """Return durable diagnostics without collapsing failures to FAILED only."""
+    return {
+        "error_type": type(exc).__name__,
+        "error_message": str(exc),
+        "error_stage": "generation",
+        "attempt": attempt,
+        "traceback": traceback.format_exc(),
+    }
+
+
+def _retryable_generation_error(exc: Exception) -> bool:
+    """Only retry runtime/audio output failures; never retry config/validation errors."""
+    return isinstance(exc, RuntimeError)
+
+
 def worker_main(job_path: Path, checkpoint_path: Path) -> int:
     job = _load_job(job_path)
     checkpoint = _load_or_init_checkpoint(job, checkpoint_path)
     output_dir = Path(job["output_dir"])
     output_dir.mkdir(parents=True, exist_ok=True)
     adapter = StudioEngineAdapter()
+    failed_count = 0
     _mark(checkpoint_path, checkpoint, status="running", current=None)
     reference_specs = {}
     for line in job["lines"]:
@@ -389,37 +408,50 @@ def worker_main(job_path: Path, checkpoint_path: Path) -> int:
             "started_at": _utc_now(), "error": None,
         })
         _mark(checkpoint_path, checkpoint, status="running", current=line["id"])
-        try:
-            result = generate_studio_request(
-                adapter, line["text"], line["voice"], line["speed"], line["steps"], part_output,
-                force=line["force"], seed=line["seed"], instruction_override=line["instruction_override"],
-                generation_mode=line["generation_mode"], language=line["language"],
-                denoise=line["denoise"], postprocess_output=line["postprocess_output"],
-                voice_project=line["voice_project"],
-                reference_conditioning=line["reference_conditioning"],
-                reference_audio=line["reference_audio"], reference_sha256=line["reference_sha256"],
-                reference_text=line["reference_text"], reference_text_sha256=line["reference_text_sha256"],
-            )
-            final_output.parent.mkdir(parents=True, exist_ok=True)
-            os.replace(part_output, final_output)
-            line_state.update({
-                "status": "completed", "completed_at": _utc_now(), "cache_hit": bool(result.get("cache_hit")),
-                "inference_seconds": result.get("inference_seconds", 0.0), "output": line["output"],
-                "model_load_count": adapter.session.model_load_count,
-                "reference_prompt_prep_count": adapter.session.reference_prompt_prep_count,
-            })
-            checkpoint["runtime"] = {
-                "model_load_count": adapter.session.model_load_count,
-                "reference_prompt_prep_count": adapter.session.reference_prompt_prep_count,
-            }
-            _mark(checkpoint_path, checkpoint, status="running", current=None)
-        except Exception as exc:
-            part_output.unlink(missing_ok=True)
-            line_state.update({"status": "failed", "error": str(exc), "failed_at": _utc_now()})
-            _mark(checkpoint_path, checkpoint, status="failed", current=line["id"])
-            raise
-    _mark(checkpoint_path, checkpoint, status="completed", current=None)
-    return 0
+        succeeded = False
+        for attempt in range(MAX_GENERATION_RETRIES + 1):
+            try:
+                result = generate_studio_request(
+                    adapter, line["text"], line["voice"], line["speed"], line["steps"], part_output,
+                    force=line["force"], seed=line["seed"], instruction_override=line["instruction_override"],
+                    generation_mode=line["generation_mode"], language=line["language"],
+                    denoise=line["denoise"], postprocess_output=line["postprocess_output"],
+                    voice_project=line["voice_project"],
+                    reference_conditioning=line["reference_conditioning"],
+                    reference_audio=line["reference_audio"], reference_sha256=line["reference_sha256"],
+                    reference_text=line["reference_text"], reference_text_sha256=line["reference_text_sha256"],
+                )
+                final_output.parent.mkdir(parents=True, exist_ok=True)
+                os.replace(part_output, final_output)
+                line_state.update({
+                    "status": "completed", "completed_at": _utc_now(), "cache_hit": bool(result.get("cache_hit")),
+                    "inference_seconds": result.get("inference_seconds", 0.0), "output": line["output"],
+                    "model_load_count": adapter.session.model_load_count,
+                    "reference_prompt_prep_count": adapter.session.reference_prompt_prep_count,
+                    "attempts": attempt + 1,
+                })
+                checkpoint["runtime"] = {
+                    "model_load_count": adapter.session.model_load_count,
+                    "reference_prompt_prep_count": adapter.session.reference_prompt_prep_count,
+                }
+                _mark(checkpoint_path, checkpoint, status="running", current=None)
+                succeeded = True
+                break
+            except Exception as exc:
+                part_output.unlink(missing_ok=True)
+                details = _generation_error(exc, attempt=attempt + 1)
+                if _retryable_generation_error(exc) and attempt < MAX_GENERATION_RETRIES:
+                    line_state.update({"status": "running", "last_error": details, "retry_count": attempt + 1})
+                    _mark(checkpoint_path, checkpoint, status="running", current=line["id"])
+                    continue
+                failed_count += 1
+                line_state.update({"status": "failed", "error": details["error_message"], "failed_at": _utc_now(), **details})
+                _mark(checkpoint_path, checkpoint, status="running", current=None)
+                break
+        if not succeeded:
+            continue
+    _mark(checkpoint_path, checkpoint, status="failed" if failed_count else "completed", current=None)
+    return 1 if failed_count else 0
 
 
 def _spawn_worker(snapshot: Path, checkpoint: Path) -> subprocess.Popen:
