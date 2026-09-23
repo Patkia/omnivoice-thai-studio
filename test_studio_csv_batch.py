@@ -175,7 +175,7 @@ class StudioCsvBatchTests(unittest.TestCase):
         self.assertIn("Voice Target: narrator", summary)
         self.assertIn("Profile Alias: bright_female", summary)
         self.assertIn("Instruction: NONE (reference identity only)", summary)
-        self.assertIn("Speed: 1.30", summary)
+        self.assertIn("Speed: 1.20", summary)
         self.assertIn("Seed: 15016", summary)
         self.assertIn("Reference Conditioning: ON", summary)
         self.assertIn("assets/triangle-strategy/approved_voice_references/narrator.wav", summary)

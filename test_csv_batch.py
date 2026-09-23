@@ -112,7 +112,7 @@ class CsvBatchTests(unittest.TestCase):
         self.assertEqual(config.profile_alias, "bright_female")
         self.assertIsNone(config.instruction)
         self.assertIsNone(config.instruction_override)
-        self.assertEqual(config.speed, 1.30)
+        self.assertEqual(config.speed, 1.20)
         self.assertEqual(config.steps, 32)
         self.assertEqual(config.seed, 15016)
         self.assertTrue(config.reference_conditioning)
@@ -123,8 +123,8 @@ class CsvBatchTests(unittest.TestCase):
     def test_approved_triangle_targets_resolve_reference_first_with_canonical_controls(self):
         expected = {
             "roland": ("young_male", 1.3, 32, 26003, "assets/triangle-strategy/approved_voice_references/roland.wav"),
-            "benedict": ("young_male", 1.3, 32, 42010, "assets/triangle-strategy/approved_voice_references/booker.wav"),
-            "frederica": ("bright_female", 1.3, 32, 15016, "assets/triangle-strategy/approved_voice_references/frederica.wav"),
+            "benedict": ("young_male", 1.2, 32, 42010, "assets/triangle-strategy/approved_voice_references/booker.wav"),
+            "frederica": ("bright_female", 1.24, 32, 15016, "assets/triangle-strategy/approved_voice_references/frederica.wav"),
         }
         for target, (alias, speed, steps, seed, reference) in expected.items():
             config = resolve_generation_config(
@@ -144,12 +144,12 @@ class CsvBatchTests(unittest.TestCase):
         source = Path(__file__).resolve().parent / "imports" / "chapter1_omnivoice_studio.csv"
         rows = read_csv(source)
         expected = {
-            "MS01_X01_A0_0020_F_HEW_0030": (1.3, 1.3),
-            "MS01_X01_A0_0030_M_FRN_0010": (1.3, 1.3),
-            "MS01_X01_A1_0010_F_YRA_0020": (1.3, 1.3),
-            "MS01_X01_A1_1020_M_ELA_0010": (1.3, 1.3),
-            "MS01_X01_A1_1030_M_SMN_0030": (1.3, 1.3),
-            "MS01_X01_BATTLE_01_BEFORE_M_TRA_0020": (1.3, 1.3),
+            "MS01_X01_A0_0020_F_HEW_0030": (1.26, 1.3),
+            "MS01_X01_A0_0030_M_FRN_0010": (1.22, 1.3),
+            "MS01_X01_A1_0010_F_YRA_0020": (1.22, 1.3),
+            "MS01_X01_A1_1020_M_ELA_0010": (1.22, 1.3),
+            "MS01_X01_A1_1030_M_SMN_0030": (1.18, 1.3),
+            "MS01_X01_BATTLE_01_BEFORE_M_TRA_0020": (1.24, 1.3),
         }
         by_id = {row.metadata("self_id"): row for row in rows}
         self.assertTrue(expected.keys() <= by_id.keys())
@@ -204,7 +204,7 @@ class CsvBatchTests(unittest.TestCase):
         self.assertEqual(config.generation_mode, "reference_first")
         self.assertEqual(config.profile_alias, "narrator")
         self.assertIsNone(config.instruction_override)
-        self.assertEqual((config.speed, config.steps, config.seed), (1.3, 32, 15032))
+        self.assertEqual((config.speed, config.steps, config.seed), (1.26, 32, 15032))
         self.assertEqual(config.reference_audio,
                          "assets/triangle-strategy/approved_voice_references/serenoa.wav")
         self.assertNotEqual(config.reference_audio, row.metadata("reference_audio"))
@@ -338,7 +338,7 @@ class CsvBatchTests(unittest.TestCase):
         self.assertEqual(line["text"], "ข้อความไทย")
         self.assertEqual(line["voice"], "bright_female")
         self.assertIsNone(line["instruction_override"])
-        self.assertEqual((line["speed"], line["steps"], line["seed"]), (1.30, 32, 15016))
+        self.assertEqual((line["speed"], line["steps"], line["seed"]), (1.20, 32, 15016))
         self.assertTrue(line["reference_conditioning"])
         self.assertEqual(line["reference_sha256"], "902230792ec5b4f0bf64510281f41e0618c3c3fb9b95de98a349d66a11924dd3")
 
