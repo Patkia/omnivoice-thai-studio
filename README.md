@@ -20,8 +20,8 @@
 Repository สาธารณะตั้งใจเก็บ **source code, tests, configuration examples และ provenance metadata** เท่านั้น โดยไม่แจกไฟล์ต่อไปนี้:
 
 - generated WAV / runtime output
-- local voice-reference audio packs
-- candidate/audition audio
+- generated/local voice-reference audio packs นอก `assets/triangle-strategy/`
+- candidate/audition audio ที่ไม่ได้อยู่ใน approved public set
 - game dialogue CSV จริง
 - generated chapter audio หรือ game assets
 
@@ -97,7 +97,7 @@ Studio สามารถ import CSV, เลือกเฉพาะบาง ro
 
 โครงสร้าง project configuration อยู่ใต้ `projects/`. Project สามารถ map `voice_target` ไปยัง profile, speed, steps, seed และ reference-conditioning configuration ได้.
 
-Public repository **ไม่รวม reference audio**. ถ้าจะใช้ `reference_first` ให้เตรียมไฟล์เสียงของคุณเองที่มีสิทธิ์ใช้งานและวางตาม path ที่กำหนดใน project config หรือปรับ config ให้ชี้ไปยัง asset ของคุณเอง.
+Public repository รวม approved voice-reference audio ภายใต้ `assets/triangle-strategy/` ตามชุดที่ใช้กับ project config ปัจจุบัน. สำหรับ reference อื่นนอกชุดนี้ ผู้ใช้ต้องเตรียมไฟล์ที่มีสิทธิ์ใช้งานเองและปรับ config ให้ชี้ไปยัง asset ของตนเอง.
 
 ## Pipeline
 
@@ -127,7 +127,7 @@ Studio ใช้ cache ก่อนโหลดโมเดลเมื่อท
 
 โมเดลและ dataset ภายนอกมี license ของเจ้าของแต่ละแหล่ง ดูรายละเอียดและ attribution notes ที่ [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).
 
-โดยเฉพาะ public repo นี้ไม่ redistribute model weights, generated game audio หรือ local reference clips.
+โดยเฉพาะ public repo นี้ไม่ redistribute model weights, generated game audio หรือ game dialogue CSV; approved voice-reference assets ที่อยู่ใต้ `assets/triangle-strategy/` รวมอยู่ใน public repo และยังอยู่ภายใต้เงื่อนไข license/provenance ของแต่ละแหล่ง.
 
 ## Development
 

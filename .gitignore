@@ -18,6 +18,7 @@ output/
 
 # Audio assets stay local. Public releases contain code/config/metadata only.
 *.wav
+!assets/triangle-strategy/**/*.wav
 *.flac
 *.mp3
 *.m4a
