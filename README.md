@@ -83,17 +83,63 @@ imports/example_batch.csv
 
 Studio สามารถ import CSV, เลือกเฉพาะบาง row, กำหนด output directory และสร้าง batch job ได้โดยตรง. เมื่อนำเข้า CSV ใหม่ Studio จะใช้ `<โฟลเดอร์ CSV>\\input_wav` เป็นค่าเริ่มต้นและข้าม WAV ที่มีอยู่แล้ว.
 
-สำหรับการรัน CSV ตรงจาก Command Prompt ใช้ wrapper นี้:
+### คู่มือใช้งาน CSV Batch ผ่าน CLI / CMD
+
+เปิด Command Prompt แล้วเข้าโฟลเดอร์โปรเจกต์ก่อน:
 
 ```bat
-omnivoice_csv.cmd "C:\\path\\to\\chapter0_omnivoice_studio.csv"
+cd C:\\Users\\Pat\\Workshop\\omnivoice-thai-studio
 ```
 
-CLI ใช้ resolver, `voice_target_map`, persistent model session, checkpoint/recovery และ output policy เดียวกับ Studio. ค่าเริ่มต้นคือสร้างใน `<โฟลเดอร์ CSV>\\input_wav` และ skip WAV ที่มีอยู่แล้ว. หากต้องการสร้างทับ:
+จากนั้นสั่ง generate จากไฟล์ CSV ด้วย wrapper `omnivoice_csv.cmd`:
 
 ```bat
-omnivoice_csv.cmd "C:\\path\\to\\chapter0_omnivoice_studio.csv" --overwrite
+omnivoice_csv.cmd "C:\\path\\to\\chapter1_omnivoice_studio.csv"
 ```
+
+ตัวอย่างกับ Triangle Strategy:
+
+```bat
+omnivoice_csv.cmd "C:\\Users\\Pat\\Workshop\\triangle-strategy-thai-voice\\work\\chapter1_voice_mapping\\chapter1_omnivoice_studio.csv"
+```
+
+CLI ใช้ resolver, `voice_target_map`, persistent model session, checkpoint/recovery และ policy เดียวกับ Studio. ค่าเริ่มต้นจะสร้างไฟล์ WAV ในโฟลเดอร์ `input_wav` ที่อยู่ข้างไฟล์ CSV:
+
+```text
+<โฟลเดอร์ CSV>\\input_wav
+```
+
+ถ้ายังไม่มี `input_wav` ระบบจะสร้างให้อัตโนมัติ. ก่อนเริ่ม generate ระบบจะตรวจชื่อไฟล์ใน `input_wav` โดยตรง; WAV ที่มีอยู่แล้วจะถูกนับเป็น `existing` และข้ามโดยอัตโนมัติ จึงสามารถ copy ไฟล์ที่สร้างไว้ก่อนหน้าเข้ามาใน `input_wav` แล้วรันคำสั่งเดิมเพื่อทำต่อได้ โดยไม่ต้องอาศัยประวัติ mission เก่า.
+
+ตัวอย่าง summary ก่อนเริ่มงาน:
+
+```text
+Rows: total=323 selected=234 existing=89 errors=0
+```
+
+หมายถึง CSV มี 323 แถว, พบ WAV เดิมแล้ว 89 ไฟล์ และเหลือ generate อีก 234 ไฟล์.
+
+เมื่อแต่ละไฟล์สร้างสำเร็จ CMD จะแสดง progress หนึ่งบรรทัดต่อไฟล์ โดยตัวเลข progress อ้างอิงเฉพาะแถวที่ถูกเลือกให้ generate ใน job รอบนั้น เช่นถ้า `selected=234` จะเริ่มจาก `[1/234]`:
+
+```text
+[18:10:27] [1/234] DONE MS01_X01_....wav | elapsed 4m 52s
+```
+
+ถ้าต้องการสร้าง WAV ที่มีอยู่แล้วทับใหม่ทั้งหมด ใช้ `--overwrite`:
+
+```bat
+omnivoice_csv.cmd "C:\\path\\to\\chapter1_omnivoice_studio.csv" --overwrite
+```
+
+ถ้าต้องการกำหนด output directory เอง ใช้ `--output`:
+
+```bat
+omnivoice_csv.cmd "C:\\path\\to\\chapter1_omnivoice_studio.csv" --output "D:\\my_wav_output"
+```
+
+ระหว่างรันสามารถกด `Ctrl+C` เพื่อยกเลิก batch ได้. ตัว CLI จะสั่ง cancel mission และหยุด background worker tree ของ batch นั้นด้วย; WAV ที่สร้างเสร็จแล้วจะยังอยู่และสามารถรันคำสั่งเดิมภายหลังเพื่อทำต่อได้.
+
+หาก batch ถูกขัดจังหวะหรือ worker หยุด ระบบมี checkpoint/recovery สำหรับ mission ภายใน และมี retry สำหรับการเขียน checkpoint บน Windows เมื่อเจอ file lock ชั่วคราว. อย่างไรก็ตาม สำหรับ CSV CLI การตัดสินใจว่าจะ generate แถวใดในรอบใหม่จะดูจาก WAV ที่มีอยู่จริงใน output directory เป็นหลัก.
 
 สำหรับ low-level runner ที่มี job JSON อยู่แล้ว:
 
@@ -104,7 +150,7 @@ omnivoice_csv.cmd "C:\\path\\to\\chapter0_omnivoice_studio.csv" --overwrite
 ตรวจสถานะ mission:
 
 ```powershell
-.\.venv\Scripts\python.exe tts_batch_runner.py status --mission-id example-13-lines
+.\\.venv\\Scripts\\python.exe tts_batch_runner.py status --mission-id example-13-lines
 ```
 
 ## Project-aware voices และ reference conditioning
