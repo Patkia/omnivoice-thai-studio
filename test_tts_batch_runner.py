@@ -74,6 +74,15 @@ class BatchRunnerTests(unittest.TestCase):
             "reference_text_sha256": reference["reference_text_sha256"],
         }
 
+    def test_completed_progress_is_single_line_done_message(self):
+        with patch.object(batch.time, "strftime", return_value="09:36:48"), \
+             patch("builtins.print") as mocked_print:
+            batch._print_completed_progress(121, 214, "SER_A_00120.wav", 336.2)
+        mocked_print.assert_called_once_with(
+            "[09:36:48] [121/214] DONE SER_A_00120.wav | elapsed 5m 36s",
+            flush=True,
+        )
+
     def test_signature_changes_with_seed(self):
         base = {"text": "ทดสอบ", "voice": "narrator", "speed": 1.0, "steps": 32, "seed": None, "output": "001.wav"}
         other = dict(base, seed=15015)

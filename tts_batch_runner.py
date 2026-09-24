@@ -346,6 +346,22 @@ def _retryable_generation_error(exc: Exception) -> bool:
     return isinstance(exc, RuntimeError)
 
 
+def _format_elapsed(seconds: float) -> str:
+    total_seconds = max(0, int(round(seconds)))
+    minutes, secs = divmod(total_seconds, 60)
+    if minutes < 60:
+        return f"{minutes}m {secs:02d}s"
+    hours, minutes = divmod(minutes, 60)
+    return f"{hours}h {minutes:02d}m {secs:02d}s"
+
+
+def _print_completed_progress(index: int, total: int, filename: str, elapsed_seconds: float) -> None:
+    timestamp = time.strftime("%H:%M:%S")
+    print(
+        f"[{timestamp}] [{index}/{total}] DONE {filename} | elapsed {_format_elapsed(elapsed_seconds)}",
+        flush=True,
+    )
+
 def _worker_main_impl(job_path: Path, checkpoint_path: Path) -> int:
     job = _load_job(job_path)
     checkpoint = _load_or_init_checkpoint(job, checkpoint_path)
@@ -385,7 +401,8 @@ def _worker_main_impl(job_path: Path, checkpoint_path: Path) -> int:
             "reference_prompt_prep_count": adapter.session.reference_prompt_prep_count,
         }
         _mark(checkpoint_path, checkpoint, status="running", current=None)
-    for line in job["lines"]:
+    total_lines = len(job["lines"])
+    for line_index, line in enumerate(job["lines"], start=1):
         line_state = checkpoint["lines"][line["id"]]
         final_output = output_dir / line["output"]
         if _valid_completed_line(line_state, line, output_dir):
@@ -440,6 +457,12 @@ def _worker_main_impl(job_path: Path, checkpoint_path: Path) -> int:
                     "reference_prompt_prep_count": adapter.session.reference_prompt_prep_count,
                 }
                 _mark(checkpoint_path, checkpoint, status="running", current=None)
+                _print_completed_progress(
+                    line_index,
+                    total_lines,
+                    line["output"],
+                    time.time() - float(line_state["started_at_epoch"]),
+                )
                 succeeded = True
                 break
             except Exception as exc:
