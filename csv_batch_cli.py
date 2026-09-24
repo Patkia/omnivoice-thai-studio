@@ -20,7 +20,7 @@ JOB_ROOT = ROOT / "output" / "batch_jobs"
 
 
 def default_csv_output_dir(csv_path: Path) -> Path:
-    return csv_path.resolve().parent / "output"
+    return csv_path.resolve().parent / "input_wav"
 
 
 def prepare_job(
@@ -88,7 +88,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         description="Generate OmniVoice Thai WAV files from a Studio-compatible CSV."
     )
     parser.add_argument("csv", type=Path, help="CSV file to generate")
-    parser.add_argument("--output", type=Path, help="Output directory (default: <CSV folder>/output)")
+    parser.add_argument("--output", type=Path, help="Output directory (default: <CSV folder>/input_wav)")
     parser.add_argument("--overwrite", action="store_true", help="Regenerate WAV files that already exist")
     parser.add_argument("--voice", default="narrator", help="Fallback voice alias for rows without voice_target")
     parser.add_argument("--speed", type=float, default=1.0, help="Fallback speed for rows without mapped speed")

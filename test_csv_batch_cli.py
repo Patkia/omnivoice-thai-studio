@@ -21,13 +21,13 @@ class CsvBatchCliTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             csv_path = Path(temp) / "mapping" / "rows.csv"
             csv_path.parent.mkdir()
-            self.assertEqual(default_csv_output_dir(csv_path), csv_path.parent.resolve() / "output")
+            self.assertEqual(default_csv_output_dir(csv_path), csv_path.parent.resolve() / "input_wav")
 
     def test_prepare_job_uses_sibling_output_and_skips_existing(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             csv_path = self._write_csv(root)
-            output = root / "output"
+            output = root / "input_wav"
             output.mkdir()
             (output / "001.wav").write_bytes(b"existing")
 
@@ -42,7 +42,7 @@ class CsvBatchCliTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             csv_path = self._write_csv(root)
-            output = root / "output"
+            output = root / "input_wav"
             output.mkdir()
             (output / "001.wav").write_bytes(b"existing")
 

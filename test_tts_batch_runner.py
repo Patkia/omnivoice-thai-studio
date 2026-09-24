@@ -83,6 +83,45 @@ class BatchRunnerTests(unittest.TestCase):
             flush=True,
         )
 
+
+    def test_parent_reports_new_completed_rows_from_checkpoint(self):
+        checkpoint_path = self.root / "progress-checkpoint.json"
+        batch._atomic_json(checkpoint_path, {
+            "status": "running",
+            "current_line_id": None,
+            "lines": {
+                "001": {"status": "completed", "output": "001.wav", "elapsed_seconds": 61.0},
+                "002": {"status": "pending", "output": "002.wav"},
+            },
+        })
+        proc = MagicMock(pid=4321)
+        proc.poll.return_value = 0
+        with patch.object(batch, "_print_completed_progress") as progress:
+            self.assertEqual(
+                batch._watch_worker(proc, checkpoint_path, 30.0, poll_seconds=0, already_completed=set()),
+                0,
+            )
+        progress.assert_called_once_with(1, 2, "001.wav", 61.0)
+
+    def test_parent_does_not_repeat_completed_rows_from_resume(self):
+        checkpoint_path = self.root / "resume-progress-checkpoint.json"
+        batch._atomic_json(checkpoint_path, {
+            "status": "running",
+            "current_line_id": None,
+            "lines": {
+                "001": {"status": "completed", "output": "001.wav", "elapsed_seconds": 61.0},
+                "002": {"status": "completed", "output": "002.wav", "elapsed_seconds": 62.0},
+            },
+        })
+        proc = MagicMock(pid=4321)
+        proc.poll.return_value = 0
+        with patch.object(batch, "_print_completed_progress") as progress:
+            self.assertEqual(
+                batch._watch_worker(proc, checkpoint_path, 30.0, poll_seconds=0, already_completed={"001"}),
+                0,
+            )
+        progress.assert_called_once_with(2, 2, "002.wav", 62.0)
+
     def test_signature_changes_with_seed(self):
         base = {"text": "ทดสอบ", "voice": "narrator", "speed": 1.0, "steps": 32, "seed": None, "output": "001.wav"}
         other = dict(base, seed=15015)

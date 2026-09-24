@@ -370,7 +370,7 @@ class StudioWindow(QMainWindow):
             self.batch_job_path = None
             # A freshly imported CSV owns its default output beside the CSV.
             # Users can still choose a custom directory after import.
-            self.batch_output_label.setText(str(csv_path.parent / "output"))
+            self.batch_output_label.setText(str(csv_path.parent / "input_wav"))
             self._batch_output_user_selected = False
             self.validate_batch_rows(reset_selection=True)
             self.batch_csv_label.setText(path)

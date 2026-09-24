@@ -75,7 +75,14 @@ def _atomic_json(path: Path, data: dict[str, Any]) -> None:
     temp = path.with_suffix(path.suffix + f".{os.getpid()}.tmp")
     try:
         temp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-        os.replace(temp, path)
+        for attempt in range(5):
+            try:
+                os.replace(temp, path)
+                break
+            except PermissionError:
+                if attempt == 4:
+                    raise
+                time.sleep(0.1 * (attempt + 1))
     finally:
         temp.unlink(missing_ok=True)
 
@@ -362,6 +369,21 @@ def _print_completed_progress(index: int, total: int, filename: str, elapsed_sec
         flush=True,
     )
 
+
+def _report_new_completed(checkpoint: dict[str, Any], reported: set[str]) -> None:
+    lines = checkpoint.get("lines") or {}
+    total = len(lines)
+    for index, (line_id, state) in enumerate(lines.items(), start=1):
+        if line_id in reported or state.get("status") != "completed":
+            continue
+        _print_completed_progress(
+            index,
+            total,
+            str(state.get("output") or f"{line_id}.wav"),
+            float(state.get("elapsed_seconds", 0.0) or 0.0),
+        )
+        reported.add(line_id)
+
 def _worker_main_impl(job_path: Path, checkpoint_path: Path) -> int:
     job = _load_job(job_path)
     checkpoint = _load_or_init_checkpoint(job, checkpoint_path)
@@ -445,9 +467,11 @@ def _worker_main_impl(job_path: Path, checkpoint_path: Path) -> int:
                 )
                 final_output.parent.mkdir(parents=True, exist_ok=True)
                 os.replace(part_output, final_output)
+                elapsed_seconds = time.time() - float(line_state["started_at_epoch"])
                 line_state.update({
                     "status": "completed", "completed_at": _utc_now(), "cache_hit": bool(result.get("cache_hit")),
-                    "inference_seconds": result.get("inference_seconds", 0.0), "output": line["output"],
+                    "inference_seconds": result.get("inference_seconds", 0.0), "elapsed_seconds": elapsed_seconds,
+                    "output": line["output"],
                     "model_load_count": adapter.session.model_load_count,
                     "reference_prompt_prep_count": adapter.session.reference_prompt_prep_count,
                     "attempts": attempt + 1,
@@ -457,12 +481,6 @@ def _worker_main_impl(job_path: Path, checkpoint_path: Path) -> int:
                     "reference_prompt_prep_count": adapter.session.reference_prompt_prep_count,
                 }
                 _mark(checkpoint_path, checkpoint, status="running", current=None)
-                _print_completed_progress(
-                    line_index,
-                    total_lines,
-                    line["output"],
-                    time.time() - float(line_state["started_at_epoch"]),
-                )
                 succeeded = True
                 break
             except Exception as exc:
@@ -526,62 +544,65 @@ def _spawn_worker(snapshot: Path, checkpoint: Path) -> subprocess.Popen:
 
 
 def _watch_worker(proc: subprocess.Popen, checkpoint_path: Path, line_timeout: float,
-                  poll_seconds: float = POLL_SECONDS, output_dir: Path | None = None) -> int:
+                  poll_seconds: float = POLL_SECONDS, output_dir: Path | None = None,
+                  already_completed: set[str] | None = None) -> int:
+    reported = set(already_completed or set())
     while True:
         code = proc.poll()
-        if code is not None:
-            return code
         if checkpoint_path.exists():
             try:
                 checkpoint = _read_json(checkpoint_path)
             except BatchRunnerError:
-                time.sleep(poll_seconds)
-                continue
-            current = checkpoint.get("current_line_id")
-            if current:
-                state = checkpoint.get("lines", {}).get(current, {})
-                started = float(state.get("started_at_epoch", 0) or 0)
-                last_progress = float(state.get("last_progress_epoch", started) or started)
-                now = time.time()
-                part_path = None
-                part_mtime = None
-                if output_dir is not None:
-                    output_name = str(state.get("output", ""))
-                    if output_name:
-                        final = output_dir / output_name
-                        part_path = final.with_name(final.stem + ".part" + final.suffix)
-                        try:
-                            part_mtime = part_path.stat().st_mtime
-                        except OSError:
-                            part_mtime = None
-                observed_progress = part_mtime if part_mtime is not None and part_mtime > last_progress else last_progress
-                elapsed = now - started if started else 0.0
-                stalled_for = now - observed_progress if observed_progress else elapsed
-                hard_stall_seconds = max(line_timeout * HARD_STALL_MULTIPLIER, MIN_HARD_STALL_SECONDS)
-                if elapsed > line_timeout:
-                    latest = _read_json(checkpoint_path)
-                    latest_state = latest.get("lines", {}).get(current, {})
-                    if latest.get("current_line_id") == current and latest_state.get("status") == "running":
-                        latest_state["watchdog_warning"] = f"watchdog threshold {line_timeout:.0f}s exceeded; worker still active"
-                        latest_state["watchdog_warning_count"] = int(latest_state.get("watchdog_warning_count", 0)) + 1
-                        latest_state["watchdog_last_warning_epoch"] = now
-                        latest["watchdog_warning"] = {
-                            "row": current, "line_timeout_seconds": line_timeout,
-                            "recorded_at": _utc_now(), "worker_alive": True,
-                        }
-                        if stalled_for >= hard_stall_seconds and not latest_state.get("watchdog_suspected_stall"):
-                            latest_state["watchdog_suspected_stall"] = {
-                                "elapsed_seconds": round(elapsed, 3),
-                                "stalled_for_seconds": round(stalled_for, 3),
-                                "hard_stall_threshold_seconds": hard_stall_seconds,
-                                "last_progress_epoch": observed_progress,
-                                "part_path": str(part_path) if part_path else None,
-                                "part_mtime": part_mtime,
-                                "worker_pid": proc.pid,
-                                "action": "manual_cancel_required",
+                checkpoint = None
+            if checkpoint is not None:
+                _report_new_completed(checkpoint, reported)
+                current = checkpoint.get("current_line_id")
+                if current:
+                    state = checkpoint.get("lines", {}).get(current, {})
+                    started = float(state.get("started_at_epoch", 0) or 0)
+                    last_progress = float(state.get("last_progress_epoch", started) or started)
+                    now = time.time()
+                    part_path = None
+                    part_mtime = None
+                    if output_dir is not None:
+                        output_name = str(state.get("output", ""))
+                        if output_name:
+                            final = output_dir / output_name
+                            part_path = final.with_name(final.stem + ".part" + final.suffix)
+                            try:
+                                part_mtime = part_path.stat().st_mtime
+                            except OSError:
+                                part_mtime = None
+                    observed_progress = part_mtime if part_mtime is not None and part_mtime > last_progress else last_progress
+                    elapsed = now - started if started else 0.0
+                    stalled_for = now - observed_progress if observed_progress else elapsed
+                    hard_stall_seconds = max(line_timeout * HARD_STALL_MULTIPLIER, MIN_HARD_STALL_SECONDS)
+                    if elapsed > line_timeout:
+                        latest = _read_json(checkpoint_path)
+                        latest_state = latest.get("lines", {}).get(current, {})
+                        if latest.get("current_line_id") == current and latest_state.get("status") == "running":
+                            latest_state["watchdog_warning"] = f"watchdog threshold {line_timeout:.0f}s exceeded; worker still active"
+                            latest_state["watchdog_warning_count"] = int(latest_state.get("watchdog_warning_count", 0)) + 1
+                            latest_state["watchdog_last_warning_epoch"] = now
+                            latest["watchdog_warning"] = {
+                                "row": current, "line_timeout_seconds": line_timeout,
+                                "recorded_at": _utc_now(), "worker_alive": True,
                             }
-                            latest["watchdog_suspected_stall"] = latest_state["watchdog_suspected_stall"]
-                        _mark(checkpoint_path, latest, status="running", current=current)
+                            if stalled_for >= hard_stall_seconds and not latest_state.get("watchdog_suspected_stall"):
+                                latest_state["watchdog_suspected_stall"] = {
+                                    "elapsed_seconds": round(elapsed, 3),
+                                    "stalled_for_seconds": round(stalled_for, 3),
+                                    "hard_stall_threshold_seconds": hard_stall_seconds,
+                                    "last_progress_epoch": observed_progress,
+                                    "part_path": str(part_path) if part_path else None,
+                                    "part_mtime": part_mtime,
+                                    "worker_pid": proc.pid,
+                                    "action": "manual_cancel_required",
+                                }
+                                latest["watchdog_suspected_stall"] = latest_state["watchdog_suspected_stall"]
+                            _mark(checkpoint_path, latest, status="running", current=current)
+        if code is not None:
+            return code
         time.sleep(poll_seconds)
 
 
@@ -598,10 +619,20 @@ def run_job(job_path: Path, line_timeout: float, reset: bool = False) -> int:
         ):
             print(json.dumps({"mission_id": job["mission_id"], "status": "completed", "resume": "nothing_to_do"}, ensure_ascii=False))
             return 0
+        already_completed = {
+            line_id for line_id, state in (checkpoint.get("lines") or {}).items()
+            if state.get("status") == "completed"
+        }
         proc = _spawn_worker(paths["snapshot"], paths["checkpoint"])
         lock["worker_pid"] = proc.pid
         _atomic_json(lock_path, lock)
-        code = _watch_worker(proc, paths["checkpoint"], line_timeout, output_dir=Path(job["output_dir"]))
+        code = _watch_worker(
+            proc,
+            paths["checkpoint"],
+            line_timeout,
+            output_dir=Path(job["output_dir"]),
+            already_completed=already_completed,
+        )
         try:
             final_checkpoint = _read_json(paths["checkpoint"])
             if code not in (0, 124) and final_checkpoint.get("status") == "running":

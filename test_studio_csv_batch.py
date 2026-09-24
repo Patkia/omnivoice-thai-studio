@@ -64,7 +64,7 @@ class StudioCsvBatchTests(unittest.TestCase):
                 window.import_csv()
             self.assertEqual(
                 Path(window.batch_output_label.text()),
-                csv_path.parent / "output",
+                csv_path.parent / "input_wav",
             )
             self.assertIn("Voice Project: triangle-strategy", window.batch_resolution_summary.text())
             window.close()
@@ -97,7 +97,7 @@ class StudioCsvBatchTests(unittest.TestCase):
             root = Path(temp)
             csv_path = root / "fresh.csv"
             csv_path.write_text("placeholder", encoding="utf-8-sig")
-            output = root / "output"
+            output = root / "input_wav"
             output.mkdir()
             target = CsvBatchRow(2, {
                 "file_name": "MS01_X01_A1_1005_M_SEL_0030.wav",
