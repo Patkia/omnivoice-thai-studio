@@ -37,7 +37,7 @@
     },
     "benedict": {
       "profile_alias": "young_male",
-      "original_voice": "male_13_slow_0.88_wsola.wav",
+      "original_voice": "COR_B.wav",
       "generation_mode": "reference_first",
       "instruction_override": "male, middle-aged, high pitch",
       "speed": 1.22,
@@ -955,7 +955,7 @@
     },
     "booker": {
       "profile_alias": "young_male",
-      "original_voice": "COR_B.wav",
+      "original_voice": "male_13_slow_0.88_wsola.wav",
       "generation_mode": "reference_first",
       "language": "Thai",
       "denoise": true,
