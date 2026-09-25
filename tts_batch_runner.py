@@ -384,9 +384,53 @@ def _report_new_completed(checkpoint: dict[str, Any], reported: set[str]) -> Non
         )
         reported.add(line_id)
 
+def _apply_performance_mode(mode: str | None) -> dict[str, Any]:
+    """Apply an opt-in CPU-heavy runtime profile without changing inference quality."""
+    normalized = (mode or "normal").strip().lower()
+    info: dict[str, Any] = {"mode": normalized}
+    if normalized != "max":
+        return info
+
+    logical_cpus = max(1, int(os.cpu_count() or 1))
+    info["logical_cpus"] = logical_cpus
+    os.environ["OMP_NUM_THREADS"] = str(logical_cpus)
+    os.environ["MKL_NUM_THREADS"] = str(logical_cpus)
+
+    try:
+        import torch
+
+        torch.set_num_threads(logical_cpus)
+        info["torch_num_threads"] = int(torch.get_num_threads())
+        interop_threads = max(1, min(4, logical_cpus))
+        try:
+            torch.set_num_interop_threads(interop_threads)
+        except RuntimeError:
+            # PyTorch only permits setting this before inter-op work starts.
+            pass
+        info["torch_num_interop_threads"] = int(torch.get_num_interop_threads())
+    except Exception as exc:
+        info["torch_tuning_error"] = str(exc)
+
+    if os.name == "nt":
+        try:
+            import ctypes
+
+            HIGH_PRIORITY_CLASS = 0x00000080
+            handle = ctypes.windll.kernel32.GetCurrentProcess()
+            if not ctypes.windll.kernel32.SetPriorityClass(handle, HIGH_PRIORITY_CLASS):
+                raise OSError("SetPriorityClass returned false")
+            info["process_priority"] = "high"
+        except Exception as exc:
+            info["priority_error"] = str(exc)
+
+    return info
+
+
 def _worker_main_impl(job_path: Path, checkpoint_path: Path) -> int:
     job = _load_job(job_path)
     checkpoint = _load_or_init_checkpoint(job, checkpoint_path)
+    performance = _apply_performance_mode(job.get("performance_mode"))
+    checkpoint["performance"] = performance
     output_dir = Path(job["output_dir"])
     output_dir.mkdir(parents=True, exist_ok=True)
     adapter = StudioEngineAdapter()

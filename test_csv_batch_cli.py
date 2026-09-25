@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 import csv_batch_cli
-from csv_batch_cli import default_csv_output_dir, prepare_job
+from csv_batch_cli import default_csv_output_dir, parse_args, prepare_job
 
 
 class CsvBatchCliTests(unittest.TestCase):
@@ -54,6 +54,10 @@ class CsvBatchCliTests(unittest.TestCase):
             self.assertEqual(len(job["lines"]), 1)
             self.assertTrue(job["lines"][0]["force"])
             self.assertEqual(summary["selected"], 1)
+
+    def test_parse_args_accepts_max_performance_mode(self):
+        args = parse_args(["sample.csv", "--performance", "max"])
+        self.assertEqual(args.performance, "max")
 
 
     def test_ctrl_c_cancels_active_mission(self):

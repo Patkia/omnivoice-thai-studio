@@ -137,6 +137,14 @@ omnivoice_csv.cmd "C:\\path\\to\\chapter1_omnivoice_studio.csv" --overwrite
 omnivoice_csv.cmd "C:\\path\\to\\chapter1_omnivoice_studio.csv" --output "D:\\my_wav_output"
 ```
 
+ถ้าต้องการใช้ CPU เต็มกำลังมากขึ้นบนเครื่องที่ไม่ได้ใช้งานอย่างอื่น ใช้ `--performance max`:
+
+```bat
+omnivoice_csv.cmd "C:\\path\\to\\chapter1_omnivoice_studio.csv" --performance max
+```
+
+โหมดนี้ไม่ลดคุณภาพเสียงและไม่เปลี่ยน inference steps; worker จะพยายามใช้ logical CPU threads ทั้งหมดสำหรับ PyTorch และตั้ง process priority เป็น High บน Windows. ถ้าเครื่องร้อนจนเกิด thermal throttling อาจไม่ได้เร็วขึ้นเสมอ จึงควรเสียบชาร์จและระบายความร้อนให้ดี.
+
 ระหว่างรันสามารถกด `Ctrl+C` เพื่อยกเลิก batch ได้. ตัว CLI จะสั่ง cancel mission และหยุด background worker tree ของ batch นั้นด้วย; WAV ที่สร้างเสร็จแล้วจะยังอยู่และสามารถรันคำสั่งเดิมภายหลังเพื่อทำต่อได้.
 
 หาก batch ถูกขัดจังหวะหรือ worker หยุด ระบบมี checkpoint/recovery สำหรับ mission ภายใน และมี retry สำหรับการเขียน checkpoint บน Windows เมื่อเจอ file lock ชั่วคราว. อย่างไรก็ตาม สำหรับ CSV CLI การตัดสินใจว่าจะ generate แถวใดในรอบใหม่จะดูจาก WAV ที่มีอยู่จริงใน output directory เป็นหลัก.

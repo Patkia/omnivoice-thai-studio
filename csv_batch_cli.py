@@ -97,6 +97,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         help="Soft watchdog seconds per row")
     parser.add_argument("--mission-id", help="Reuse an explicit mission id/checkpoint")
     parser.add_argument("--reset", action="store_true", help="Reset checkpoint for the selected mission")
+    parser.add_argument(
+        "--performance",
+        choices=("normal", "max"),
+        default="normal",
+        help="CPU performance mode. 'max' uses all logical CPU threads and High process priority on Windows without changing audio quality.",
+    )
     return parser.parse_args(argv)
 
 
@@ -125,6 +131,10 @@ def main(argv: list[str] | None = None) -> int:
     if job is None:
         print("Nothing to generate: all WAV files already exist.")
         return 0
+
+    job["performance_mode"] = args.performance
+    if args.performance == "max":
+        print("Performance: max (all logical CPU threads + High priority on Windows; audio quality unchanged)")
 
     mission_id = job["mission_id"]
     job_path = JOB_ROOT / f"{mission_id}.json"
